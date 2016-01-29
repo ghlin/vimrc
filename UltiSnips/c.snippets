@@ -1,0 +1,236 @@
+
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+
+snippet gpl "gpl header" !b
+/*
+ * Copyright (c) 2015 ghlin <2012.2.9.ghl@gmail.com>, All rights reserved.
+ *
+ * This file is part of ${1:`!v ProjectNameGuess() `}.
+ *
+ * $1 is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * $1 is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with $1.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+$0
+endsnippet
+
+snippet lgpl "lgpl header" !b
+/*
+ * ${1:`!v ProjectNameGuess()`}
+ *
+ * Copyright (c) 2015 ghlin <2012.2.9.ghl@gmail.com>, All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation; either version 3.0 of the License,
+ * or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library.
+ *
+ */
+
+$0
+endsnippet
+
+snippet wtfpl "WTFPL header" !b
+/*
+ *
+ *          DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ *                    Version 2, December 2004
+ *
+ * Copyright (C) 2015 ghlin <2012.2.9.ghl@gmail.com>
+ *
+ * Everyone is permitted to copy and distribute verbatim or modified
+ * copies of this license document, and changing it is allowed as long
+ * as the name is changed.
+ *
+ *            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ *   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ *
+ *   0. You just DO WHAT THE FUCK YOU WANT TO.
+ *
+ */
+
+$0
+endsnippet
+
+
+snippet fhd "headsome" !b
+/*
+ *
+ *        /-\       ,-\
+ *       /   \     /   |
+ *      |     \   /    /
+ *       \     >-/    /
+ *        \         /\`
+ *         >-- /\ -<
+ *        (   /  \  )
+ *         |/     \/
+ *         /
+ *
+ *
+ *                       反　魂　蝶　で　あ　る　！
+ *
+ *                      GHL <2012.2.9.ghl@gmail.com>
+ */
+
+$0
+endsnippet
+
+snippet hd "headsome" !b
+/*
+ *       _,.--.,_                             _,.--.,_
+ *      |  _____ |                           | _____  |
+ *      |-'     \`'._________________________,'\`     \`-|
+ *    ,'    ___    \`.                     ,'     .-.   \`\`.
+ *   /     |   |     \\                   /      (/_\\)     \\
+ *  !  ___  \\ /  ___  |                 !   ,-.  \`-'  ,-.  |
+ *  | |___>     <___| !_SELECT   START__|  ([ ])     ( O ) !
+ *  !       / \\      ____\`-.       .-'____  \`-'  .-.  \`-'  |
+ *  |\\     |___|   ,'    \`. \\     / ,'    \`.    ( X )     /|
+ *  | \`~          /        \\ |   | /        \\    \`-'    ,' |
+ *  |   \`-~___,-. \\        / |___| \\        / ,-.____,-'   |
+ *  |           '\\ \`.____,' /     \\ \`.____,' /\`.           |
+ *  |          /  \`-.____,-'       \`-.____,-'   \\          |
+ *  \\         /                                  \\         /
+ *   \\       /                                    \\       /
+ *    \`.__,-'                                      \`-.__,'
+ *
+ *
+ *                                GHL <2012.2.9.ghl@gmail.com>
+ */
+
+$0
+endsnippet
+
+
+snippet inc "#include" !b
+#include <$1>
+$0
+endsnippet
+
+snippet incl "#include (local)" !b
+#include "$1"
+$0
+endsnippet
+
+snippet main "main() (main)" !b
+
+int main(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+
+  ${1:/* code here */}
+  return 0;
+}
+
+endsnippet
+
+
+snippet once "Include header once only guard"
+#ifndef ${1:`!p
+if not snip.c:
+  import random, string
+  name    = re.sub(r'[^A-Za-z0-9]+', '_', snip.fn).upper()
+  rand    = ''.join(random.sample(string.ascii_letters + string.digits, 8))
+  snip.rv = ('%s_INCLUDED_%s' % (name, rand)).upper()
+else:
+    snip.rv = snip.c`}
+#define $1
+
+${0}
+
+#endif // end of include guard: $1
+
+endsnippet
+
+snippet todo "a todo reminder" !bs
+// ${1:TODO}(ghlin) : ${2:reminder} `!v strftime("%F %T")`
+endsnippet
+
+snippet xxx "a xxx reminder" !bs
+// ${1:XXX}(ghlin) : ${2:reminder} `!v strftime("%F %T")`
+endsnippet
+
+snippet fixme "a fixme reminder" !bs
+// ${1:FIXME}(ghlin) : ${2:reminder} `!v strftime("%F %T")`
+endsnippet
+
+snippet brief "doxygen with @brief" !bs
+/**
+ * @brief $1
+ */
+$0
+endsnippet
+
+snippet comment "a nice comment" !bs
+/*
+ * $1
+ */
+$0
+endsnippet
+
+snippet "([^ 	])-" "->" !ir
+`!p snip.rv = match.group(1)`->$0
+endsnippet
+
+snippet " -" "x - x" !ir
+ - $0
+endsnippet
+
+snippet undef "undefine macro" !b
+#ifdef $1
+#undef $1
+#endif
+$0
+endsnippet
+
+snippet oj "Online Judge Mode On!!!" !b
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <limits.h>
+
+#ifndef ONLINE_JUDGE
+#define logx(...) \
+	do { fprintf(stderr, "%s, %d : ", __func__, __LINE__); \
+			 fprintf(stderr, __VA_ARGS__); \
+			 fprintf(stderr, "\n"); } while (0)
+#else
+#define logx(...) do { } while (0)
+#endif
+
+int main(void)
+{
+	$1
+
+	return 0;
+}
+
+
+endsnippet
+
+# vim:ft=snippets:
+

@@ -1,0 +1,200 @@
+au!  BufEnter,BufRead *.c,*.cc,*.cpp,*.c++,*.cxx :exec 'setlocal makeprg =rin\ -silent\ ' . expand('%')
+com! -nargs=* RunThis       :!%:p:r <args>
+nmap <leader>e    :!%:p:r<CR>
+
+finish
+
+let g:AM_config = {
+      \ 'libpath' : [ '.', '$HOME/.local/lib', '/usr/local/lib' ],
+      \ 'incpath' : [ '.', '$HOME/.local/include', '/usr/local/include' ],
+      \ 'libs'    : [ 'pthread', 'dl' ],
+      \ 'gflags'  : [ '-W', '-Wall', '-Wextra', '-fextended-identifiers' ],
+      \ 'cflags'  : [ '-std=c11' ],
+      \ 'cxxflags': [ '-std=c++1y' ],
+      \ 'ccompiler'   : 'clang',
+      \ 'cxxcompiler' : 'clang++',
+      \ 'exec_ext'    : ''
+      \ }
+
+let g:AM_enabled = 1
+let g:AM_locked  = 0
+let g:AM_lock    = ""
+
+fu! AM_init()
+  let need_init = !exists('b:AM_init_done')
+
+  if need_init
+    let b:AM_config = deepcopy(g:AM_config)
+    let b:AM_enabled = 1
+    let b:AM_user_makeprg = 'make'
+    let b:AM_use_user_makeprg = 0
+
+    cal AM_update_makeprg()
+
+    let b:AM_init_done = 1
+
+    return 1
+  en
+
+  return 0
+endfu
+
+fu! AM_check_filetype()
+  if &ft == 'c'
+    let b:AM_config.compiler = b:AM_config.ccompiler
+    let b:AM_config.flags = b:AM_config.cflags
+  elseif &ft == 'cpp'
+    let b:AM_config.compiler = b:AM_config.cxxcompiler
+    let b:AM_config.flags = b:AM_config.cxxflags
+  en
+endfu
+
+fu! AM_enter_buffer()
+  if AM_init()
+    return
+  en
+
+  if g:AM_locked == 1
+    cal AM_set_locked_makeprg()
+    return
+  en
+
+  if !g:AM_enabled | !b:AM_enabled
+    " disabled
+  elseif b:AM_use_user_makeprg
+    exec 'setlocal makeprg =' . b:AM_user_makeprg
+  else
+    cal AM_update_makeprg()
+  en
+
+  cal AM_after()
+endfu
+
+fu! AM_after()
+endfu
+
+fu! AM_toggle_lock()
+  if g:AM_locked
+    call AM_unlock()
+    return
+  en
+
+  call AM_lock()
+endfu
+
+fu! AM_lock()
+  let g:AM_locked = 1
+  let g:AM_locked_makeprg = b:AM_makeprg
+
+  echo "lock to " . g:AM_locked_makeprg
+endfu
+
+fu! AM_unlock()
+  let g:AM_locked = 0
+endfu
+
+fu! AM_build_makeprg()
+  cal AM_check_filetype()
+
+  let l:makeprg = b:AM_config.compiler . '\ ' . escape(expand('%'), ' ') . '\ -o\ '
+        \ . escape(expand('%:p:r'), ' ') . b:AM_config.exec_ext
+  let l:cppprg  = b:AM_config.compiler . ' ' . expand('%') . ' -E -o '
+        \ . expand('%:p:r') . '.i'
+
+  let l:arg = [
+        \ [ 'libpath', ' -L' ],
+        \ [ 'incpath', ' -I' ],
+        \ [ 'libs',    ' -l' ],
+        \ [ 'flags',   ' ' ],
+        \ [ 'gflags',  ' ' ]
+        \ ]
+
+  for i in l:arg
+    for x in b:AM_config[i[0]]
+      let l:makeprg = l:makeprg . escape(i[1], ' ') . '\"' . x . '\"'
+      let l:cppprg  = l:cppprg  . i[1] . '"' . x . '"'
+    endfor
+  endfor
+
+  let b:AM_makeprg = l:makeprg
+  let b:AM_cppprg  = l:cppprg
+endfu
+
+fu! AM_update_makeprg()
+  cal AM_build_makeprg()
+  exec 'setlocal makeprg =' . b:AM_makeprg
+endfu
+
+autocmd! BufEnter,BufRead *.c,*.cc,*.cpp,*.c++,*.cxx cal AM_enter_buffer()
+autocmd! BufEnter,BufRead *.h,*.hh,*.hpp,*.inl       cal AM_lock_for_all()
+
+fu! AM_add_flag(flag)
+  cal insert(b:AM_config.gflags, a:flag)
+  cal AM_update_makeprg()
+endfu
+
+fu! AM_add_libpath(path)
+  cal insert(b:AM_config.libpath, a:path)
+  cal AM_update_makeprg()
+endfu
+
+fu! AM_add_incpath(path)
+  cal insert(b:AM_config.incpath, a:path)
+  cal AM_update_makeprg()
+endfu
+
+fu! AM_add_lib(lib)
+  cal insert(b:AM_config.libs, a:lib)
+  cal AM_update_makeprg()
+endfu
+
+fu! AM_toggle_for_buffer()
+  let b:AM_enabled = !b:AM_enabled
+endfu
+
+fu! AM_toggle_global()
+  let g:AM_enabled = !g:AM_enabled
+endfu
+
+fu! AM_set_locked_makeprg()
+  exec 'setlocal makeprg =' . g:AM_locked_makeprg
+endfu
+
+fu! AM_lock_for_all()
+  if g:AM_locked == 1
+    cal AM_set_locked_makeprg()
+  en
+endfu
+
+
+fu! AM_invoke_cpp()
+  call system(b:AM_cppprg)
+endfu
+
+com! -nargs=0                            AMCPP      cal AM_invoke_cpp()
+com! -nargs=1 -complete=dir              AMInc      cal AM_add_incpath('<args>')
+com! -nargs=1 -complete=dir              AMLibPath  cal AM_add_libpath('<args>')
+com! -nargs=1 -complete=dir              AMLib      cal AM_add_lib('<args>')
+com! -nargs=0                            AMToggleB  cal AM_toggle_for_buffer()
+com! -nargs=0                            AMToggleG  cal AM_toggle_global()
+com! -nargs=0                            AMLock     cal AM_toggle_lock()
+
+com! -nargs=1 -complete=customlist,AM_complete_cflag
+      \ AMFlag     cal AM_add_flag('<args>')
+com! -nargs=1 -complete=customlist,AM_complete_libs
+      \ AMUse      cal AM_add_lib('<args>')
+
+" TODO
+fu! AM_complete_cflag(A, L, C)
+  return [ '-rdynamic', '-shared', '-c' ]
+endfu
+
+fu! AM_complete_libs(A, L, C)
+  return [ 'boost_system', 'boost_context', 'lua', 'pthread', 'sqlite3' ]
+endfu
+
+fu! AM_complete_incpath(A, L, C)
+  return [ '.', '..' ]
+endfu
+
+
