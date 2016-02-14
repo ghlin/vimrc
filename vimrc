@@ -36,7 +36,7 @@ function! BasicSettings() "{{{
   set autoindent
   set smartindent
   set cino         =N-s,:s,b1,g0,t0,(0,Ws,ks,l1
-  set iskeyword   ^=_,?,\$,-
+  set iskeyword   ^=_,\$,?
   set expandtab
   set shiftwidth   =2
   set softtabstop  =2
@@ -44,7 +44,7 @@ function! BasicSettings() "{{{
   set whichwrap   +=<,>,h,l
   set list
   set conceallevel =2
-  set listchars    =tab:->,trail:- ",eol:¶
+  set listchars    =tab:\ \ ,trail:- ",eol:¶
   "set textwidth    =80
   "set colorcolumn  =+1
 
@@ -76,6 +76,9 @@ function! BasicSettings() "{{{
   " iterm2 only.
   let &t_SI = "\<Esc>]50;CursorShape=1 \x7"
   let &t_EI = "\<Esc>]50;CursorShape=0 \x7"
+
+  " set working dir automatically.
+  autocmd BufEnter * silent! lcd %:p:h
 
   nnoremap \\ :nohl<CR>
 
@@ -167,7 +170,7 @@ function! BasicSettings() "{{{
   set completeopt=menu,longest
 
   "set wildmode=list:full
-  set wildignore=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run
+  set wildignore=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM
 
   set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 
@@ -256,8 +259,8 @@ function! GuiSettings() "{{{
   "colorscheme      github
   "colorscheme      solarized
   "colorscheme      dracula
-  "colorscheme eye
-  colorscheme PerfectDark
+  colorscheme eye
+  "colorscheme PerfectDark
 
   set              cul
 

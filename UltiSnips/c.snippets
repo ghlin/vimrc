@@ -135,7 +135,7 @@ endsnippet
 
 snippet main "main() (main)" !b
 
-int main(int argc, char **argv)
+int main(int argc, const char **argv)
 {
 	(void)argc;
 	(void)argv;
@@ -176,11 +176,10 @@ snippet fixme "a fixme reminder" !bs
 // ${1:FIXME}(ghlin) : ${2:reminder} `!v strftime("%F %T")`
 endsnippet
 
-snippet brief "doxygen with @brief" !bs
+snippet doxy "doxygen comment" !bs
 /**
- * @brief $1
- */
-$0
+ * $1
+ */$0
 endsnippet
 
 snippet comment "a nice comment" !bs

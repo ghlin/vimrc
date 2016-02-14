@@ -1,125 +1,128 @@
-" {{{ vundle
+" {{{ Vundle
   Plugin 'VundleVim/Vundle.vim'
 " }}}
 
-" {{{ L9 (as DEP)
-" Plugin 'L9'
+" {{{ Filetype Plugin
+
+" {{{ Haskell
+  Plugin 'neovimhaskell/haskell-vim'
+" }}}
+
+" {{{ Coffee
+  Plugin 'kchmck/vim-coffee-script'
+" }}}
+
+" {{{ Squirrel
+  Plugin 'xevz/vim-squirrel'
+" }}}
+
+" {{{ Markdown
+  Plugin 'tpope/vim-markdown'
+
+  Plugin 'iamcco/markdown-preview.vim'
+  let g:mkdp_path_to_chrome = "/Users/ghlin/.local/bin/urlhandler"
+" }}}
+
+" {{{ Rust
+  Plugin 'rust-lang/rust.vim'
+
+  " Plugin 'racer-rust/vim-racer'
+
+  let $RUST_SRC_PATH = "$HOME/.local/lib/rust/src/rustc-1.3.0/src"
+  let g:racer_cmd    = "$HOME/.local/bin/racer"
+
+  " autocmd FileType rust setlocal completefunc=RacerComplete
+" }}}
+
+" {{{ Perl
+  Plugin 'vim-perl/vim-perl'
+" }}}
+
+" {{{ Lua
+" Plugin 'vim-misc' " required by lua.vim
+" Plugin 'lua.vim'
+" }}}
+
+" {{{ Gtk
+" Plugin 'gtk-mode'
+" }}}
+
+" {{{ Jade
+  Plugin 'digitaltoad/vim-jade'
+" }}}
+
+" {{{ C / C++
+  Plugin 'vim-jp/cpp-vim'
+" Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" {{{ Clang Complete
+  Plugin 'Rip-Rip/clang_complete', { 'pinned' : 0 }
+
+  let g:clang_library_path      = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+
+  let g:clang_complete_auto     = 1
+  let g:clang_auto_select       = 1
+  let g:clang_complete_copen    = 1
+  let g:clang_use_library       = 1
+  let g:clang_complete_auto     = 0
+  let g:clang_snippets          = 1
+  let g:clang_snippets_engine   = 'ultisnips'
+  let g:clang_hl_errors         = 0
+  let g:clang_complete_macros   = 1
+  let g:clang_complete_patterns = 1
+  let g:clang_periodic_quickfix = 0
+  let g:clang_close_preview     = 1
+
+  nnoremap <leader>q       :call g:ClangUpdateQuickFix()<CR>
+" }}}
+
+" {{{ A.vim (switch between header & source files)
+  Plugin 'a.vim'
+" }}}
+
+" }}}
+
+" {{{ TOML
+  Plugin 'cespare/vim-toml'
 " }}}
 
 
-" {{{ calutil (as DEP)
-" Plugin 'cskeeters/vim-calutil'
 " }}}
 
-" {{{ github-like color scheme
+" {{{ Colorscheme
+
+" {{{ Github (colorscheme)
   Plugin 'github-theme'
 " }}}
 
-" {{{ solarized
+" {{{ Solarized
   Plugin 'altercation/vim-colors-solarized'
 " }}}
 
-" {{{ vim-molokai
+" {{{ Molokai
   Plugin 'tomasr/molokai'
 " }}}
 
-" {{{ vim-dracula
+" {{{ Dracula
   Plugin 'crusoexia/vim-dracula'
-" }}}
-
-" {{{ vim-colorschemes
-" Plugin 'flazz/vim-colorschemes'
-" }}}
-
-" {{{ google
-" Plugin 'google/vim-colorscheme-primary'
-" }}}
-
-" {{{ vim-kalisi
-" Plugin 'freeo/vim-kalisi'
 " }}}
 
 " {{{ Color-Scheme-Exploer
 " Plugin 'Color-Scheme-Explorer'
 " }}}
 
-" {{{ argtextobj (text object of arguments)
-  Plugin 'argtextobj.vim'
 " }}}
 
-" {{{ vim-textobj-user AS-DEP(vim-textobj-indent)
-  Plugin 'kana/vim-textobj-user'
-" }}}
+
+" {{{ Utilites
 
 " {{{ vim-textobj-indent
+  Plugin 'kana/vim-textobj-user' " required by vim-textobj-indent
   Plugin 'kana/vim-textobj-indent'
 " }}}
 
-" {{{ Filetype Plugin
-
-" {{{
-  Plugin 'neovimhaskell/haskell-vim'
-" }}}
-
-" {{{ coffee-script
-  Plugin 'kchmck/vim-coffee-script'
-" }}}
-
-" {{{ squirrel  squirrel ft plugin
-  Plugin 'xevz/vim-squirrel'
-" }}}
-
-" {{{
-  Plugin 'tpope/vim-markdown'
-" }}}
-
-" {{{
-  Plugin 'rust-lang/rust.vim'
-" }}}
-
-" {{{ lua.vim
-" Plugin 'vim-misc' " DEP
-" Plugin 'lua.vim'
-" }}}
-
-" {{{ perl
-  Plugin 'vim-perl/vim-perl'
-" }}}
-
-" {{{ gtk-mode   stuffs writing gtk code(vala highlighting)
-" Plugin 'gtk-mode'
-" }}}
-
-" {{{
-  Plugin 'digitaltoad/vim-jade'
-" }}}
-
-" {{{ cpp-vim (c++11 highlighting)
-  Plugin 'vim-jp/cpp-vim'
-" Plugin 'octol/vim-cpp-enhanced-highlight'
-" }}}
-
-" {{{ vim-toml TOML
-  Plugin 'cespare/vim-toml'
-" }}}
-
-" }}}
-
-" {{{ Tools
-
-" {{{ vim-fugitive
-" Plugin 'tpope/vim-fugitive'
-" }}}
-
-" {{{ hsitz/VimOrganizer
-" Plugin 'hsitz/VimOrganizer'
-
-  let g:global_column_view = 1
-" au BufEnter,BufRead *.org,todo,TODO set ft=org
-" }}}
-
-" {{{ NrrwRgn (DEP for VimOrganizer)
-" Plugin 'chrisbra/NrrwRgn'
+" {{{ argtextobj
+  Plugin 'argtextobj.vim'
 " }}}
 
 " {{{ Quick Run
@@ -165,34 +168,8 @@
         \}
 " }}}
 
-" {{{ vim-racer Rust complete
-  Plugin 'racer-rust/vim-racer'
-" Plugin 'phildawes/racer'
-
-  let $RUST_SRC_PATH = "/Users/ghlin/.local/lib/rust/src/rustc-1.3.0/src"
-  let g:racer_cmd    = "/Users/ghlin/.local/bin/racer"
-  autocmd FileType rust setlocal completefunc=RacerComplete
-" }}}
-
-" {{{ Clang Complete
-  Plugin 'Rip-Rip/clang_complete', { 'pinned' : 0 }
-
-  let g:clang_library_path      = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-
-  let g:clang_complete_auto     = 1
-  let g:clang_auto_select       = 1
-  let g:clang_complete_copen    = 1
-  let g:clang_use_library       = 1
-  let g:clang_complete_auto     = 0
-  let g:clang_snippets          = 1
-  let g:clang_snippets_engine   = 'ultisnips'
-  let g:clang_hl_errors         = 0
-  let g:clang_complete_macros   = 1
-  let g:clang_complete_patterns = 1
-  let g:clang_periodic_quickfix = 0
-  let g:clang_close_preview     = 1
-
-  nnoremap <leader>q       :call g:ClangUpdateQuickFix()<CR>
+" {{{ tablify   generate tables
+" Plugin 'Stormherz/tablify'
 " }}}
 
 " {{{ startify   a pretty welcome screen
@@ -201,12 +178,9 @@
   let g:startify_bookmarks    = [ '~/.vim/vimrc', '~/.zshrc' ]
 " }}}
 
-" {{{ tablify   generate tables
-" Plugin 'Stormherz/tablify'
-" }}}
-
 " {{{ airline   pretty status-line
   Plugin 'bling/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
 
   "let g:airline_mode_map = { '__' : '-', 'n'  : '*', 'i'  : 'I',
       "\ 'R'  : 'R', 'c'  : 'C', 'v'  : 'V', 'V'  : 'V',
@@ -275,18 +249,18 @@
   vnoremap <silent> <Enter> :EasyAlign<Enter>
 " }}}
 
-" {{{ tagbar
+" {{{ Tagbar
 " Plugin 'majutsushi/tagbar'
   let g:tagbar_width     = 20
   nmap  <leader>T :TagbarToggle<CR>
   nmap  <leader>p :TagbarTogglePause<CR>
 " }}}
 
-" {{{ nerdcommenter
+" {{{ NerdCommenter
   Plugin 'scrooloose/nerdcommenter'
 " }}}
 
-" {{{ nerdtree
+" {{{ NerdTree
   Plugin 'scrooloose/nerdtree'
   nmap  <leader>E :NERDTreeToggle<CR>
   let g:NERDTreeDirArrows=0
@@ -298,22 +272,22 @@
                   \ , '\.h$', '\.hpp$', '\.c$', '\.cxx$'
                   \ , '\.lua$'
                   \ , '\.run$'
-                  \ , '*', '\.swp$', '\~$' ]
+                  \ , '*', '\.swp$', '\~$', '.dSYM' ]
 
   hi link NERDTreePart Normal
   hi link NERDTreePartFile Normal
 " }}}
 
-" {{{ surround
+" {{{ Surround
   Plugin 'tpope/vim-surround'
 " }}}
 
-" {{{ VimShell   terminal inside GVim
+" {{{ VimShell
   Plugin 'Shougo/vimproc.vim'
   Plugin 'Shougo/vimshell.vim'
 " }}}
 
-" {{{ emmet  ZenCoding
+" {{{ Emmit (ZenCoding)
   Plugin 'mattn/emmet-vim'
 
   let g:user_emmet_leader_key     = '<c-e>'
@@ -323,17 +297,13 @@
   let g:use_emmet_complete_tag    = 1
 " }}}
 
-" {{{ VimIm   Chinese input method
-" Plugin 'VimIM'
-" }}}
-
-" {{{ Gundo   visual undo-tree
+" {{{ Gundo
   Plugin 'Gundo'
 
   nmap <leader>u    :GundoToggle<CR>
 " }}}
 
-" {{{ DrawIt   draw ascii pictures
+" {{{ DrawIt
   Plugin 'DrawIt'
 " }}}
 
@@ -345,23 +315,15 @@
   endif
 " }}}
 
-" {{{ cscope macros
-" Plugin 'cscope_macros.vim'
-" }}}
-
-" {{{ swap-parameters   swap two parameters
+" {{{ Swap Parameters
   Plugin 'swap-parameters'
-" }}}
-
-" {{{ A.vim (switch between .c/.h)
-  Plugin 'a.vim'
 " }}}
 
 " {{{ Easy Grep
   Plugin 'EasyGrep'
 " }}}
 
-" {{{ VisIncr (vertical inc-some)
+" {{{ VisIncr
   Plugin 'VisIncr'
 " }}}
 
@@ -385,7 +347,7 @@
   let g:ctrlp_mruf_max = 1000
 
   let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git)$',
+        \ 'dir':  '\v[\/]\.(git|dSYM)$',
         \ 'file': '\v[\/]\.(exe|so|dll|luac|run|pyc|swp|a|o)$',
         \ 'link': '',
         \ }
@@ -399,17 +361,6 @@
   endfunction
 " }}}
 
-" }}}
 
-" Misc
-"
-" {{{
-" Plugin 'ryanoasis/vim-devicons'
 " }}}
-
-" {{{
-  Plugin 'iamcco/markdown-preview.vim'
-  let g:mkdp_path_to_chrome = "/Users/ghlin/.local/bin/urlhandler"
-" }}}
-
 
