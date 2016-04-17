@@ -238,29 +238,32 @@ function! GuiSettings() "{{{
   set guioptions  =fmei
 
   "set guifont     =CamingoCode:h16
-  set guifont     =Consolas:h16 " Consolas is the BEST!
+  "set guifont     =Consolas:h16 " Consolas is the BEST!
   "set guifont     =Courier:h14
   "set guifont     =Courier\ New:h14
   "set guifont     =Fantasque\ Sans\ Mono:h16
   "set guifont     =Fira\ Code:h13
   "set guifont     =Inconsolata:h14
   "set guifont     =Linux\ Libertine\ Mono:h12
-  "set guifont     =M+\ 1m:h16
-  "set guifont     =Menlo\ Regular:h13
+   set guifont     =M+\ 1m:h16
+  "set guifont     =Menlo\ Regular:h14
   "set guifont     =Monofur:h18
   "set guifont     =Share-TechMonoTrue:h15
   "set guifont     =Source\ Code\ Pro:h12
   "set guifont     =Terminus\ (TTF):h14
   "set guifont     =Ubuntu\ Mono:h14
   "set guifont     =pointfree:h14
+  "set guifont     =Iosevka\ Slab:h18
 
+  set background=dark
   "colorscheme      efede6
   "colorscheme      eclipse-mod
   "colorscheme      github
   "colorscheme      solarized
   "colorscheme      dracula
-  colorscheme eye
-  "colorscheme PerfectDark
+  "colorscheme      eye
+  "colorscheme      PerfectDark
+  colorscheme      pencil
 
   set              cul
 

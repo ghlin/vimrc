@@ -140,8 +140,8 @@ int main(int argc, const char **argv)
 	(void)argc;
 	(void)argv;
 
-  ${1:/* code here */}
-  return 0;
+	${1:/* code here */}
+	return 0;
 }
 
 endsnippet
@@ -165,15 +165,15 @@ ${0}
 endsnippet
 
 snippet todo "a todo reminder" !bs
-// ${1:TODO}(ghlin) : ${2:reminder} `!v strftime("%F %T")`
+// ${1:TODO}: ${2:reminder} `!v strftime("%F %T")`
 endsnippet
 
 snippet xxx "a xxx reminder" !bs
-// ${1:XXX}(ghlin) : ${2:reminder} `!v strftime("%F %T")`
+// ${1:XXX}: ${2:reminder} `!v strftime("%F %T")`
 endsnippet
 
 snippet fixme "a fixme reminder" !bs
-// ${1:FIXME}(ghlin) : ${2:reminder} `!v strftime("%F %T")`
+// ${1:FIXME}: ${2:reminder} `!v strftime("%F %T")`
 endsnippet
 
 snippet doxy "doxygen comment" !bs
@@ -189,6 +189,12 @@ snippet comment "a nice comment" !bs
 $0
 endsnippet
 
+snippet rin "@@@" !bs
+/*
+ * @@@ ${1:compile}: ${2:options}
+ */
+endsnippet
+
 snippet "([^ 	])-" "->" !ir
 `!p snip.rv = match.group(1)`->$0
 endsnippet
@@ -197,10 +203,15 @@ snippet " -" "x - x" !ir
  - $0
 endsnippet
 
+snippet "-." "fix -. to ->" !ir
+->$0
+endsnippet
+
 snippet undef "undefine macro" !b
 #ifdef $1
 #undef $1
 #endif
+
 $0
 endsnippet
 
@@ -227,7 +238,6 @@ int main(void)
 
 	return 0;
 }
-
 
 endsnippet
 

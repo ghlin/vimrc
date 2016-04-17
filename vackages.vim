@@ -4,6 +4,10 @@
 
 " {{{ Filetype Plugin
 
+" {{{ QuickRun
+  Plugin 'thinca/vim-quickrun'
+" }}}
+
 " {{{ Haskell
   Plugin 'neovimhaskell/haskell-vim'
 " }}}
@@ -91,6 +95,10 @@
 
 " {{{ Colorscheme
 
+" {{{
+  Plugin 'antlypls/vim-colors-codeschool'
+" }}}
+
 " {{{ Github (colorscheme)
   Plugin 'github-theme'
 " }}}
@@ -107,12 +115,29 @@
   Plugin 'crusoexia/vim-dracula'
 " }}}
 
+" {{{
+  Plugin 'reedes/vim-colors-pencil'
+" }}}
+
 " {{{ Color-Scheme-Exploer
 " Plugin 'Color-Scheme-Explorer'
 " }}}
 
 " }}}
 
+" {{{ Mode
+
+" {{{ DrawIt
+  Plugin 'DrawIt'
+" }}}
+
+" {{{ Goyo.vim
+  Plugin 'junegunn/goyo.vim'
+  let g:goyo_width = 100
+" }}}
+
+
+" }}}
 
 " {{{ Utilites
 
@@ -303,10 +328,6 @@
   nmap <leader>u    :GundoToggle<CR>
 " }}}
 
-" {{{ DrawIt
-  Plugin 'DrawIt'
-" }}}
-
 " {{{ UltiSnips
   Plugin 'SirVer/ultisnips', { 'pinned' : 0 }
   " use py3: clang_complete [snippets engine not found]
@@ -361,6 +382,9 @@
   endfunction
 " }}}
 
+" {{{
+  Plugin 'embear/vim-localvimrc'
+" }}}
 
 " }}}
 
