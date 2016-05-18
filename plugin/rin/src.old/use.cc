@@ -21,13 +21,13 @@ struct Presets
     presets.insert({ k, { make_getter(c), make_getter(l) } })
 
     add("debug", "-Wall -Wextra -W -O0 -DDEBUG=1 -D_DEBUG=1", "");
-    add("home", "-I$HOME/.local/include", "-L$HOME/.local/lib");
-    add("brew", "-I/usr/local/include", "-L/usr/local/lib");
-    add("c++11", "-std=c++11", "");
-    add("c++14", "-std=c++14", "");
-    add("c++1y", "-std=c++1y", "");
-    add("c99", "-std=c99", "");
-    add("c11", "-std=c11", "");
+    add("home",  "-I$HOME/.local/include",                    "-L$HOME/.local/lib");
+    add("brew",  "-I/usr/local/include",                      "-L/usr/local/lib");
+    add("c++11", "-std=c++11",                                "");
+    add("c++14", "-std=c++14",                                "");
+    add("c++1y", "-std=c++1y",                                "");
+    add("c99",   "-std=c99",                                  "");
+    add("c11",   "-std=c11",                                  "");
   }
 };
 

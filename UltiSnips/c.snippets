@@ -164,6 +164,23 @@ ${0}
 
 endsnippet
 
+snippet qonce "QxQ once gen" !b
+#ifndef ${1:`!p
+if not snip.c:
+	import string
+
+	fileName    = re.sub(r'[^A-Za-z0-9]+', '_', snip.fn).upper()
+	snip.rv = ('QXQ_%s_INCLUDED' % (fileName)).upper()
+else:
+	snip.rv = snip.c`}
+#define $1
+
+${0}
+
+#endif // end of include guard: $1
+
+endsnippet
+
 snippet todo "a todo reminder" !bs
 // ${1:TODO}: ${2:reminder} `!v strftime("%F %T")`
 endsnippet

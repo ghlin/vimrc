@@ -73,9 +73,6 @@ function! BasicSettings() "{{{
 
   set timeoutlen =600
 
-  " iterm2 only.
-  let &t_SI = "\<Esc>]50;CursorShape=1 \x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0 \x7"
 
   " set working dir automatically.
   autocmd BufEnter * silent! lcd %:p:h
@@ -237,33 +234,33 @@ function! GuiSettings() "{{{
 
   set guioptions  =fmei
 
+   set guifont     =Fira\ Code:h16
   "set guifont     =CamingoCode:h16
-  "set guifont     =Consolas:h16 " Consolas is the BEST!
+  "set guifont     =Consolas:h18 " Consolas is the BEST!
   "set guifont     =Courier:h14
   "set guifont     =Courier\ New:h14
-  "set guifont     =Fantasque\ Sans\ Mono:h16
-  "set guifont     =Fira\ Code:h13
   "set guifont     =Inconsolata:h14
   "set guifont     =Linux\ Libertine\ Mono:h12
-   set guifont     =M+\ 1m:h16
+  "set guifont     =M+\ 1m:h16
   "set guifont     =Menlo\ Regular:h14
   "set guifont     =Monofur:h18
   "set guifont     =Share-TechMonoTrue:h15
   "set guifont     =Source\ Code\ Pro:h12
-  "set guifont     =Terminus\ (TTF):h14
-  "set guifont     =Ubuntu\ Mono:h14
-  "set guifont     =pointfree:h14
   "set guifont     =Iosevka\ Slab:h18
+  "set guifont     =GohuFont:h12
+  "set guifont     =Hack:h14
 
-  set background=dark
+  "set background=dark
   "colorscheme      efede6
   "colorscheme      eclipse-mod
   "colorscheme      github
   "colorscheme      solarized
-  "colorscheme      dracula
+   colorscheme      dracula
   "colorscheme      eye
   "colorscheme      PerfectDark
-  colorscheme      pencil
+  "colorscheme      pencil
+  "colorscheme      macvim
+  "colorscheme      1e1e1e
 
   set              cul
 
@@ -274,6 +271,10 @@ function! TermSettings() "{{{
   colorscheme      console
   set title
   set termencoding=utf-8
+
+  " iterm2 only.
+  " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endfunction "}}}
 
 "{{{ apply the settings

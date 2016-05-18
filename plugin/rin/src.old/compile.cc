@@ -1,19 +1,18 @@
 #include "compile.h"
 
 
-#define IMPL_GET_XXX(XXX) \
-const Str &RIN_JOIN(get_, XXX)\
-(\
-  attr_unused const Option_Set &config, \
-  attr_unused const Option_Set &options, \
-  attr_unused       Option_Set &cache \
+#define IMPL_GET_XXX(XXX)               \
+const Str &RIN_JOIN(get_, XXX)          \
+( attr_unused const Option_Set &config  \
+, attr_unused const Option_Set &options \
+, attr_unused       Option_Set &cache   \
 )
 
 #define args config, options, cache
 
 namespace rin {
 
-#define check_cache(key) \
+#define return_if_cached(key) \
   if (cache.check(key)) return cache.get(key)
 
 #define getxxx(xxx) \
@@ -21,7 +20,7 @@ namespace rin {
 
 IMPL_GET_XXX(compile_command)
 {
-  check_cache("compile_command");
+  return_if_cached("compile_command");
 
   getxxx(compiler);
   getxxx(input_filename);
@@ -41,7 +40,7 @@ IMPL_GET_XXX(compile_command)
 
 IMPL_GET_XXX(compiler)
 {
-  check_cache("compiler");
+  return_if_cached("compiler");
 
   getxxx(toolchain);
   getxxx(language);
@@ -59,7 +58,7 @@ IMPL_GET_XXX(compiler)
 
 IMPL_GET_XXX(toolchain)
 {
-  check_cache("toolchain");
+  return_if_cached("toolchain");
 
   Str pref_tc = options.query("toolchain", "gcc");
 
@@ -72,7 +71,7 @@ IMPL_GET_XXX(toolchain)
 
 IMPL_GET_XXX(ext)
 {
-  check_cache("ext");
+  return_if_cached("ext");
 
   getxxx(input_filename);
 
@@ -89,7 +88,7 @@ IMPL_GET_XXX(ext)
 
 IMPL_GET_XXX(language)
 {
-  check_cache("language");
+  return_if_cached("language");
 
   if (auto language = options.query("language"))
     return cache.update("language", *language);
@@ -110,7 +109,7 @@ IMPL_GET_XXX(language)
 
 IMPL_GET_XXX(folder)
 {
-  check_cache("folder");
+  return_if_cached("folder");
 
   getxxx(input_filename);
 
@@ -125,7 +124,7 @@ IMPL_GET_XXX(folder)
 
 IMPL_GET_XXX(name_part)
 {
-  check_cache("name_part");
+  return_if_cached("name_part");
 
   getxxx(input_filename);
 
@@ -148,7 +147,7 @@ IMPL_GET_XXX(name_part)
 
 IMPL_GET_XXX(input_filename)
 {
-  check_cache("input_filename");
+  return_if_cached("input_filename");
 
   if (auto input = config.query("input_filename"))
     return cache.update("input_filename", *input);
@@ -163,7 +162,7 @@ IMPL_GET_XXX(input_filename)
 
 IMPL_GET_XXX(output_filename)
 {
-  check_cache("output_filename");
+  return_if_cached("output_filename");
 
   if (auto output = options.query("output"))
     return cache.update("output_filename", *output);
@@ -200,7 +199,7 @@ Str qjoin(const Option_Set &opts,
 
 IMPL_GET_XXX(inclpath)
 {
-  check_cache("inclpath");
+  return_if_cached("inclpath");
 
   auto sep = ";:,";
   return cache.update("inclpath", qjoin(config, "inclpath", sep, "-I")
@@ -211,7 +210,7 @@ IMPL_GET_XXX(inclpath)
 
 IMPL_GET_XXX(libpath)
 {
-  check_cache("libpath");
+  return_if_cached("libpath");
 
   Str result;
 
@@ -221,21 +220,21 @@ IMPL_GET_XXX(libpath)
 
 IMPL_GET_XXX(incl)
 {
-  check_cache("incl");
+  return_if_cached("incl");
 
   return cache.update("incl", qjoin(config, "include", ";:,", "-i") + qjoin(options, "include", ";:,", "-i"));
 }
 
 IMPL_GET_XXX(libs)
 {
-  check_cache("libs");
+  return_if_cached("libs");
 
   return cache.update("libs", qjoin(config, "lib", ";:,/", "-l") + qjoin(options, "lib", ";:,/", "-l"));
 }
 
 IMPL_GET_XXX(compile_flags)
 {
-  check_cache("compile_flags");
+  return_if_cached("compile_flags");
 
   getxxx(inclpath);
   getxxx(incl);
@@ -250,7 +249,7 @@ IMPL_GET_XXX(compile_flags)
 
 IMPL_GET_XXX(link_flags)
 {
-  check_cache("link_flags");
+  return_if_cached("link_flags");
 
   getxxx(libpath);
   getxxx(libs);
