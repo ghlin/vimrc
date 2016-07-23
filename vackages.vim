@@ -168,94 +168,18 @@
   let g:rainbow_active = 1
 
   let g:rainbow_conf = {
-  \   'guifgs'     : ['#FE2712', '#66B032', '#0392CE', '#FD5308', '#0247FE', '#FB9902', '#8601AF', '#FEFE33', '#A7194B', '#D0EA2B'],
-  \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
-  \   'separately' : {
-  \       '*'   : {
-  \               'guifgs'     : ['#FE2712', '#66B032', '#0392CE', '#FD5308', '#0247FE', '#FB9902', '#8601AF', '#FEFE33', '#A7194B', '#D0EA2B'],
-  \               'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
-  \       },
-  \       'lisp': {
-  \               'guifgs'     : ['#FE2712', '#66B032', '#0392CE', '#FD5308', '#0247FE', '#FB9902', '#8601AF', '#FEFE33', '#A7194B', '#D0EA2B'],
-  \               'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
-  \       },
-  \       'tex'  : {
-  \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-  \       },
-  \       'vim'  : {
-  \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-  \       },
-  \       'xml'  : {
-  \           'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
-  \       },
-  \       'xhtml': {
-  \           'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
-  \       },
-  \       'html' : {
-  \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-  \       },
-  \       'php'  : {
-  \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold', 'start=/(/ end=/)/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\[/ end=/\]/ containedin=@htmlPreproc contains=@phpClTop', 'start=/{/ end=/}/ containedin=@htmlPreproc contains=@phpClTop'],
-  \       },
-  \       'css'  : 0
-  \   }
-  \}
-  "let g:rainbow_conf = {
-  "      \ 'ctermfgs': ['white'
-  "      \             ,'gray'
-  "      \             ,'darkmagenta'
-  "      \             ,'green'
-  "      \             ,'darkcyan'
-  "      \             ,'darkblue'
-  "      \             ,'red'
-  "      \             ,],
-  "      \ 'guifgs': ['fg'
-  "      \           ,'darkmagenta'
-  "      \           ,'darkred'
-  "      \           ,'darkblue'
-  "      \           ,'darkgreen'
-  "      \           ,'darkcyan'
-  "      \           ,'blue'
-  "      \           ,'magenta'
-  "      \           ,'darkyellow'
-  "      \           ,'red'
-  "      \           ,'green'
-  "      \           ,],
-  "      \ 'separately': {
-  "      \   '*': 0,
-  "      \   'scheme': {},
-  "      \   'lisp':   {},
-  "      \   'elisp':  {},
-  "      \   'haskell':{},
-  "      \  }
-  "      \}
-
-  "let g:rainbow_conf = {
-        "\ 'ctermfgs': ['white'
-        "\             ,'gray'
-        "\             ,'darkmagenta'
-        "\             ,'green'
-        "\             ,'darkcyan'
-        "\             ,'darkblue'
-        "\             ,'red'
-        "\             ,],
-        "\ 'guifgs': ['fg'
-        "\           ,'darkcyan'
-        "\           ,'darkblue'
-        "\           ,'darkmagenta'
-        "\           ,'darkyellow'
-        "\           ,'green'
-        "\           ,'blue'
-        "\           ,'gray'
-        "\           ,],
-        "\ 'separately': {
-        "\   '*': 0,
-        "\   'scheme': {},
-        "\   'lisp':   {},
-        "\   'elisp':  {},
-        "\   'haskell':{},
-        "\  }
-        "\}
+        \   'guifgs'     : ['#0392CE', '#FD5308', '#0247FE', '#FB9902', '#8601AF', '#FEFE33', '#A7194B', '#D0EA2B'],
+        \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
+        \ 'separately': {
+        \     '*':       0,
+        \     'c':       0,
+        \     'cpp':     0,
+        \     'scheme': {},
+        \     'lisp':   {},
+        \     'elisp':  {},
+        \     'haskell':{},
+        \   }
+        \ }
 
 " }}}
 
@@ -281,19 +205,19 @@
     let g:airline_symbols = {}
   endif
 
-  if !has('gui_running')
-    let g:airline_symbols.paste      = "👉 "
-    let g:airline_symbols.whitespace = "💩 "
-    let g:airline_symbols.branch     = "👀 "
-    let g:airline_symbols.readonly   = "😨 "
-    let g:airline_symbols.linenr     = "➝ "
-  else
+  "if !has('gui_running')
+  "  let g:airline_symbols.paste      = "👉 "
+  "  let g:airline_symbols.whitespace = "💩 "
+  "  let g:airline_symbols.branch     = "👀 "
+  "  let g:airline_symbols.readonly   = "😨 "
+  "  let g:airline_symbols.linenr     = "➝ "
+  "else
     let g:airline_symbols.paste      = "[PASTE]"
     let g:airline_symbols.whitespace = "[=]"
     let g:airline_symbols.branch     = "[BRANCH]"
     let g:airline_symbols.readonly   = "[RO]"
     let g:airline_symbols.linenr     = "Ln"
-  endif
+  "endif
 
   let g:airline_left_sep           = ""
   let g:airline_left_alt_sep       = ""
