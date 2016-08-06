@@ -44,11 +44,18 @@ function! BasicSettings() "{{{
   set whichwrap   +=<,>,h,l
   set list
   set conceallevel =2
-  set listchars    =tab:\ \ ,trail:- ",eol:¶
-  "set textwidth    =80
-  "set colorcolumn  =+1
+  set listchars    =tab:¦\ ,trail:⋅,eol:¬,extends:»,precedes:«
 
-  set backspace    =2
+  set textwidth    =80
+  set colorcolumn  =+1
+
+  set mousehide
+
+  set ruler
+
+  set shortmess=aoOtTI
+
+  set backspace    =eol,start,indent
   set hidden
 
   " buffer operation
@@ -57,7 +64,6 @@ function! BasicSettings() "{{{
 
   set ruler
   set showcmd
-  set wildmenu
   set laststatus =2
   set cmdheight  =1
   set report     =0
@@ -68,8 +74,10 @@ function! BasicSettings() "{{{
   set incsearch
   set smartcase
   set ignorecase
+  set infercase
   set showmatch
-  set matchtime  =4
+  set matchpairs +=<:>
+  set matchtime   =4
 
   set timeoutlen =600
 
@@ -89,11 +97,14 @@ function! BasicSettings() "{{{
   " path
   set path^=~/.local/include,.,.. "/usr/local/include makes code completion slow
 
+  set ambiwidth=double
+
   " formats
-  set fileformat   =unix
-  set fileformats  =unix,dos
-  set fileencoding =utf-8
-  set encoding     =utf-8
+  set fileformat    =unix
+  set fileformats   =unix,mac,dos
+  set fileencodings =utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+  set fileencoding  =utf-8
+  set encoding      =utf-8
 
   if has('win32')
     set ssl  " Use `/' as dir spearator
@@ -116,6 +127,20 @@ function! BasicSettings() "{{{
 
   " toggle fold
   nnoremap <space>      @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+  " nicer fold text
+  function! FoldText() " {{{
+    let foldlinecnt = v:foldend - v:foldstart
+    let line        = substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g')
+    let spaces      = ' ... '
+    let foldinfo    = ' ' . foldlinecnt . ' Ln. '
+    let fillcnt     = winwidth(0) - len(line) - len(foldinfo) - len(spaces) - &number * &numberwidth
+
+    return line . spaces . repeat(' ', fillcnt) . foldinfo
+    return left . right
+  endfunction " }}}
+
+  set foldtext=FoldText()
 
   " remember more history commands
   set history=2048
@@ -161,12 +186,19 @@ function! BasicSettings() "{{{
 
   autocmd! BufEnter,BufRead *.md   setlocal ft=markdown
 
-  set errorformat^=%-GIn\ file\ included\ from\ %.%#
+  " set errorformat^=%-GIn\ file\ included\ from\ %.%#
   let g:c_gnu = 1
 
-  set completeopt=menu,longest
+  set completeopt =menuone
+  set pumheight   =12
 
-  "set wildmode=list:full
+  " set nf=octal,hex
+
+  set splitbelow
+  set splitright
+
+  set wildmenu
+  " set wildmode=list:longest,full
   set wildignore=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM
 
   set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
@@ -234,40 +266,27 @@ function! GuiSettings() "{{{
 
   set guioptions  =fmei
 
-  "set guifont     =Fira\ Code:h16
-  "set guifont     =CamingoCode:h16
+  set macligatures
+  set guifont     =Fira\ Code:h16
+  set guifontwide =Fira\ Code:h16
   "set guifont     =Consolas:h16 " Consolas is the BEST!
-  "set guifont     =Courier:h14
-  "set guifont     =Courier\ New:h14
-  "set guifont     =Inconsolata:h14
-  "set guifont     =Linux\ Libertine\ Mono:h12
-  set guifont     =M+\ 1m\ thin:h18
-  "set guifont     =Menlo\ Regular:h14
-  "set guifont     =Monofur:h18
-  "set guifont     =Share-TechMonoTrue:h15
-  "set guifont     =Source\ Code\ Pro:h12
-  "set guifont     =Iosevka\ Slab:h18
-  "set guifont     =GohuFont:h12
-  "set guifont     =Hack:h14
 
   "set background=dark
-  "colorscheme      PerfectDark
-  "colorscheme      pencil
-  "colorscheme      macvim
-  "colorscheme      1e1e1e
+  "colorscheme      github
   "colorscheme      numix
-  "colorscheme      molokai
-   colorscheme      midnight_no_italic
+  "colorscheme      desert
+   colorscheme      PaperColor
 
   set              cul
 
-  set mouse       =
+  set mouse        =
 endfunction "}}}
 
 function! TermSettings() "{{{
   colorscheme      console
   set title
   set termencoding=utf-8
+  set ttyfast
 
   " iterm2 only.
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"

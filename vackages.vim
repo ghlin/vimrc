@@ -16,6 +16,10 @@
   Plugin 'neovimhaskell/haskell-vim'
 " }}}
 
+" {{{ Scala
+  Plugin 'derekwyatt/vim-scala'
+" }}}
+
 " {{{ Coffee
   Plugin 'kchmck/vim-coffee-script'
 " }}}
@@ -103,24 +107,48 @@
   Plugin 'antlypls/vim-colors-codeschool'
 " }}}
 
-" {{{ Github (colorscheme)
-  Plugin 'github-theme'
-" }}}
-
-" {{{ Solarized
-  Plugin 'altercation/vim-colors-solarized'
+" {{{ Github
+  Plugin 'acarapetis/vim-colors-github'
 " }}}
 
 " {{{ Molokai
   Plugin 'tomasr/molokai'
 " }}}
 
-" {{{ Dracula
-  Plugin 'crusoexia/vim-dracula'
+" {{{ Pencil
+  Plugin 'reedes/vim-colors-pencil'
 " }}}
 
-" {{{
-  Plugin 'reedes/vim-colors-pencil'
+" {{{ Lucid
+  Plugin 'cseelus/vim-colors-lucid'
+" }}}
+
+" {{{ Brighton
+  Plugin 'MvanDiemen/brighton.vim'
+" }}}
+
+" {{{ Happy Hacking
+  Plugin 'YorickPeterse/happy_hacking.vim'
+" }}}
+
+" {{{ Xcode
+  Plugin 'Addisonbean/Vim-Xcode-Theme'
+" }}}
+
+" {{{ Paper-Color
+  Plugin 'NLKNguyen/papercolor-theme'
+" }}}
+
+" {{{ MonoChrome
+  Plugin 'fxn/vim-monochrome'
+" }}}
+
+" {{{ Wombat256
+  Plugin 'MPiccinato/wombat256'
+" }}}
+
+" {{{ GreenVision
+  Plugin 'greenvision'
 " }}}
 
 " {{{ Color-Scheme-Exploer
@@ -205,52 +233,42 @@
     let g:airline_symbols = {}
   endif
 
-  "if !has('gui_running')
-  "  let g:airline_symbols.paste      = "👉 "
-  "  let g:airline_symbols.whitespace = "💩 "
-  "  let g:airline_symbols.branch     = "👀 "
-  "  let g:airline_symbols.readonly   = "😨 "
-  "  let g:airline_symbols.linenr     = "➝ "
-  "else
-    let g:airline_symbols.paste      = "[PASTE]"
-    let g:airline_symbols.whitespace = "[=]"
-    let g:airline_symbols.branch     = "[BRANCH]"
-    let g:airline_symbols.readonly   = "[RO]"
-    let g:airline_symbols.linenr     = "Ln"
-  "endif
+  let g:airline_symbols.paste      = "[PASTE]"
+  let g:airline_symbols.whitespace = "[=]"
+  let g:airline_symbols.branch     = "[BRANCH]"
+  let g:airline_symbols.readonly   = "[RO]"
+  let g:airline_symbols.linenr     = "Ln"
 
   let g:airline_left_sep           = ""
   let g:airline_left_alt_sep       = ""
   let g:airline_right_sep          = ""
   let g:airline_right_alt_sep      = ""
 
-  " let g:airline_left_sep = ''
-  " let g:airline_left_alt_sep = ''
-  " let g:airline_right_sep = ''
-  " let g:airline_right_alt_sep = ''
-  " let g:airline_symbols.branch = ''
-  " let g:airline_symbols.readonly = ''
-  " let g:airline_symbols.linenr = ''
+  let g:airline_powerline_fonts = 0
 
   let g:airline_theme = 'monochrome'
 
-  function! BufNr()
+  function! AIP_BufNr()
     return '#' . bufnr('%')
   endfunction
-  function! FFEnc()
+
+  function! AIP_FFEnc()
     return printf('%s%s', &fenc, strlen(&ff) > 0 ? ' ' . &ff : '')
   endfunction
 
-  " let g:airline_section_b = '🐱 '
-  let g:airline_section_x =
-        \   '%{airline#util#prepend(BufNr(),0)}'
-        \ . '%{airline#util#wrap(airline#parts#filetype(),0)}'
+  function! AirlineInitPart()
 
-  let g:airline_section_y =
-        \   '%{airline#util#prepend(FFEnc(),0)}'
+    let g:airline_section_x = airline#section#create([ '%{"#" . bufnr("%") . " "}'
+          \                                          , 'filetype'])
 
-  let g:airline_section_z =
-        \   '%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#:%3v'
+    let g:airline_section_y = airline#section#create(['%{printf("%s%s", &fenc, strlen(&ff) > 0 ? " " . &ff : "")}'])
+
+    "let g:airline_section_z = '%{g:airline_symbols.linenr}'
+          "\                 . '%#__accent_bold#%4l%#__restore__#:%3v'
+  endfunction
+
+  au User AirlineAfterInit call AirlineInitPart()
+
 
   let g:airline#extensions#tagbar#enabled              = 0
   let g:airline#extensions#branch#enabled              = 1
