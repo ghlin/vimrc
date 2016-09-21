@@ -70,20 +70,22 @@
 " {{{ Clang Complete
   Plugin 'Rip-Rip/clang_complete', { 'pinned' : 0 }
 
-  let g:clang_library_path      = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+  " let g:clang_library_path      = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+  let g:clang_library_path         = '/Library/Developer/CommandLineTools/usr/lib'
 
-  let g:clang_complete_auto     = 1
-  let g:clang_auto_select       = 1
-  let g:clang_complete_copen    = 1
-  let g:clang_use_library       = 1
-  let g:clang_complete_auto     = 0
-  let g:clang_snippets          = 1
-  let g:clang_snippets_engine   = 'ultisnips'
-  let g:clang_hl_errors         = 0
-  let g:clang_complete_macros   = 1
-  let g:clang_complete_patterns = 1
-  let g:clang_periodic_quickfix = 0
-  let g:clang_close_preview     = 1
+  let g:clang_complete_auto        = 1
+  let g:clang_auto_select          = 1
+  let g:clang_complete_copen       = 1
+  let g:clang_use_library          = 1
+  let g:clang_complete_auto        = 0
+  let g:clang_snippets             = 1
+  let g:clang_snippets_engine      = 'ultisnips'
+  let g:clang_hl_errors            = 0
+  let g:clang_complete_macros      = 1
+  let g:clang_complete_patterns    = 1
+  let g:clang_periodic_quickfix    = 0
+  let g:clang_close_preview        = 0
+  let g:clang_trailing_placeholder = 1
 
   nnoremap <leader>q       :call g:ClangUpdateQuickFix()<CR>
 " }}}
@@ -370,7 +372,6 @@
   noremap <leader>R  :CtrlPMRUFiles<CR>
   noremap <leader>B  :CtrlPBuffer<CR>
 
-  " <leader>C (c for cycle) is batter than <leader>B
   noremap <leader>C  :CtrlPBuffer<CR>
 
   let g:ctrlp_mruf_max = 1000
@@ -385,7 +386,7 @@
 " {{{
   Plugin 'dbakker/vim-projectroot'
 
-  function ProjectNameGuess()
+  function! ProjectNameGuess()
     return substitute(fnamemodify(ProjectRootGuess(), ":t"), "\\(\\w\\)\\(\\w*\\)", "\\U\\1\\L\\2", "g")
   endfunction
 " }}}

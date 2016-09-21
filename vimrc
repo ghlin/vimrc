@@ -35,7 +35,8 @@ function! BasicSettings() "{{{
 
   set autoindent
   set smartindent
-  set cino         =N-s,:s,b1,g0,t0,(0,Ws,ks,l1
+  set cino         =Ls,:0,g0,N-s,(0,w0,Ws,k-1s,t0
+  " set cino         =N-s,:s,b1,g0,t0,(0,Ws,ks,l1
   set iskeyword   ^=_,\$,?
   set expandtab
   set shiftwidth   =2
@@ -44,7 +45,7 @@ function! BasicSettings() "{{{
   set whichwrap   +=<,>,h,l
   set list
   set conceallevel =2
-  set listchars    =tab:¦\ ,trail:⋅,eol:¬,extends:»,precedes:«
+  set listchars    =tab:\ \ ,trail:⋅,extends:»,precedes:«   " eol:¬,
 
   set textwidth    =80
   set colorcolumn  =+1
@@ -62,11 +63,11 @@ function! BasicSettings() "{{{
   nmap  <leader><  :bp<CR>
   nmap  <leader>>  :bn<CR>
 
-  set ruler
+  " set ruler
   set showcmd
   set laststatus =2
   set cmdheight  =1
-  set report     =0
+  " set report     =0
   set novisualbell
   set noerrorbells
 
@@ -74,7 +75,7 @@ function! BasicSettings() "{{{
   set incsearch
   set smartcase
   set ignorecase
-  set infercase
+  set noinfercase
   set showmatch
   set matchpairs +=<:>
   set matchtime   =4
@@ -126,7 +127,7 @@ function! BasicSettings() "{{{
   inoremap <C-]> <esc>f}a
 
   " toggle fold
-  nnoremap <space>      @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+  nnoremap <space>      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
   " nicer fold text
   function! FoldText() " {{{
@@ -189,12 +190,12 @@ function! BasicSettings() "{{{
   " set errorformat^=%-GIn\ file\ included\ from\ %.%#
   let g:c_gnu = 1
 
-  set completeopt =menuone
+  set completeopt =menuone,preview,longest
   set pumheight   =12
 
   " set nf=octal,hex
 
-  set splitbelow
+  "set splitbelow
   set splitright
 
   set wildmenu
@@ -208,7 +209,7 @@ function! BasicSettings() "{{{
   com! -nargs=0 CD            :cd        %:h
 
   " delete this file
-  com! -nargs=0 RmThis        :!rm       % -v
+  com! -nargs=0 RmThis        :!rm       -v %
 
   " ls
   com! -nargs=0 LS            :!ls       %:h
@@ -234,6 +235,8 @@ function! BasicSettings() "{{{
  " else
  "   set keywordprg         =ydcv
  " endif
+
+ set keywordprg=$HOME/.local/bin/openlookup
 
   " <C-R>=ExecPipe('colo') ==> solarized
   function! ExecPipe(cmd)
@@ -267,17 +270,30 @@ function! GuiSettings() "{{{
   set guioptions  =fmei
 
   set macligatures
-  set guifont     =Fira\ Code:h16
-  set guifontwide =Fira\ Code:h16
-  "set guifont     =Consolas:h16 " Consolas is the BEST!
 
-  "set background=dark
+  "set guifont     =Fira\ Code:h16
+  "set guifontwide =Fira\ Code:h16
+   set guifont     =Consolas:h14 " Consolas is the BEST!
+  "set guifont     =Ubuntu\ Mono:h16
+  "set guifont     =Menlo\ Regular:h16
+  "set guifont     =Source\ Code\ Pro:h12
+
+  "set noantialias
+  "set guifont=Monaco:h14
+  "set guifont=Fixedsys\ Excelsior\ 3.01:h16
+
+   set background=dark
   "colorscheme      github
   "colorscheme      numix
   "colorscheme      desert
-   colorscheme      PaperColor
+  "colorscheme      PaperColor
+  "colorscheme xcode
+  "colorscheme molokai
+   let g:airline_theme = 'PaperColor'
 
-  set              cul
+  colorscheme molokai
+  let g:airline_theme = 'zenburn'
+  "set              cul
 
   set mouse        =
 endfunction "}}}
@@ -291,6 +307,10 @@ function! TermSettings() "{{{
   " iterm2 only.
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+  silent !echo "\033]50;CursorShape=0\x7"
+  au VimLeave * silent !echo "\033]50;CursorShape=1\x7"
+
 endfunction "}}}
 
 "{{{ apply the settings
