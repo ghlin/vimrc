@@ -48,7 +48,7 @@ function! BasicSettings() "{{{
   set listchars    =tab:\ \ ,trail:⋅,extends:»,precedes:«   " eol:¬,
 
   set textwidth    =80
-  set colorcolumn  =+1
+  " set colorcolumn  =+1
 
   set mousehide
 
@@ -271,9 +271,9 @@ function! GuiSettings() "{{{
 
   set macligatures
 
-  "set guifont     =Fira\ Code:h16
-  "set guifontwide =Fira\ Code:h16
-   set guifont     =Consolas:h14 " Consolas is the BEST!
+   set guifont     =Fira\ Code:h16
+   set guifontwide =Fira\ Code:h16
+  "set guifont     =Consolas:h14 " Consolas is the BEST!
   "set guifont     =Ubuntu\ Mono:h16
   "set guifont     =Menlo\ Regular:h16
   "set guifont     =Source\ Code\ Pro:h12
