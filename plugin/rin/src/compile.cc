@@ -47,6 +47,7 @@ IMPL_GET_XXX(compiler)
 
   if (language == "c")
     return cache.update("compiler", "gcc");
+
   if (language == "c++")
     return cache.update("compiler", "g++");
 

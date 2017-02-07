@@ -1,14 +1,17 @@
 
 
 
-syntax match cType      display "\w*_t\>"
-syntax match cType      display "\w*_s\>"
-syntax match cStatement display "\<debug_\w*"
-syntax match cStatement display "\<WTF\>"
-syntax match cType      display "\<attr_\w*"
-syntax match cType      display "\<attrctl_\w*"
-syntax match cDefine    display "\<PP_\w*"
-syntax match cDefine    display "\<pp_\w*"
-syntax match cStatement display "\<u_\w*"
+syntax match cppType      display "\w*_t\>"
+syntax match cppType      display "\w*_s\>"
+syntax match cppStatement display "\<debug_\w*"
+syntax match cppStatement display "\<WTF\>"
+syntax match cppType      display "\<attr_\w*"
+syntax match cppType      display "\<attrctl_\w*"
+syntax match cppDefine    display "\<PP_\w*"
+syntax match cppDefine    display "\<pp_\w*"
+syntax match cppStatement display "\<u_\w*"
+
+syntax match cppStatement display "concept"
+syntax match cppStatement display "requires"
 
 

@@ -12,8 +12,14 @@
   Plugin 'thinca/vim-quickrun'
 " }}}
 
+" {{{ Codi
+  Plugin 'metakirby5/codi.vim'
+" }}}
+
 " {{{ Haskell
   Plugin 'neovimhaskell/haskell-vim'
+  Plugin 'itchyny/vim-haskell-indent'
+  Plugin 'eagletmt/ghcmod-vim'
 " }}}
 
 " {{{ Scala
@@ -25,7 +31,15 @@
 " }}}
 
 " {{{ Squirrel
-  Plugin 'xevz/vim-squirrel'
+" Plugin 'xevz/vim-squirrel'
+" }}}
+
+" {{{ Ejs
+" Plugin 'briancollins/vim-jst'
+" }}}
+
+" {{{ CSS
+  Plugin 'ap/vim-css-color'
 " }}}
 
 " {{{ Markdown
@@ -36,9 +50,9 @@
 " }}}
 
 " {{{ Rust
-  Plugin 'rust-lang/rust.vim'
+" Plugin 'rust-lang/rust.vim'
 
-  " Plugin 'racer-rust/vim-racer'
+" Plugin 'racer-rust/vim-racer'
 
   let $RUST_SRC_PATH = "$HOME/.local/lib/rust/src/rustc-1.3.0/src"
   let g:racer_cmd    = "$HOME/.local/bin/racer"
@@ -60,7 +74,7 @@
 " }}}
 
 " {{{ Jade
-  Plugin 'digitaltoad/vim-jade'
+" Plugin 'digitaltoad/vim-jade'
 " }}}
 
 " {{{ C / C++
@@ -68,9 +82,8 @@
 " Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " {{{ Clang Complete
-  Plugin 'Rip-Rip/clang_complete', { 'pinned' : 0 }
+  Plugin 'Rip-Rip/clang_complete'
 
-  " let g:clang_library_path      = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
   let g:clang_library_path         = '/Library/Developer/CommandLineTools/usr/lib'
 
   let g:clang_complete_auto        = 1
@@ -97,24 +110,23 @@
 " }}}
 
 " {{{ TOML
-  Plugin 'cespare/vim-toml'
+" Plugin 'cespare/vim-toml'
 " }}}
-
 
 " }}}
 
 " {{{ Colorscheme
 
 " {{{
-  Plugin 'antlypls/vim-colors-codeschool'
+" Plugin 'antlypls/vim-colors-codeschool'
 " }}}
 
 " {{{ Github
-  Plugin 'acarapetis/vim-colors-github'
+" Plugin 'acarapetis/vim-colors-github'
 " }}}
 
 " {{{ Molokai
-  Plugin 'tomasr/molokai'
+" Plugin 'tomasr/molokai'
 " }}}
 
 " {{{ Pencil
@@ -122,15 +134,15 @@
 " }}}
 
 " {{{ Lucid
-  Plugin 'cseelus/vim-colors-lucid'
+" Plugin 'cseelus/vim-colors-lucid'
 " }}}
 
 " {{{ Brighton
-  Plugin 'MvanDiemen/brighton.vim'
+" Plugin 'MvanDiemen/brighton.vim'
 " }}}
 
 " {{{ Happy Hacking
-  Plugin 'YorickPeterse/happy_hacking.vim'
+" Plugin 'YorickPeterse/happy_hacking.vim'
 " }}}
 
 " {{{ Xcode
@@ -142,7 +154,7 @@
 " }}}
 
 " {{{ MonoChrome
-  Plugin 'fxn/vim-monochrome'
+" Plugin 'fxn/vim-monochrome'
 " }}}
 
 " {{{ Wombat256
@@ -150,7 +162,7 @@
 " }}}
 
 " {{{ GreenVision
-  Plugin 'greenvision'
+" Plugin 'greenvision'
 " }}}
 
 " {{{ Color-Scheme-Exploer
@@ -162,11 +174,11 @@
 " {{{ Mode
 
 " {{{ DrawIt
-  Plugin 'DrawIt'
+" Plugin 'DrawIt'
 " }}}
 
 " {{{ Goyo.vim
-  Plugin 'junegunn/goyo.vim'
+" Plugin 'junegunn/goyo.vim'
   let g:goyo_width = 100
 " }}}
 
@@ -182,10 +194,11 @@
 
 " {{{ argtextobj
   Plugin 'argtextobj.vim'
+  Plugin 'Parameter-Text-Objects'
 " }}}
 
-" {{{ Quick Run
-" Plugin 'thinca/vim-quickrun'
+" {{{ expand region
+  Plugin 'terryma/vim-expand-region'
 " }}}
 
 " {{{ indentLine
@@ -193,8 +206,12 @@
   let g:indentLine_faster = 1
 " }}}
 
+" {{{ indent guide
+" Plugin 'nathanaelkane/vim-indent-guides'
+" }}}
+
 " {{{
-  Plugin 'luochen1990/rainbow'
+" Plugin 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
   let g:rainbow_conf = {
@@ -202,12 +219,12 @@
         \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
         \ 'separately': {
         \     '*':       0,
-        \     'c':       0,
-        \     'cpp':     0,
+        \     'c':      {},
+        \     'cpp':    {},
         \     'scheme': {},
         \     'lisp':   {},
         \     'elisp':  {},
-        \     'haskell':{},
+        \     'haskell':{ 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
         \   }
         \ }
 
@@ -227,9 +244,9 @@
   Plugin 'bling/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
 
-  "let g:airline_mode_map = { '__' : '-', 'n'  : '*', 'i'  : 'I',
-      "\ 'R'  : 'R', 'c'  : 'C', 'v'  : 'V', 'V'  : 'V',
-      "\ '' : 'V', 's'  : 'S', 'S'  : 'S', '' : 'S', }
+  let g:airline_mode_map = { '__' : '-', 'n'  : '<N>', 'i'  : '<I>',
+       \ 'R'  : 'R', 'c'  : 'C', 'v'  : '<V>', 'V'  : '<V>',
+       \ '' : 'V', 's'  : 'S', 'S'  : 'S', '' : 'S', }
 
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -259,7 +276,6 @@
   endfunction
 
   function! AirlineInitPart()
-
     let g:airline_section_x = airline#section#create([ '%{"#" . bufnr("%") . " "}'
           \                                          , 'filetype'])
 
@@ -304,7 +320,6 @@
                   \   '\/$'
                   \ , '\.lst$', '\.txt$', '\.vim$'
                   \ , '\.md$'
-                  \ , '\.h$', '\.hpp$', '\.c$', '\.cxx$'
                   \ , '\.lua$'
                   \ , '\.run$'
                   \ , '*', '\.swp$', '\~$', '.dSYM' ]
@@ -339,7 +354,7 @@
 " }}}
 
 " {{{ UltiSnips
-  Plugin 'SirVer/ultisnips', { 'pinned' : 0 }
+  Plugin 'SirVer/ultisnips'
   " use py3: clang_complete [snippets engine not found]
   if has('py3')
     let g:UltiSnipsUsePythonVersion = 2
@@ -352,6 +367,14 @@
 
 " {{{ Easy Grep
   Plugin 'EasyGrep'
+" }}}
+
+" {{{ AGrep
+  Plugin 'ramele/agrep'
+" }}}
+
+" {{{ Ack
+  Plugin 'mileszs/ack.vim'
 " }}}
 
 " {{{ VisIncr
@@ -374,7 +397,8 @@
 
   noremap <leader>C  :CtrlPBuffer<CR>
 
-  let g:ctrlp_mruf_max = 1000
+  let g:ctrlp_mruf_max = 5000
+  let g:ctrlp_mruf_exclude = '$HOME/Workspace/.Builds/*'
 
   let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|dSYM)$',

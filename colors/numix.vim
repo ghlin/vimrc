@@ -11,7 +11,7 @@ let colors_name = "numix"
 " #5E5E5E #EF2929 #00D30D #FCE94F #0077FF #B75FAD #34E2E2 #FFFFFF
 
 if has("gui_running")
-  hi Normal           gui=none            guifg=#FFFFFF           guibg=#2D2D2D
+  hi Normal           gui=none            guifg=#FFFFFF           guibg=#1F1F1F
   hi Comment          gui=none            guifg=#029004
   hi Constant         gui=none            guifg=#5E5E5E
   hi DiffAdd                                                      guibg=#0040ED
@@ -27,7 +27,7 @@ if has("gui_running")
   hi MatchParen       gui=none            guifg=#0040ED           guibg=bg
   hi ModeMsg          gui=bold
   hi MoreMsg          gui=bold            guifg=#029004
-  hi NonText                              guifg=#FFFFFF
+  hi NonText                              guifg=#3f3f3f
   hi Operator                             guifg=fg
   hi Pmenu                                                        guibg=#0040ED
   hi PmenuSel                             guifg=#FFFFFF           guibg=#5E5E5E
@@ -81,10 +81,10 @@ else
   hi  Folded                                                     ctermfg=DarkGray           ctermbg=none
   hi  Identifier       cterm=none                                ctermfg=DarkBlue
   hi  IncSearch        cterm=reverse         term=reverse
-  hi  MatchParen       cterm=none                                ctermfg=DarkBlue           ctermbg=none
+  hi  MatchParen       cterm=none     term=italic,bold,underline ctermfg=DarkBlue           ctermbg=none
   hi  ModeMsg          cterm=bold            term=reverse
   hi  MoreMsg                                                    ctermfg=DarkGreen
-  hi  NonText                                                    ctermfg=White
+  hi  NonText                                                    ctermfg=Gray
   hi  Pmenu                                                                                 ctermbg=DarkBlue
   hi  PmenuSel                                                   ctermfg=White              ctermbg=DarkBlue
   hi  PreProc          cterm=none                                ctermfg=DarkGreen

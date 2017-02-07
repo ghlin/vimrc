@@ -5,7 +5,7 @@ let g:src_types = ['c', 'cpp', 'cc', 'lua', 'vim', 'python', 'markdown',
       \            'xf86conf',
       \            'vim']
 
-let g:use_marker = ['vim', 'lua', 'python', 'sh', 'dosbatch', 'xf86conf']
+let g:use_marker = ['vim', 'lua', 'python', 'sh', 'dosbatch', 'xf86conf', 'c', 'cpp', 'cc']
 
 function! SettingsForSourceCode()
   setlocal foldmethod=syntax

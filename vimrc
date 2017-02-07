@@ -30,13 +30,19 @@ function! PreSettings() "{{{
 endfunction "}}}
 
 function! BasicSettings() "{{{
+
+  let $PYTHONHOME="/usr/local/Frameworks/Python.framework/Versions/3.6"
+  set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.6/Python"
+
+  let $PATH=$PATH . ":" . $HOME . "/Library/Haskell/bin"
+
   syntax on
   filetype plugin indent on
 
   set autoindent
   set smartindent
   set cino         =Ls,:0,g0,N-s,(0,w0,Ws,k-1s,t0
-  " set cino         =N-s,:s,b1,g0,t0,(0,Ws,ks,l1
+  "set cino         =N-s,:s,b1,g0,t0,(0,Ws,ks,l1
   set iskeyword   ^=_,\$,?
   set expandtab
   set shiftwidth   =2
@@ -45,8 +51,7 @@ function! BasicSettings() "{{{
   set whichwrap   +=<,>,h,l
   set list
   set conceallevel =2
-  set listchars    =tab:\ \ ,trail:⋅,extends:»,precedes:«   " eol:¬,
-
+  set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«,eol:¬, "⋅
   set textwidth    =80
   " set colorcolumn  =+1
 
@@ -54,7 +59,7 @@ function! BasicSettings() "{{{
 
   set ruler
 
-  set shortmess=aoOtTI
+  " set shortmess=aoOtTI
 
   set backspace    =eol,start,indent
   set hidden
@@ -81,7 +86,6 @@ function! BasicSettings() "{{{
   set matchtime   =4
 
   set timeoutlen =600
-
 
   " set working dir automatically.
   autocmd BufEnter * silent! lcd %:p:h
@@ -122,9 +126,9 @@ function! BasicSettings() "{{{
   " jump out of a ()
   inoremap <C-q> <esc>f)a
   " jump out of a []
-  inoremap <C-b> <esc>f]a
+  "inoremap <C-b> <esc>f]a
   " jump out of a {}
-  inoremap <C-]> <esc>f}a
+  "inoremap <C-]> <esc>f}a
 
   " toggle fold
   nnoremap <space>      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -181,13 +185,15 @@ function! BasicSettings() "{{{
   set rnu
   set so         =4
   set nowrap
+
   " set fdc=1
   set foldmethod =marker
   set foldlevel  =3
 
   autocmd! BufEnter,BufRead *.md   setlocal ft=markdown
+  autocmd! BufEnter,BufRead *.ejs  setlocal ft=ejs
 
-  " set errorformat^=%-GIn\ file\ included\ from\ %.%#
+  set errorformat^=%-GIn\ file\ included\ from\ %.%#
   let g:c_gnu = 1
 
   set completeopt =menuone,preview,longest
@@ -257,6 +263,7 @@ function! BasicSettings() "{{{
 
   " enable doxygen highlighting
   let g:load_doxygen_syntax = 1
+
 endfunction "}}}
 
 function! GuiSettings() "{{{
@@ -267,13 +274,15 @@ function! GuiSettings() "{{{
   set guicursor  ^=r-cr:hor1-Cursor/lCursor
   set guicursor  ^=sm:block-Cursor-blinkwait75-blinkoff55-blinkon55
 
-  set guioptions  =fmei
+  " e for tab.
+  set guioptions  =fmi
 
   set macligatures
 
-   set guifont     =Fira\ Code:h16
-   set guifontwide =Fira\ Code:h16
-  "set guifont     =Consolas:h14 " Consolas is the BEST!
+  set guifont     =Fira\ Code:h14
+  set guifontwide =Fira\ Code:h14
+
+  "set guifont     =Consolas:h14
   "set guifont     =Ubuntu\ Mono:h16
   "set guifont     =Menlo\ Regular:h16
   "set guifont     =Source\ Code\ Pro:h12
@@ -282,17 +291,20 @@ function! GuiSettings() "{{{
   "set guifont=Monaco:h14
   "set guifont=Fixedsys\ Excelsior\ 3.01:h16
 
-   set background=dark
-  "colorscheme      github
+  "set background=light
+  "colorscheme molokai
+
+  "colorscheme numix
+  "hi Statement gui=bold
+
   "colorscheme      numix
   "colorscheme      desert
-  "colorscheme      PaperColor
+   colorscheme      PaperColor
   "colorscheme xcode
   "colorscheme molokai
-   let g:airline_theme = 'PaperColor'
+  let g:airline_theme = 'pencil'
 
-  colorscheme molokai
-  let g:airline_theme = 'zenburn'
+  "let g:airline_theme = 'zenburn'
   "set              cul
 
   set mouse        =

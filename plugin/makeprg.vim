@@ -1,4 +1,4 @@
-au!  BufEnter,BufRead *.c,*.cc,*.cpp,*.c++,*.cxx :exec 'setlocal makeprg =$HOME/.local/bin/rin\ -silent\ ' . expand('%')
+au!  FileType cpp :exec 'setlocal makeprg =$HOME/.local/bin/rin\ -silent\ ' . expand('%')
 com! -nargs=* RunThis       :!%:p:r <args>
 nmap <leader>e    :!%:p:r<CR>
 
