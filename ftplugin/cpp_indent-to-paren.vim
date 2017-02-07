@@ -1,1 +1,1 @@
-source $HOME/.vim/ftplugin/c_indent-to-paren.vim
+source <sfile>:p:h/c_indent-to-paren.vim

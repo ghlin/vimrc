@@ -41,6 +41,7 @@ function! BasicSettings() "{{{
 
   set autoindent
   set smartindent
+  set cindent
   set cino         =Ls,:0,g0,N-s,(0,w0,Ws,k-1s,t0
   "set cino         =N-s,:s,b1,g0,t0,(0,Ws,ks,l1
   set iskeyword   ^=_,\$,?

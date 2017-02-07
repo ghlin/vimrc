@@ -47,10 +47,12 @@ function! GetCIndent(linum)
   let p = s:ComparePos(p1, p2)
 
   if p[1] != 0
+    echom "will return " . (p[1] - 1)
     return p[1] - 1
   endif
 
-  return -1
+  echom "will fallback with -1"
+  return cindent(a:linum)
 endfunction
 
 
