@@ -32,7 +32,8 @@ function! s:ComparePos(pos1, pos2)
   return a:pos1
 endfunction
 
-function! s:FixPos(pos, linum)
+function! s:FixPos(pos, linum, clnum)
+  call cursor(a:linum, a:clnum) "restore cursor pos
   if a:pos[0] >= a:linum | return [0, 0] | else | return a:pos | endif
 endfunction
 
@@ -40,11 +41,12 @@ function! IndentToParen()
   let skip = 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\\|comment"'
 
   let this_line = line('.')
+  let this_col  = col('.')
 
-  let p1 = s:FixPos(searchpairpos('{',  '', '}',  'b', skip), this_line)
-  let p2 = s:FixPos(searchpairpos('\[', '', '\]', 'b', skip), this_line)
-  let p3 = s:FixPos(searchpairpos('(',  '', ')',  'b', skip), this_line)
-  let p4 = s:FixPos(searchpairpos('<',  '', '>',  'b', skip), this_line)
+  let p1 = s:FixPos(searchpairpos('{',  '', '}',  'b', skip), this_line, this_col)
+  let p2 = s:FixPos(searchpairpos('\[', '', '\]', 'b', skip), this_line, this_col)
+  let p3 = s:FixPos(searchpairpos('(',  '', ')',  'b', skip), this_line, this_col)
+  let p4 = s:FixPos(searchpairpos('<',  '', '>',  'b', skip), this_line, this_col)
 
   let [l, c] = s:ComparePos(s:ComparePos(p1, p2), s:ComparePos(p3, p4))
 
