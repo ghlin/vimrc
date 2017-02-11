@@ -4,8 +4,13 @@
 
 " {{{ Filetype Plugin
 
+
 " {{{ Paredit
   Plugin 'paredit.vim'
+" }}}
+
+" {{{
+  Plugin 'shougo/junkfile.vim'
 " }}}
 
 " {{{ QuickRun
@@ -13,7 +18,7 @@
 " }}}
 
 " {{{ Codi
-  Plugin 'metakirby5/codi.vim'
+" Plugin 'metakirby5/codi.vim'
 " }}}
 
 " {{{ Haskell
@@ -84,7 +89,8 @@
 " {{{ Clang Complete
   Plugin 'Rip-Rip/clang_complete'
 
-  let g:clang_library_path         = '/Library/Developer/CommandLineTools/usr/lib'
+  " let g:clang_library_path         = '/Library/Developer/CommandLineTools/usr/lib'
+  let g:clang_library_path         = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 
   let g:clang_complete_auto        = 1
   let g:clang_auto_select          = 1
@@ -146,7 +152,7 @@
 " }}}
 
 " {{{ Xcode
-  Plugin 'Addisonbean/Vim-Xcode-Theme'
+" Plugin 'Addisonbean/Vim-Xcode-Theme'
 " }}}
 
 " {{{ Paper-Color
@@ -158,7 +164,7 @@
 " }}}
 
 " {{{ Wombat256
-  Plugin 'MPiccinato/wombat256'
+" Plugin 'MPiccinato/wombat256'
 " }}}
 
 " {{{ GreenVision
@@ -188,7 +194,7 @@
 " {{{ Utilites
 
 " {{{ vim-textobj-indent
-  Plugin 'kana/vim-textobj-user' " required by vim-textobj-indent
+  Plugin 'kana/vim-textobj-user'    " required by vim-textobj-indent
   Plugin 'kana/vim-textobj-indent'
 " }}}
 
@@ -211,7 +217,7 @@
 " }}}
 
 " {{{
-" Plugin 'luochen1990/rainbow'
+  Plugin 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
   let g:rainbow_conf = {
@@ -219,8 +225,8 @@
         \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
         \ 'separately': {
         \     '*':       0,
-        \     'c':      {},
-        \     'cpp':    {},
+        \     'c':       0,
+        \     'cpp':     0,
         \     'scheme': {},
         \     'lisp':   {},
         \     'elisp':  {},
@@ -244,8 +250,8 @@
   Plugin 'bling/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
 
-  let g:airline_mode_map = { '__' : '-', 'n'  : '<N>', 'i'  : '<I>',
-       \ 'R'  : 'R', 'c'  : 'C', 'v'  : '<V>', 'V'  : '<V>',
+  let g:airline_mode_map = { '__' : '-', 'n'  : 'N', 'i'  : 'I',
+       \ 'R'  : 'R', 'c'  : 'C', 'v'  : 'V', 'V'  : 'V',
        \ '' : 'V', 's'  : 'S', 'S'  : 'S', '' : 'S', }
 
   if !exists('g:airline_symbols')
