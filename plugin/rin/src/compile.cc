@@ -176,7 +176,7 @@ IMPL_GET_XXX(output_filename)
   getxxx(name_part);
 
   return cache.update("output_filename",
-                      folder + "/" + name_part);
+                      folder + "/" + name_part + options.query("exec-ext", ".exec"));
 }
 
 
