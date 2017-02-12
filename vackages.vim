@@ -425,5 +425,31 @@
   Plugin 'embear/vim-localvimrc'
 " }}}
 
+" {{{ completion
+  Plugin 'shougo/neocomplete.vim'
+
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplete#enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+
+  "let g:neocomplete#force_omni_input_patterns.c =
+        "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  "let g:neocomplete#force_omni_input_patterns.cpp =
+        "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  "let g:neocomplete#force_omni_input_patterns.objc =
+        "\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+  "let g:neocomplete#force_omni_input_patterns.objcpp =
+        "\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+
+  Plugin 'shougo/neco-vim'
+" }}}
+
 " }}}
 
