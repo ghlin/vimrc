@@ -9,6 +9,8 @@ let g:use_marker = ['vim', 'lua', 'python', 'sh', 'dosbatch', 'xf86conf', 'c', '
 
 function! SettingsForSourceCode()
   setlocal foldmethod=syntax
+  setlocal nowrap
+
   for um in g:use_marker
     if um == &filetype
       setlocal foldmethod=marker

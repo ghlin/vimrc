@@ -11,7 +11,7 @@ let colors_name = "eye"
 " #5E5E5E #EF2929 #00D30D #FCE94F #0077FF #B75FAD #34E2E2 #FFFFFF
 
 if has("gui_running")
-  hi Normal           gui=none            guifg=#FFFFFF           guibg=#121212
+  hi Normal           gui=none            guifg=#DFDFDF           guibg=#171717
   hi Comment          gui=none            guifg=#029004
   hi Constant         gui=none            guifg=#5E5E5E
   hi DiffAdd                                                      guibg=#0040ED
@@ -27,7 +27,7 @@ if has("gui_running")
   hi MatchParen       gui=none            guifg=#0040ED           guibg=bg
   hi ModeMsg          gui=bold
   hi MoreMsg          gui=bold            guifg=#029004
-  hi NonText                              guifg=#FFFFFF
+  hi NonText                              guifg=#333333
   hi Operator                             guifg=fg
   hi Pmenu                                                        guibg=#0040ED
   hi PmenuSel                             guifg=#FFFFFF           guibg=#5E5E5E
@@ -59,8 +59,8 @@ if has("gui_running")
 
   hi! ColorColumn                                                 guibg=#D4D4D4
   hi! CursorLine       gui=none                                   guibg=#090909
-  hi! CursorLineNr     gui=bold           guifg=fg                guibg=#090909
-  hi! LineNr           gui=none           guifg=#5E5E5E
+  hi! CursorLineNr     gui=none           guifg=fg                guibg=#141410
+  hi! LineNr           gui=none           guifg=#5E5E5E           guibg=#141410
   hi! StatusLine                          guifg=#FFFFFF           guibg=#0077FF
   hi! StatusLineNC                        guifg=#000000           guibg=#5E5E5E
 
@@ -84,7 +84,7 @@ else
   hi  MatchParen       cterm=none                                ctermfg=DarkBlue           ctermbg=none
   hi  ModeMsg          cterm=bold            term=reverse
   hi  MoreMsg                                                    ctermfg=DarkGreen
-  hi  NonText                                                    ctermfg=White
+  hi  NonText                                                    ctermfg=DarkGray
   hi  Pmenu                                                                                 ctermbg=DarkBlue
   hi  PmenuSel                                                   ctermfg=White              ctermbg=DarkBlue
   hi  PreProc          cterm=none                                ctermfg=DarkGreen

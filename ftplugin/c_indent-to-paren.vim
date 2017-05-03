@@ -38,7 +38,7 @@ function! s:FixPos(pos, linum, clnum)
 endfunction
 
 function! IndentToParen()
-  let skip = 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\\|comment"'
+  let skip = 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\\|comment\\|character"'
 
   let this_line = line('.')
   let this_col  = col('.')

@@ -1,4 +1,4 @@
-au!  FileType cpp :exec 'setlocal makeprg =$HOME/.local/bin/rin\ -silent\ ' . expand('%')
+au!  FileType cpp :exec 'setlocal makeprg =$HOME/.local/bin/rin\ -silent\ ' . expand('%:p')
 com! -nargs=* RunThis       :!%:p:r.exec <args>
 nmap <leader>e    :!%:p:r<CR>
 

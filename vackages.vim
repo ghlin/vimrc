@@ -4,6 +4,9 @@
 
 " {{{ Filetype Plugin
 
+" {{{ EBNF
+  Plugin 'ebnf.vim'
+" }}}
 
 " {{{ Paredit
   Plugin 'paredit.vim'
@@ -11,6 +14,18 @@
 
 " {{{
   Plugin 'shougo/junkfile.vim'
+" }}}
+
+" {{{
+  Plugin 'thinca/vim-unite-history'
+" }}}
+
+" {{{
+  Plugin 'osyo-manga/unite-filetype'
+" }}}
+
+" {{{
+  Plugin 'ujihisa/unite-colorscheme'
 " }}}
 
 " {{{ QuickRun
@@ -25,6 +40,7 @@
   Plugin 'neovimhaskell/haskell-vim'
   Plugin 'itchyny/vim-haskell-indent'
   Plugin 'eagletmt/ghcmod-vim'
+  Plugin 'eagletmt/neco-ghc'
 " }}}
 
 " {{{ Scala
@@ -33,6 +49,7 @@
 
 " {{{ Coffee
   Plugin 'kchmck/vim-coffee-script'
+  Plugin 'noc7c9/vim-iced-coffee-script'
 " }}}
 
 " {{{ Squirrel
@@ -109,19 +126,27 @@
   nnoremap <leader>q       :call g:ClangUpdateQuickFix()<CR>
 " }}}
 
-" {{{ A.vim (switch between header & source files)
-  Plugin 'a.vim'
-" }}}
-
 " }}}
 
 " {{{ TOML
 " Plugin 'cespare/vim-toml'
 " }}}
 
+" {{{ VXApplet
+  Plugin 'chemzqm/wxapp.vim'
+" }}}
+
 " }}}
 
 " {{{ Colorscheme
+
+" {{{ solarized for term.
+  Plugin 'lifepillar/vim-solarized8'
+" }}}
+
+" {{{ old-hope
+  Plugin 'j-tom/vim-old-hope'
+" }}}
 
 " {{{
 " Plugin 'antlypls/vim-colors-codeschool'
@@ -175,6 +200,11 @@
 " Plugin 'Color-Scheme-Explorer'
 " }}}
 
+" {{{ Pretty Icons
+  "Plugin 'ryanoasis/vim-devicons'
+  let g:WebDevIconOS = 'Darwin'
+" }}}
+
 " }}}
 
 " {{{ Mode
@@ -184,7 +214,7 @@
 " }}}
 
 " {{{ Goyo.vim
-" Plugin 'junegunn/goyo.vim'
+  Plugin 'junegunn/goyo.vim'
   let g:goyo_width = 100
 " }}}
 
@@ -220,20 +250,23 @@
   Plugin 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
+  let s:color_patterns = [
+        \  '#EF2929', '#ED146F', '#D37A35', '#DFCD60', '#B75FAD', '#3EBD92',
+        \  '#61D2D6', 'B75FAD' ]
+
   let g:rainbow_conf = {
-        \   'guifgs'     : ['#0392CE', '#FD5308', '#0247FE', '#FB9902', '#8601AF', '#FEFE33', '#A7194B', '#D0EA2B'],
+        \   'guifgs'     : color_patterns,
         \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
         \ 'separately': {
         \     '*':       0,
-        \     'c':       0,
-        \     'cpp':     0,
-        \     'scheme': {},
-        \     'lisp':   {},
-        \     'elisp':  {},
-        \     'haskell':{ 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
+        \     'c':       { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
+        \     'cpp':     { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
+        \     'scheme':  {},
+        \     'lisp':    {},
+        \     'elisp':   {},
+        \     'haskell': { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
         \   }
         \ }
-
 " }}}
 
 " {{{ tablify   generate tables
@@ -258,6 +291,8 @@
     let g:airline_symbols = {}
   endif
 
+  let g:airline_symbols_ascii      = 1
+
   let g:airline_symbols.paste      = "[PASTE]"
   let g:airline_symbols.whitespace = "[=]"
   let g:airline_symbols.branch     = "[BRANCH]"
@@ -269,9 +304,10 @@
   let g:airline_right_sep          = ""
   let g:airline_right_alt_sep      = ""
 
-  let g:airline_powerline_fonts = 0
+  "let g:airline_powerline_fonts = 1
 
   let g:airline_theme = 'monochrome'
+  "let g:airline_theme = 'pencil'
 
   function! AIP_BufNr()
     return '#' . bufnr('%')
@@ -329,6 +365,7 @@
                   \ , '\.lua$'
                   \ , '\.run$'
                   \ , '*', '\.swp$', '\~$', '.dSYM' ]
+  let g:NERDTreeIgnore = [ 'node_modules' ]
 
   hi link NERDTreePart Normal
   hi link NERDTreePartFile Normal
@@ -396,7 +433,7 @@
 " }}}
 
 " {{{ CtrlP
-  Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
   let g:ctrlp_map = '<leader>F'  " :CtrlP
   noremap <leader>R  :CtrlPMRUFiles<CR>
   noremap <leader>B  :CtrlPBuffer<CR>
@@ -414,6 +451,34 @@
 " }}}
 
 " {{{
+  Plugin 'Shougo/unite.vim'
+  Plugin 'Shougo/unite-outline'
+  Plugin 'Shougo/neomru.vim'
+  Plugin 'Shougo/neoyank.vim'
+
+  let g:unite_source_history_yank_enable = 1
+  let g:unite_enable_auto_select         = 0
+
+  nnoremap <leader><leader>f       :<C-u>Unite -no-split -start-insert file<CR>
+  nnoremap <leader><leader>F       :<C-u>Unite -no-split -start-insert file_rec/async<CR>
+  nnoremap <leader><leader><space> :<C-u>Unite -no-split -start-insert buffer bookmark<CR>
+  nnoremap <leader><leader>b       :<C-u>Unite -no-split -start-insert bookmark<CR>
+  nnoremap <leader><leader>\       :<C-u>Unite -no-split -start-insert bookmark neomru/file<CR>
+  nnoremap <leader><leader><CR>    :<C-u>Unite -no-split -start-insert outline<CR>
+  nnoremap <leader><leader>y       :<C-u>Unite -no-split -start-insert history/yank<CR>
+  nnoremap <leader><leader>/       :<C-u>Unite -no-split -start-insert history/search<CR>
+  nnoremap <leader><leader>:       :<C-u>Unite -no-split -start-insert history/command<CR>
+  nnoremap <leader><leader>t       :<C-u>Unite -no-split -start-insert filetype<CR>
+  nnoremap <leader><leader>T       :<C-u>Unite -no-split -start-insert colorscheme<CR>
+
+  autocmd Filetype unite call s:unite_settings()
+
+  function! s:unite_settings() "{{{ unite settings
+  endfunction " }}}
+
+" }}}
+
+" {{{
   Plugin 'dbakker/vim-projectroot'
 
   function! ProjectNameGuess()
@@ -426,7 +491,10 @@
 " }}}
 
 " {{{ completion
+  Plugin 'ujihisa/neco-look'
   Plugin 'shougo/neocomplete.vim'
+
+  "let g:neocomplete#text_mode_filetypes = { "_" : 1 }
 
   " Use neocomplete.
   let g:neocomplete#enable_at_startup = 1

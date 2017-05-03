@@ -22,11 +22,13 @@ function! LoadPlugins() "{{{
   source ~/.vim/vackages.vim
   call vundle#end()
 
+  source ~/.vim/vackages-after.vim
+
   filetype plugin indent on
 endfunction "}}}
 
 function! PreSettings() "{{{
-  let g:mapleader = ','
+  let g:mapleader = "\<Space>"
 endfunction "}}}
 
 function! BasicSettings() "{{{
@@ -69,6 +71,10 @@ function! BasicSettings() "{{{
   nmap  <leader><  :bp<CR>
   nmap  <leader>>  :bn<CR>
 
+  nnoremap <leader>w <C-w>
+  nnoremap <leader>s :split<Space>
+  nnoremap \\        :Unite -start-insert -no-split<Space>
+
   " set ruler
   set showcmd
   set laststatus =2
@@ -91,7 +97,11 @@ function! BasicSettings() "{{{
   " set working dir automatically.
   autocmd BufEnter * silent! lcd %:p:h
 
-  nnoremap \\ :nohl<CR>
+  nnoremap <leader>\\ :nohl<CR>
+
+  nnoremap <leader><leader>q   :q<CR>
+  nnoremap <leader><leader>w   :w<CR>
+  nnoremap <leader><leader>Q   :wqa<CR>
 
   command! -bang -nargs=? Q    :q
   command! -bang -nargs=? Qa   :qa
@@ -132,7 +142,7 @@ function! BasicSettings() "{{{
   "inoremap <C-]> <esc>f}a
 
   " toggle fold
-  nnoremap <space>      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+  nnoremap <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
   " nicer fold text
   function! FoldText() " {{{
@@ -165,7 +175,7 @@ function! BasicSettings() "{{{
       echo "Disable spell checking"
     endif
   endfunction
-  nnoremap <leader>s    :call ToggleSpell()<CR>
+  " nnoremap <leader>s    :call ToggleSpell()<CR>
 
   " toggle show tabline
   function! ToggleTab()
@@ -176,8 +186,7 @@ function! BasicSettings() "{{{
       echo "Hide Tabline"
     endif
   endfunction
-
-  nnoremap <leader>l    :call ToggleTab()<CR>
+  " nnoremap <leader>l    :call ToggleTab()<CR>
 
   " hide Visual mode
   nmap    <S-q>       <leader>Q
@@ -185,7 +194,7 @@ function! BasicSettings() "{{{
   set nu
   set rnu
   set so         =4
-  set nowrap
+  set wrap
 
   " set fdc=1
   set foldmethod =marker
@@ -197,6 +206,8 @@ function! BasicSettings() "{{{
   set errorformat^=%-GIn\ file\ included\ from\ %.%#
   let g:c_gnu = 1
 
+  set formatoptions +=j
+
   set completeopt =menuone,preview,longest
   set pumheight   =12
 
@@ -207,7 +218,17 @@ function! BasicSettings() "{{{
 
   set wildmenu
   " set wildmode=list:longest,full
-  set wildignore=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM
+  set wildignore=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM,node_modules
+
+  set linebreak
+  set breakindent
+  set breakindentopt =shift:3,sbr
+  set breakat        =\ ^I!@*-+;:,./?\(\[\{        " break at these chars
+  let &showbreak     ='\-> '
+
+  set nobackup
+  set nowritebackup
+  set noswapfile
 
   set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 
@@ -271,59 +292,44 @@ function! GuiSettings() "{{{
   set guicursor   =n-v-c:block-Cursor/lCursor
   set guicursor  ^=ve:ver5-Cursor
   set guicursor  ^=o:hor5-Cursor/lCursor
-  set guicursor  ^=i-ci:ver1-Cursor/lCursor
-  set guicursor  ^=r-cr:hor1-Cursor/lCursor
+  set guicursor  ^=i-ci:ver5-Cursor/lCursor
+  set guicursor  ^=r-cr:hor5-Cursor/lCursor
   set guicursor  ^=sm:block-Cursor-blinkwait75-blinkoff55-blinkon55
 
   " e for tab.
   set guioptions  =fmi
 
-  set macligatures
+  if has('macunix')
+    set macligatures
+  endif
 
-  set guifont     =Fira\ Code:h14
-  set guifontwide =Fira\ Code:h14
+  set guifont     =SF\ Mono:h14
+  set guifontwide =SF\ Mono:h14
 
-  "set guifont     =Consolas:h14
-  "set guifont     =Ubuntu\ Mono:h16
-  "set guifont     =Menlo\ Regular:h16
-  "set guifont     =Source\ Code\ Pro:h12
-
-  "set noantialias
-  "set guifont=Monaco:h14
-  "set guifont=Fixedsys\ Excelsior\ 3.01:h16
-
-  "set background=light
-  "colorscheme molokai
+  set background=dark
 
   "colorscheme numix
   "hi Statement gui=bold
 
-  "colorscheme      numix
-  "colorscheme      desert
-   colorscheme      PaperColor
-  "colorscheme xcode
-  "colorscheme molokai
-  let g:airline_theme = 'pencil'
-
-  "let g:airline_theme = 'zenburn'
-  "set              cul
-
+  colorscheme      an-old-hope
   set mouse        =
 endfunction "}}}
 
 function! TermSettings() "{{{
-  colorscheme      console
+  colorscheme console
   set title
   set termencoding=utf-8
   set ttyfast
 
   " iterm2 only.
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  " just check os type
+  if has('macunix')
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-  silent !echo "\033]50;CursorShape=0\x7"
-  au VimLeave * silent !echo "\033]50;CursorShape=1\x7"
-
+    silent !echo "\033]50;CursorShape=0\x7"
+    au VimLeave * silent !echo "\033]50;CursorShape=1\x7"
+  endif
 endfunction "}}}
 
 "{{{ apply the settings

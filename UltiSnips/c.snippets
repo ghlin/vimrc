@@ -233,21 +233,37 @@ $0
 endsnippet
 
 snippet oj "Online Judge Mode On!!!" !b
+#ifdef __cplusplus
+#include <cstdio>
+#include <cmath>
+#include <cstring>
+#include <cctype>
+#include <climits>
+#else
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
 #include <limits.h>
+#endif
 
-#ifndef ONLINE_JUDGE
-#define logx(...) \
+/*
+ * @@@ compile: -DLOCAL_JUDGE=1
+ */
+#ifdef LOCAL_JUDGE
+#define wtf(...) \
 	do { fprintf(stderr, "%s, %d : ", __func__, __LINE__); \
 			 fprintf(stderr, __VA_ARGS__); \
 			 fprintf(stderr, "\n"); } while (0)
 #else
-#define logx(...) do { } while (0)
+#define wtf(...) do { } while (0)
 #endif
+
+int readInt(int opt) { return scanf("%d", &opt), opt; }
+long long readLongLong(long long opt) { return scanf("%lld", &opt), opt; }
+long long unsigned readLongLongUnsigned(long long unsigned opt) { return
+scanf("%llu", &opt), opt; }
 
 int main(void)
 {
