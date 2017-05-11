@@ -68,18 +68,11 @@
   Plugin 'tpope/vim-markdown'
 
   Plugin 'iamcco/markdown-preview.vim'
-  let g:mkdp_path_to_chrome = "/Users/ghlin/.local/bin/urlhandler"
-" }}}
+  let g:mkdp_py_version = 2
 
-" {{{ Rust
-" Plugin 'rust-lang/rust.vim'
-
-" Plugin 'racer-rust/vim-racer'
-
-  let $RUST_SRC_PATH = "$HOME/.local/lib/rust/src/rustc-1.3.0/src"
-  let g:racer_cmd    = "$HOME/.local/bin/racer"
-
-  " autocmd FileType rust setlocal completefunc=RacerComplete
+  if has('macunix')
+    let g:mkdp_path_to_chrome = "/Users/ghlin/.local/bin/urlhandler"
+endif
 " }}}
 
 " {{{ Perl
@@ -106,8 +99,10 @@
 " {{{ Clang Complete
   Plugin 'Rip-Rip/clang_complete'
 
-  " let g:clang_library_path         = '/Library/Developer/CommandLineTools/usr/lib'
-  let g:clang_library_path         = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
+  if has('macunix')
+    " let g:clang_library_path         = '/Library/Developer/CommandLineTools/usr/lib'
+    let g:clang_library_path         = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
+  endif
 
   let g:clang_complete_auto        = 1
   let g:clang_auto_select          = 1
@@ -144,16 +139,12 @@
   Plugin 'lifepillar/vim-solarized8'
 " }}}
 
-" {{{ old-hope
-  Plugin 'j-tom/vim-old-hope'
-" }}}
-
 " {{{
 " Plugin 'antlypls/vim-colors-codeschool'
 " }}}
 
 " {{{ Github
-" Plugin 'acarapetis/vim-colors-github'
+  Plugin 'acarapetis/vim-colors-github'
 " }}}
 
 " {{{ Molokai
@@ -164,40 +155,8 @@
   Plugin 'reedes/vim-colors-pencil'
 " }}}
 
-" {{{ Lucid
-" Plugin 'cseelus/vim-colors-lucid'
-" }}}
-
-" {{{ Brighton
-" Plugin 'MvanDiemen/brighton.vim'
-" }}}
-
-" {{{ Happy Hacking
-" Plugin 'YorickPeterse/happy_hacking.vim'
-" }}}
-
-" {{{ Xcode
-" Plugin 'Addisonbean/Vim-Xcode-Theme'
-" }}}
-
 " {{{ Paper-Color
   Plugin 'NLKNguyen/papercolor-theme'
-" }}}
-
-" {{{ MonoChrome
-" Plugin 'fxn/vim-monochrome'
-" }}}
-
-" {{{ Wombat256
-" Plugin 'MPiccinato/wombat256'
-" }}}
-
-" {{{ GreenVision
-" Plugin 'greenvision'
-" }}}
-
-" {{{ Color-Scheme-Exploer
-" Plugin 'Color-Scheme-Explorer'
 " }}}
 
 " {{{ Pretty Icons
@@ -250,14 +209,11 @@
   Plugin 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
-  let s:color_patterns = [
-        \  '#EF2929', '#ED146F', '#D37A35', '#DFCD60', '#B75FAD', '#3EBD92',
-        \  '#61D2D6', 'B75FAD' ]
-
   let g:rainbow_conf = {
-        \   'guifgs'     : color_patterns,
+        \   'guifgs'     : [ '#EF2929', '#ED146F', '#D37A35', '#DFCD60',
+        \                    '#B75FAD', '#3EBD92', '#61D2D6', '#B75FAD' ],
         \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
-        \ 'separately': {
+        \   'separately': {
         \     '*':       0,
         \     'c':       { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
         \     'cpp':     { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
@@ -270,7 +226,7 @@
 " }}}
 
 " {{{ tablify   generate tables
-" Plugin 'Stormherz/tablify'
+  "Plugin 'Stormherz/tablify'
 " }}}
 
 " {{{ startify   a pretty welcome screen
@@ -329,7 +285,6 @@
 
   au User AirlineAfterInit call AirlineInitPart()
 
-
   let g:airline#extensions#tagbar#enabled              = 0
   let g:airline#extensions#branch#enabled              = 1
   let g:airline#extensions#branch#displayed_head_limit = 10
@@ -365,9 +320,9 @@
                   \ , '\.lua$'
                   \ , '\.run$'
                   \ , '*', '\.swp$', '\~$', '.dSYM' ]
-  let g:NERDTreeIgnore = [ 'node_modules' ]
+  let g:NERDTreeIgnore = [ 'node_modules', '\.swp$', '\~$', '\.dSYM' ]
 
-  hi link NERDTreePart Normal
+  hi link NERDTreePart     Normal
   hi link NERDTreePartFile Normal
 " }}}
 
@@ -393,7 +348,7 @@
 " {{{ Gundo
   Plugin 'Gundo'
 
-  nmap <leader>u    :GundoToggle<CR>
+  nmap <leader><leader><BS>    :GundoToggle<CR>
 " }}}
 
 " {{{ UltiSnips
@@ -412,13 +367,13 @@
   Plugin 'EasyGrep'
 " }}}
 
-" {{{ AGrep
-  Plugin 'ramele/agrep'
-" }}}
-
 " {{{ Ack
   Plugin 'mileszs/ack.vim'
 " }}}
+
+" {{{ Quickfix filter
+  Plugin 'sk1418/QFGrep'
+" }}]
 
 " {{{ VisIncr
   Plugin 'VisIncr'
@@ -466,7 +421,7 @@
   nnoremap <leader><leader>\       :<C-u>Unite -no-split -start-insert bookmark neomru/file<CR>
   nnoremap <leader><leader><CR>    :<C-u>Unite -no-split -start-insert outline<CR>
   nnoremap <leader><leader>y       :<C-u>Unite -no-split -start-insert history/yank<CR>
-  nnoremap <leader><leader>/       :<C-u>Unite -no-split -start-insert history/search<CR>
+  nnoremap <leader><leader>?       :<C-u>Unite -no-split -start-insert history/search<CR>
   nnoremap <leader><leader>:       :<C-u>Unite -no-split -start-insert history/command<CR>
   nnoremap <leader><leader>t       :<C-u>Unite -no-split -start-insert filetype<CR>
   nnoremap <leader><leader>T       :<C-u>Unite -no-split -start-insert colorscheme<CR>
@@ -484,6 +439,11 @@
   function! ProjectNameGuess()
     return substitute(fnamemodify(ProjectRootGuess(), ":t"), "\\(\\w\\)\\(\\w*\\)", "\\U\\1\\L\\2", "g")
   endfunction
+
+  com! -nargs=0 R             :call ProjectRootCD()
+
+  nnoremap <leader><leader>!     :ProjectRootExe<space>
+  nnoremap <leader><leader>/     :ProjectRootExe Ack<space>
 " }}}
 
 " {{{
@@ -491,7 +451,10 @@
 " }}}
 
 " {{{ completion
-  Plugin 'ujihisa/neco-look'
+  if has('macunix')
+    Plugin 'ujihisa/neco-look'
+  endif
+
   Plugin 'shougo/neocomplete.vim'
 
   "let g:neocomplete#text_mode_filetypes = { "_" : 1 }

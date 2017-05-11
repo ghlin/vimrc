@@ -12,7 +12,7 @@ let colors_name = "AnOldHope"
 "                                 #9BF0E9
 
 hi Normal           gui=none            guifg=#E5E6E6           guibg=#202020
-hi Comment          gui=none            guifg=#3EBD92
+hi Comment          gui=none            guifg=#5E5E5E
 hi Constant         gui=none            guifg=#77B3D6
 hi DiffAdd                                                      guibg=#0040ED
 hi DiffChange                                                   guibg=#00D30D
@@ -28,8 +28,8 @@ hi MatchParen       gui=none            guifg=#DFCD60           guibg=bg
 hi ModeMsg          gui=bold
 hi MoreMsg          gui=bold            guifg=#029004
 hi NonText                              guifg=#333333
-hi Pmenu                                                        guibg=#B75FAD
-hi PmenuSel                             guifg=#FFFFFF           guibg=#5E5E5E
+hi Pmenu                                                        guibg=#5E5E5E
+hi PmenuSel                             guifg=#FFFFFF           guibg=#B75FAD
 hi PreProc          gui=none            guifg=#3EBD92
 hi Question                             guifg=#3EBD92
 hi Search                               guifg=#FFFFFF           guibg=#EF2929

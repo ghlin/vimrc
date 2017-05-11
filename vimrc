@@ -32,11 +32,12 @@ function! PreSettings() "{{{
 endfunction "}}}
 
 function! BasicSettings() "{{{
+  if has('macunix')
+    set pythonthreehome="/usr/local/Frameworks/Python.framework/Versions/3.6"
+    set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib"
 
-  let $PYTHONHOME="/usr/local/Frameworks/Python.framework/Versions/3.6"
-  set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.6/Python"
-
-  let $PATH=$PATH . ":" . $HOME . "/Library/Haskell/bin"
+    let $PATH=$PATH . ":" . $HOME . "/Library/Haskell/bin"
+  endif
 
   syntax on
   filetype plugin indent on
@@ -73,7 +74,6 @@ function! BasicSettings() "{{{
 
   nnoremap <leader>w <C-w>
   nnoremap <leader>s :split<Space>
-  nnoremap \\        :Unite -start-insert -no-split<Space>
 
   " set ruler
   set showcmd
@@ -235,6 +235,7 @@ function! BasicSettings() "{{{
   " XXX
   com! -nargs=0 LCD           :lcd       %:h
   com! -nargs=0 CD            :cd        %:h
+  com! -nargs=0 P             :lcd       ..
 
   " delete this file
   com! -nargs=0 RmThis        :!rm       -v %
@@ -248,25 +249,10 @@ function! BasicSettings() "{{{
   " when forget `sudo'
   com! -nargs=0 ForceSave     :w !sudo tee % &>/dev/null
 
- " function! SDCVFromInput()
- "   let @z = input('sdcv >>> ')
- "   redir =>dict
- "   silent exec '!sdcv --non-interactive ' . @z
- "   redir END
- "   echo dict
- " endfunction
+  if has('macunix')
+   set keywordprg=$HOME/.local/bin/openlookup
+  endif
 
- " com! -nargs=0 SDCV          :call SDCVFromInput()
-
- " if has('gui_running')
- "   set keywordprg         =ydcv\ --color=never
- " else
- "   set keywordprg         =ydcv
- " endif
-
- set keywordprg=$HOME/.local/bin/openlookup
-
-  " <C-R>=ExecPipe('colo') ==> solarized
   function! ExecPipe(cmd)
     redir =>output
     silent exec a:cmd
@@ -285,7 +271,6 @@ function! BasicSettings() "{{{
 
   " enable doxygen highlighting
   let g:load_doxygen_syntax = 1
-
 endfunction "}}}
 
 function! GuiSettings() "{{{
@@ -303,14 +288,14 @@ function! GuiSettings() "{{{
     set macligatures
   endif
 
-  set guifont     =SF\ Mono:h14
-  set guifontwide =SF\ Mono:h14
+  if has('macunix')
+    set guifont=Fira\ Code\ Retina:h14
+  else
+    set guifont     =SF\ Mono:h14
+    set guifontwide =SF\ Mono:h14
+  endif
 
-  set background=dark
-
-  "colorscheme numix
-  "hi Statement gui=bold
-
+  set              background=dark
   colorscheme      an-old-hope
   set mouse        =
 endfunction "}}}
