@@ -99,11 +99,13 @@ function! BasicSettings() "{{{
 
   nnoremap <leader>\\ :nohl<CR>
 
-  nnoremap <leader><leader>q   :q<CR>
+  nnoremap <leader><leader>q   :close<CR>
+  nnoremap <leader><leader>x   :bd<CR>
+  nnoremap <leader><leader>X   :bd!<CR>
   nnoremap <leader><leader>w   :w<CR>
   nnoremap <leader><leader>Q   :wqa<CR>
 
-  command! -bang -nargs=? Q    :q
+  command! -bang -nargs=? Q    :close
   command! -bang -nargs=? Qa   :qa
   command! -bang -nargs=? W    :w
   command! -bang -nargs=? Wa   :wa

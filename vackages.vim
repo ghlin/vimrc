@@ -52,6 +52,10 @@
   Plugin 'noc7c9/vim-iced-coffee-script'
 " }}}
 
+" {{{ ES6
+  Plugin 'isruslan/vim-es6'"
+" }}}
+
 " {{{ Squirrel
 " Plugin 'xevz/vim-squirrel'
 " }}}
@@ -139,7 +143,7 @@ endif
   Plugin 'lifepillar/vim-solarized8'
 " }}}
 
-" {{{
+" {{{ codeschool
 " Plugin 'antlypls/vim-colors-codeschool'
 " }}}
 
@@ -177,7 +181,6 @@ endif
   let g:goyo_width = 100
 " }}}
 
-
 " }}}
 
 " {{{ Utilites
@@ -205,7 +208,7 @@ endif
 " Plugin 'nathanaelkane/vim-indent-guides'
 " }}}
 
-" {{{
+" {{{ rainbow
   Plugin 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
@@ -373,7 +376,7 @@ endif
 
 " {{{ Quickfix filter
   Plugin 'sk1418/QFGrep'
-" }}]
+" }}}
 
 " {{{ VisIncr
   Plugin 'VisIncr'
@@ -405,7 +408,7 @@ endif
         \ }
 " }}}
 
-" {{{
+" {{{ unite
   Plugin 'Shougo/unite.vim'
   Plugin 'Shougo/unite-outline'
   Plugin 'Shougo/neomru.vim'
@@ -433,7 +436,7 @@ endif
 
 " }}}
 
-" {{{
+" {{{ project root
   Plugin 'dbakker/vim-projectroot'
 
   function! ProjectNameGuess()
@@ -446,7 +449,7 @@ endif
   nnoremap <leader><leader>/     :ProjectRootExe Ack<space>
 " }}}
 
-" {{{
+" {{{ localvimrc
   Plugin 'embear/vim-localvimrc'
 " }}}
 
