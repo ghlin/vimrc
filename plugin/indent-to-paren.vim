@@ -37,7 +37,7 @@ function! s:FixPos(pos, linum, clnum)
   if a:pos[0] >= a:linum | return [0, 0] | else | return a:pos | endif
 endfunction
 
-function! IndentToParen()
+function! IndentToParen(angle)
   let skip = 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\\|comment\\|character"'
 
   let this_line = line('.')
@@ -46,7 +46,13 @@ function! IndentToParen()
   let p1 = s:FixPos(searchpairpos('{',  '', '}',  'b', skip), this_line, this_col)
   let p2 = s:FixPos(searchpairpos('\[', '', '\]', 'b', skip), this_line, this_col)
   let p3 = s:FixPos(searchpairpos('(',  '', ')',  'b', skip), this_line, this_col)
-  let p4 = s:FixPos(searchpairpos('<',  '', '>',  'b', skip), this_line, this_col)
+
+  let p4 = p3
+
+  if a:angle
+    let p4 = s:FixPos(searchpairpos('<',  '', '>',  'b', skip), this_line, this_col)
+  endif
+
 
   let [l, c] = s:ComparePos(s:ComparePos(p1, p2), s:ComparePos(p3, p4))
 
@@ -62,5 +68,5 @@ function! IndentToParen()
 endfunction
 
 
-inoremap <C-\> <C-o>:call IndentToParen()<CR>
+inoremap <C-\> <C-o>:call IndentToParen(or(&ft ==# "c", &ft ==# "cpp"))<CR>
 

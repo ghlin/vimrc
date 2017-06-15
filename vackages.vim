@@ -52,6 +52,23 @@
   Plugin 'noc7c9/vim-iced-coffee-script'
 " }}}
 
+" {{{ typescript
+  Plugin 'quramy/tsuquyomi'
+  Plugin 'quramy/vim-js-pretty-template'
+  Plugin 'leafgarland/typescript-vim'
+  hi! link typescriptHtmlEvents Normal
+
+
+  let g:tsuquyomi_use_vimproc          = 1
+  let g:tsuquyomi_use_local_typescript = 0
+  let g:tsuquyomi_definition_split     = 2
+  let g:tsuquyomi_single_quote_import  = 1
+  let g:tsuquyomi_completion_preview   = 0
+  let g:tsuquyomi_javascript_support   = 1
+
+  autocmd Filetype typescript setlocal completeopt+=preview
+" }}}
+
 " {{{ ES6
   Plugin 'isruslan/vim-es6'"
 " }}}
@@ -139,6 +156,10 @@ endif
 
 " {{{ Colorscheme
 
+" {{{ One
+  Plugin 'rakr/vim-one'
+" }}}
+
 " {{{ solarized for term.
   Plugin 'lifepillar/vim-solarized8'
 " }}}
@@ -152,7 +173,7 @@ endif
 " }}}
 
 " {{{ Molokai
-" Plugin 'tomasr/molokai'
+  Plugin 'tomasr/molokai'
 " }}}
 
 " {{{ Pencil
@@ -252,11 +273,15 @@ endif
 
   let g:airline_symbols_ascii      = 1
 
-  let g:airline_symbols.paste      = "[PASTE]"
+  let g:airline_symbols.paste      = "[Paste]"
   let g:airline_symbols.whitespace = "[=]"
-  let g:airline_symbols.branch     = "[BRANCH]"
+  let g:airline_symbols.branch     = "[Branch]"
   let g:airline_symbols.readonly   = "[RO]"
   let g:airline_symbols.linenr     = "Ln"
+  let g:airline_symbols.spell      = "[Spell]"
+  let g:airline_symbols.crypt      = "[Crypt]"
+  let g:airline_symbols.notexists  = "[N/A]"
+  let g:airline_symbols.maxlinenr  = ""
 
   let g:airline_left_sep           = ""
   let g:airline_left_alt_sep       = ""
@@ -356,6 +381,8 @@ endif
 
 " {{{ UltiSnips
   Plugin 'SirVer/ultisnips'
+  Plugin 'alexbyk/vim-ultisnips-js-testing'
+
   " use py3: clang_complete [snippets engine not found]
   if has('py3')
     let g:UltiSnipsUsePythonVersion = 2

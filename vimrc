@@ -55,9 +55,9 @@ function! BasicSettings() "{{{
   set whichwrap   +=<,>,h,l
   set list
   set conceallevel =2
-  set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«,eol:¬, "⋅
+  set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
   set textwidth    =80
-  " set colorcolumn  =+1
+  set colorcolumn  =+1
 
   set mousehide
 
@@ -196,7 +196,7 @@ function! BasicSettings() "{{{
   set nu
   set rnu
   set so         =4
-  set wrap
+  set nowrap
 
   " set fdc=1
   set foldmethod =marker
@@ -210,7 +210,7 @@ function! BasicSettings() "{{{
 
   set formatoptions +=j
 
-  set completeopt =menuone,preview,longest
+  set completeopt =menuone,noselect
   set pumheight   =12
 
   " set nf=octal,hex
@@ -288,17 +288,21 @@ function! GuiSettings() "{{{
 
   if has('macunix')
     set macligatures
+    set ballooneval
   endif
 
   if has('macunix')
-    set guifont=Fira\ Code\ Retina:h14
+    set guifont     =SF\ Mono\ Semibold:h15
+    "set guifont =SF\ Mono:h15
   else
     set guifont     =SF\ Mono:h14
     set guifontwide =SF\ Mono:h14
   endif
 
   set              background=dark
-  colorscheme      an-old-hope
+  " colorscheme      an-old-hope
+  set cul
+  colorscheme      one
   set mouse        =
 endfunction "}}}
 
