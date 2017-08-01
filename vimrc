@@ -57,7 +57,7 @@ function! BasicSettings() "{{{
   set conceallevel =2
   set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
   set textwidth    =80
-  set colorcolumn  =+1
+  "set colorcolumn  =+1
 
   set mousehide
 
@@ -292,17 +292,21 @@ function! GuiSettings() "{{{
   endif
 
   if has('macunix')
-    set guifont     =SF\ Mono\ Semibold:h15
-    "set guifont =SF\ Mono:h15
+    "set noantialias
+    " set guifont=Monaco:h14
+    "set guifont     =SF\ Mono\ Semibold:h15
+    set guifont     =SF\ Mono:h14
+    "set guifont =SF\ Mono\ Semibold:h11
+    "set guifont   =Fixedsys\ Excelsior\ 3.01:h16
   else
     set guifont     =SF\ Mono:h14
     set guifontwide =SF\ Mono:h14
   endif
 
-  set              background=dark
-  " colorscheme      an-old-hope
+  set              background=light
+  "colorscheme      an-old-hope
   set cul
-  colorscheme      one
+  colorscheme      PaperColor
   set mouse        =
 endfunction "}}}
 

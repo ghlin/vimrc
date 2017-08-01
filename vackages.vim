@@ -109,8 +109,9 @@ endif
 " Plugin 'gtk-mode'
 " }}}
 
-" {{{ Jade
-" Plugin 'digitaltoad/vim-jade'
+" {{{ Jade/Pug
+  Plugin 'digitaltoad/vim-jade'
+  Plugin 'digitaltoad/vim-pug'
 " }}}
 
 " {{{ C / C++

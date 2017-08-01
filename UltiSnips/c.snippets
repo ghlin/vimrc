@@ -194,9 +194,13 @@ snippet fixme "a fixme reminder" !bs
 endsnippet
 
 snippet doxy "doxygen comment" !bs
-/**
+/*!
  * $1
  */$0
+endsnippet
+
+snippet doxi "inline doxygen comment" !b
+/*!< $1 */$0
 endsnippet
 
 snippet comment "a nice comment" !bs

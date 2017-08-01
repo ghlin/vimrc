@@ -61,16 +61,28 @@ snippet ghli "My notes"
 /* ghlin: $0 - `!v strftime("%F %T")` */
 endsnippet
 
-snippet page "router" !b
+snippet wxpage "page" !b
 import * as debug from 'debug';
 import * as E     from 'express';
-
-import 'space-lift';
 
 import wx     from '../middleware/wxsession';
 import db     from '../lib/database';
 import errs   from '../lib/errordefs';
 import * as U from '../middleware/auth';
+
+const log    = debug('Exciting:${1}');
+const router = E.Router();
+
+export default router;
+
+$0
+endsnippet
+
+snippet mpage "page" !b
+import * as debug from 'debug';
+import * as E     from 'express';
+
+import db from '../../lib/database';
 
 const log    = debug('Exciting:${1}');
 const router = E.Router();
