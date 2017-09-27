@@ -97,6 +97,9 @@ function! BasicSettings() "{{{
   " set working dir automatically.
   autocmd BufEnter * silent! lcd %:p:h
 
+  " quickfix window goes bottom most.
+  autocmd FileType qf wincmd J
+
   nnoremap <leader>\\ :nohl<CR>
 
   nnoremap <leader><leader>q   :close<CR>
@@ -295,8 +298,8 @@ function! GuiSettings() "{{{
     "set noantialias
     " set guifont=Monaco:h14
     "set guifont     =SF\ Mono\ Semibold:h15
-    set guifont     =SF\ Mono:h14
-    "set guifont =SF\ Mono\ Semibold:h11
+    "set guifont     =SF\ Mono:h14
+    set guifont =SF\ Mono:h13
     "set guifont   =Fixedsys\ Excelsior\ 3.01:h16
   else
     set guifont     =SF\ Mono:h14

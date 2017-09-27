@@ -37,10 +37,23 @@
 " }}}
 
 " {{{ Haskell
-  Plugin 'neovimhaskell/haskell-vim'
-  Plugin 'itchyny/vim-haskell-indent'
+  " Plugin 'neovimhaskell/haskell-vim'
+  " Plugin 'itchyny/vim-haskell-indent'
+  Plugin 'dag/vim2hs'
   Plugin 'eagletmt/ghcmod-vim'
   Plugin 'eagletmt/neco-ghc'
+
+  let g:haskell_conceal_wide  = 0
+  let g:haskell_quasi         = 0
+  let g:haskell_interpolation = 0
+  let g:haskell_regex         = 0
+  let g:haskell_jmacro        = 0
+  let g:haskell_shqq          = 0
+  let g:haskell_sql           = 0
+  let g:haskell_json          = 0
+  let g:haskell_xml           = 0
+  let g:haskell_hsp           = 0
+
 " }}}
 
 " {{{ Scala
@@ -150,7 +163,7 @@ endif
 " }}}
 
 " {{{ VXApplet
-  Plugin 'chemzqm/wxapp.vim'
+  "Plugin 'chemzqm/wxapp.vim'
 " }}}
 
 " }}}
@@ -162,7 +175,7 @@ endif
 " }}}
 
 " {{{ solarized for term.
-  Plugin 'lifepillar/vim-solarized8'
+  "Plugin 'lifepillar/vim-solarized8'
 " }}}
 
 " {{{ codeschool
@@ -170,7 +183,7 @@ endif
 " }}}
 
 " {{{ Github
-  Plugin 'acarapetis/vim-colors-github'
+  "Plugin 'acarapetis/vim-colors-github'
 " }}}
 
 " {{{ Molokai
@@ -324,6 +337,10 @@ endif
 " {{{ EasyAlign
   Plugin 'junegunn/vim-easy-align'
   vnoremap <silent> <Enter> :EasyAlign<Enter>
+" }}}
+
+" {{{ Tabular, for vim2hs
+  Plugin 'godlygeek/tabular'
 " }}}
 
 " {{{ Tagbar
