@@ -56,6 +56,7 @@ function! BasicSettings() "{{{
   set list
   set conceallevel =2
   set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
+  "set listchars    =tab:\ \ ,trails: 
   set textwidth    =80
   "set colorcolumn  =+1
 
@@ -196,8 +197,8 @@ function! BasicSettings() "{{{
   " hide Visual mode
   nmap    <S-q>       <leader>Q
 
-  set nu
-  set rnu
+  set nonu
+  set nornu
   set so         =4
   set nowrap
 
@@ -287,7 +288,7 @@ function! GuiSettings() "{{{
   set guicursor  ^=sm:block-Cursor-blinkwait75-blinkoff55-blinkon55
 
   " e for tab.
-  set guioptions  =fmi
+  set guioptions  =fi
 
   if has('macunix')
     set macligatures
@@ -299,11 +300,11 @@ function! GuiSettings() "{{{
     " set guifont=Monaco:h14
     "set guifont     =SF\ Mono\ Semibold:h15
     "set guifont     =SF\ Mono:h14
-    set guifont =SF\ Mono:h13
+    set guifont =SF\ Mono:h16
     "set guifont   =Fixedsys\ Excelsior\ 3.01:h16
   else
-    set guifont     =SF\ Mono:h14
-    set guifontwide =SF\ Mono:h14
+    "set guifont     =SF\ Mono\ Semibold\ 13
+    set guifont =CamingoCode\ Bold\ 16
   endif
 
   set              background=light
@@ -314,20 +315,17 @@ function! GuiSettings() "{{{
 endfunction "}}}
 
 function! TermSettings() "{{{
+  set cul
+  set background=dark
   colorscheme console
   set title
   set termencoding=utf-8
   set ttyfast
 
-  " iterm2 only.
-  " just check os type
-  if has('macunix')
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-    silent !echo "\033]50;CursorShape=0\x7"
-    au VimLeave * silent !echo "\033]50;CursorShape=1\x7"
-  endif
+  let &t_ti   .= "\e]50;CursorShape=0\x7"
+  let &t_te   .= "\e]50;CursorShape=1\x7"
+  let &t_SI   .= "\e]50;CursorShape=1\x7"
+  let &t_EI   .= "\e]50;CursorShape=0\x7"
 endfunction "}}}
 
 "{{{ apply the settings

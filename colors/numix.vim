@@ -69,6 +69,7 @@ if has("gui_running")
   hi link cDefine           PreProc
   hi link cPreCondit        PreProc
 else
+  hi  Normal           cterm=none            ctermbg=0
   hi  Comment          cterm=none                                ctermfg=DarkGreen
   hi  Constant         cterm=none                                ctermfg=DarkGray
   hi  DiffAdd                                                                               ctermbg=LightBlue

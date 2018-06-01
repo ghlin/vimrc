@@ -16,18 +16,6 @@
   Plugin 'shougo/junkfile.vim'
 " }}}
 
-" {{{
-  Plugin 'thinca/vim-unite-history'
-" }}}
-
-" {{{
-  Plugin 'osyo-manga/unite-filetype'
-" }}}
-
-" {{{
-  Plugin 'ujihisa/unite-colorscheme'
-" }}}
-
 " {{{ QuickRun
   Plugin 'thinca/vim-quickrun'
 " }}}
@@ -40,8 +28,8 @@
   " Plugin 'neovimhaskell/haskell-vim'
   " Plugin 'itchyny/vim-haskell-indent'
   Plugin 'dag/vim2hs'
-  Plugin 'eagletmt/ghcmod-vim'
-  Plugin 'eagletmt/neco-ghc'
+  " Plugin 'eagletmt/ghcmod-vim'
+  " Plugin 'eagletmt/neco-ghc'
 
   let g:haskell_conceal_wide  = 0
   let g:haskell_quasi         = 0
@@ -250,7 +238,7 @@ endif
   let g:rainbow_conf = {
         \   'guifgs'     : [ '#EF2929', '#ED146F', '#D37A35', '#DFCD60',
         \                    '#B75FAD', '#3EBD92', '#61D2D6', '#B75FAD' ],
-        \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
+        \   'ctermfgs'   : ['Black', 'DarkBlue', 'DarkGreen', 'DarkYellow', 'DarkRed', 'Red' ],
         \   'separately': {
         \     '*':       0,
         \     'c':       { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
@@ -401,6 +389,8 @@ endif
   Plugin 'SirVer/ultisnips'
   Plugin 'alexbyk/vim-ultisnips-js-testing'
 
+  "let g:UltiSnipsExpandTrigger = "<C-a>"
+
   " use py3: clang_complete [snippets engine not found]
   if has('py3')
     let g:UltiSnipsUsePythonVersion = 2
@@ -454,10 +444,14 @@ endif
 " }}}
 
 " {{{ unite
+if !has('nvim')
   Plugin 'Shougo/unite.vim'
   Plugin 'Shougo/unite-outline'
   Plugin 'Shougo/neomru.vim'
   Plugin 'Shougo/neoyank.vim'
+  Plugin 'thinca/vim-unite-history'
+  Plugin 'osyo-manga/unite-filetype'
+  Plugin 'ujihisa/unite-colorscheme'
 
   let g:unite_source_history_yank_enable = 1
   let g:unite_enable_auto_select         = 0
@@ -478,6 +472,14 @@ endif
 
   function! s:unite_settings() "{{{ unite settings
   endfunction " }}}
+else
+  Plugin 'Shougo/denite.nvim'
+
+  nnoremap <leader><leader>f        :<C-u>Denite file/rec<CR>
+  nnoremap <leader><leader>\        :<C-u>Denite file/old<CR>
+  nnoremap <leader><leader><leader> :<C-u>Denite buffer<CR>
+
+endif
 
 " }}}
 
@@ -503,7 +505,7 @@ endif
     Plugin 'ujihisa/neco-look'
   endif
 
-  Plugin 'shougo/neocomplete.vim'
+  "Plugin 'shougo/neocomplete.vim'
 
   "let g:neocomplete#text_mode_filetypes = { "_" : 1 }
 
@@ -527,7 +529,7 @@ endif
   "let g:neocomplete#force_omni_input_patterns.objcpp =
         "\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-  Plugin 'shougo/neco-vim'
+  "Plugin 'shougo/neco-vim'
 " }}}
 
 " }}}
