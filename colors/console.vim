@@ -17,7 +17,7 @@ hi!  Directory        term=none cterm=none                   ctermfg=DarkBlue
 hi!  ErrorMsg         term=none cterm=none                   ctermfg=White              ctermbg=DarkRed
 hi!  FoldColumn       term=none cterm=none                   ctermfg=DarkBlue           ctermbg=Gray
 hi!  Folded           term=none cterm=none                   ctermfg=DarkGray           ctermbg=none
-hi!  Identifier       term=none cterm=none                   ctermfg=DarkBlue
+hi!  Identifier       term=none cterm=none                   ctermfg=Black
 hi!  IncSearch        term=none cterm=reverse
 hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=DarkBlue           ctermbg=none
 hi!  ModeMsg          term=none cterm=bold
