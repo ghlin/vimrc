@@ -1,9 +1,8 @@
 hi clear
 
 set nocul
-
-set background=dark
-let colors_name = "console"
+set background=light
+let colors_name = "Paperlike"
 
 hi! clear Statement
 

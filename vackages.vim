@@ -346,7 +346,7 @@ endif
   Plugin 'scrooloose/nerdtree'
   nmap  <leader>E :NERDTreeToggle<CR>
   let g:NERDTreeDirArrows=0
-  let g:NERDTreeWinSize  = 18
+  let g:NERDTreeWinSize  = 25
   let g:NERDTreeSortOrder = [
                   \   '\/$'
                   \ , '\.lst$', '\.txt$', '\.vim$'
@@ -444,9 +444,12 @@ endif
 " }}}
 
 " {{{ unite
+" unite.vim is needed by denite.
+" https://github.com/Shougo/unite-outline/issues/77
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/unite-outline'
+
 if !has('nvim')
-  Plugin 'Shougo/unite.vim'
-  Plugin 'Shougo/unite-outline'
   Plugin 'Shougo/neomru.vim'
   Plugin 'Shougo/neoyank.vim'
   Plugin 'thinca/vim-unite-history'
@@ -475,10 +478,13 @@ if !has('nvim')
 else
   Plugin 'Shougo/denite.nvim'
 
-  nnoremap <leader><leader>f        :<C-u>Denite file/rec<CR>
-  nnoremap <leader><leader>\        :<C-u>Denite file/old<CR>
-  nnoremap <leader><leader><leader> :<C-u>Denite buffer<CR>
-
+  nnoremap <leader><leader><leader> :<C-u>DeniteProjectDir file/rec<CR>
+  nnoremap <leader><leader>\        :<C-u>Denite buffer file/old<CR>
+  nnoremap <leader><leader><CR>     :<C-u>Denite outline<CR>
+  nnoremap <leader><leader>/        :<C-u>DeniteProjectDir grep<CR>
+  nnoremap <leader><leader>?        :<C-u>Denite change<CR>
+  nnoremap <leader><leader>:        :<C-u>Denite command_history<CR>
+  nnoremap <leader><leader>b        :<C-u>Denite buffer<CR>
 endif
 
 " }}}
@@ -493,7 +499,9 @@ endif
   com! -nargs=0 R             :call ProjectRootCD()
 
   nnoremap <leader><leader>!     :ProjectRootExe<space>
-  nnoremap <leader><leader>/     :ProjectRootExe Ack<space>
+
+  " use denite.
+  " nnoremap <leader><leader>/     :ProjectRootExe Ack<space>
 " }}}
 
 " {{{ localvimrc
