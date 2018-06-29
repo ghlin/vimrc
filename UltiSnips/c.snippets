@@ -125,12 +125,10 @@ endsnippet
 
 snippet inc "#include" !b
 #include <$1>
-$0
 endsnippet
 
 snippet incl "#include (local)" !b
 #include "$1"
-$0
 endsnippet
 
 snippet main "main() (main)" !b
@@ -141,44 +139,35 @@ int main(int argc, const char **argv)
 	(void)argv;
 
 	${1:/* code here */}
+
 	return 0;
 }
 
 endsnippet
 
 
-snippet once "Include header once only guard"
-#ifndef ${1:`!p
-if not snip.c:
-  import random, string
-  name    = re.sub(r'[^A-Za-z0-9]+', '_', snip.fn).upper()
-  rand    = ''.join(random.sample(string.ascii_letters + string.digits, 8))
-  snip.rv = ('%s_INCLUDED_%s' % (name, rand)).upper()
-else:
-    snip.rv = snip.c`}
-#define $1
+#
+# snippet once "Include header once only guard"
+# #ifndef ${1:`!p
+# if not snip.c:
+#   import random, string
+#   name    = re.sub(r'[^A-Za-z0-9]+', '_', snip.fn).upper()
+#   rand    = ''.join(random.sample(string.ascii_letters + string.digits, 8))
+#   snip.rv = ('%s_INCLUDED_%s' % (name, rand)).upper()
+# else:
+#     snip.rv = snip.c`}
+# #define $1
+# 
+# ${0}
+# 
+# #endif // end of include guard: $1
+# 
+# endsnippet
+
+snippet	once "pragma once"
+#pragma once
 
 ${0}
-
-#endif // end of include guard: $1
-
-endsnippet
-
-snippet qonce "QxQ once gen" !b
-#ifndef ${1:`!p
-if not snip.c:
-	import string
-
-	fileName    = re.sub(r'[^A-Za-z0-9]+', '_', snip.fn).upper()
-	snip.rv = ('QXQ_%s_INCLUDED' % (fileName)).upper()
-else:
-	snip.rv = snip.c`}
-#define $1
-
-${0}
-
-#endif // end of include guard: $1
-
 endsnippet
 
 snippet todo "a todo reminder" !bs

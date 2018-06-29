@@ -5,7 +5,7 @@
 " {{{ Filetype Plugin
 
 " {{{ EBNF
-  Plugin 'ebnf.vim'
+" Plugin 'ebnf.vim'
 " }}}
 
 " {{{ Paredit
@@ -45,16 +45,16 @@
 " }}}
 
 " {{{ Scala
-  Plugin 'derekwyatt/vim-scala'
+" Plugin 'derekwyatt/vim-scala'
 " }}}
 
 " {{{ Coffee
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'noc7c9/vim-iced-coffee-script'
+" Plugin 'kchmck/vim-coffee-script'
+" Plugin 'noc7c9/vim-iced-coffee-script'
 " }}}
 
 " {{{ typescript
-  Plugin 'quramy/tsuquyomi'
+" Plugin 'quramy/tsuquyomi'
   Plugin 'quramy/vim-js-pretty-template'
   Plugin 'leafgarland/typescript-vim'
   hi! link typescriptHtmlEvents Normal
@@ -83,7 +83,7 @@
 " }}}
 
 " {{{ CSS
-  Plugin 'ap/vim-css-color'
+" Plugin 'ap/vim-css-color'
 " }}}
 
 " {{{ Markdown
@@ -111,8 +111,15 @@ endif
 " }}}
 
 " {{{ Jade/Pug
-  Plugin 'digitaltoad/vim-jade'
-  Plugin 'digitaltoad/vim-pug'
+" Plugin 'digitaltoad/vim-jade'
+" Plugin 'digitaltoad/vim-pug'
+" }}}
+
+" {{{ python-mode
+  Plugin 'python-mode/python-mode'
+
+  let g:pymode_options = 0
+  let g:pymode_lint_on_fly = 1
 " }}}
 
 " {{{ C / C++
@@ -151,7 +158,7 @@ endif
 " }}}
 
 " {{{ VXApplet
-  "Plugin 'chemzqm/wxapp.vim'
+" Plugin 'chemzqm/wxapp.vim'
 " }}}
 
 " }}}
@@ -184,6 +191,10 @@ endif
 
 " {{{ Paper-Color
   Plugin 'NLKNguyen/papercolor-theme'
+" }}}
+
+" {{{ panda syntax
+  Plugin 'ctaylo21/pandavim'
 " }}}
 
 " {{{ Pretty Icons
@@ -238,7 +249,7 @@ endif
   let g:rainbow_conf = {
         \   'guifgs'     : [ '#EF2929', '#ED146F', '#D37A35', '#DFCD60',
         \                    '#B75FAD', '#3EBD92', '#61D2D6', '#B75FAD' ],
-        \   'ctermfgs'   : ['Black', 'DarkBlue', 'DarkGreen', 'DarkYellow', 'DarkRed', 'Red' ],
+        \   'ctermfgs'   : ['DarkBlue', 'DarkGreen', 'DarkYellow', 'DarkRed', 'Red' ],
         \   'separately': {
         \     '*':       0,
         \     'c':       { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
@@ -262,8 +273,8 @@ endif
 " }}}
 
 " {{{ airline   pretty status-line
-  Plugin 'bling/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
+  "Plugin 'bling/vim-airline'
+  "Plugin 'vim-airline/vim-airline-themes'
 
   let g:airline_mode_map = { '__' : '-', 'n'  : 'N', 'i'  : 'I',
        \ 'R'  : 'R', 'c'  : 'C', 'v'  : 'V', 'V'  : 'V',
@@ -365,8 +376,8 @@ endif
 " }}}
 
 " {{{ VimShell
-  Plugin 'Shougo/vimproc.vim'
-  Plugin 'Shougo/vimshell.vim'
+" Plugin 'Shougo/vimproc.vim'
+" Plugin 'Shougo/vimshell.vim'
 " }}}
 
 " {{{ Emmit (ZenCoding)
@@ -387,7 +398,7 @@ endif
 
 " {{{ UltiSnips
   Plugin 'SirVer/ultisnips'
-  Plugin 'alexbyk/vim-ultisnips-js-testing'
+" Plugin 'alexbyk/vim-ultisnips-js-testing'
 
   "let g:UltiSnipsExpandTrigger = "<C-a>"
 

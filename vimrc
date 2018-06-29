@@ -57,7 +57,7 @@ function! BasicSettings() "{{{
   set conceallevel =2
   set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
   "set listchars    =tab:\ \ ,trails: 
-  set textwidth    =80
+  " set textwidth    =80
   "set colorcolumn  =+1
 
   set mousehide
@@ -94,6 +94,9 @@ function! BasicSettings() "{{{
   set matchtime   =4
 
   set timeoutlen =600
+
+  " status line
+  set statusline=[%n]%(\ %.30F%)%(\ \:\:\ %{ProjectNameGuess()}%)%=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
 
   " set working dir automatically.
   autocmd BufEnter * silent! lcd %:p:h
@@ -200,7 +203,7 @@ function! BasicSettings() "{{{
   set nonu
   set nornu
   set so         =4
-  set nowrap
+  set wrap
 
   " set fdc=1
   set foldmethod =marker
@@ -224,13 +227,13 @@ function! BasicSettings() "{{{
 
   set wildmenu
   " set wildmode=list:longest,full
-  set wildignore=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM,node_modules,.vscode,.git,.build
+  set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM,node_modules,.vscode,.git,.build
 
   set linebreak
   set breakindent
   set breakindentopt =shift:3,sbr
   set breakat        =\ ^I!@*-+;:,./?\(\[\{        " break at these chars
-  let &showbreak     ='\-> '
+  let &showbreak     ='↪ '
 
   set nobackup
   set nowritebackup
@@ -310,12 +313,14 @@ function! GuiSettings() "{{{
   set              background=light
   "colorscheme      an-old-hope
   set cul
-  colorscheme      PaperColor
+  "colorscheme      PaperColor
+  colorscheme       an-old-hope
   set mouse        =
 endfunction "}}}
 
 function! TermSettings() "{{{
-  colorscheme Paperlike
+  colorscheme numix
+  "colorscheme Paperlike
   set title
   set termencoding=utf-8
   set ttyfast
