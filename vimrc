@@ -298,18 +298,20 @@ function! GuiSettings() "{{{
     "set noantialias
     " set guifont=Monaco:h14
     "set guifont     =SF\ Mono\ Semibold:h15
-    "set guifont     =SF\ Mono:h14
-    set guifont =SF\ Mono:h13
+    set guifont     =SF\ Mono:h14
+    " set guifont =SF\ Mono:h14
     "set guifont   =Fixedsys\ Excelsior\ 3.01:h16
+    "set guifont =Fira\ Code:h13
+    "set guifont=Courier:h16
   else
     set guifont     =SF\ Mono:h14
     set guifontwide =SF\ Mono:h14
   endif
 
-  set              background=light
-  "colorscheme      an-old-hope
-  set cul
-  colorscheme      PaperColor
+  " set              background=light
+  colorscheme      an-old-hope
+  " set cul
+  " colorscheme      PaperColor
   set mouse        =
 endfunction "}}}
 
@@ -322,11 +324,10 @@ function! TermSettings() "{{{
   " iterm2 only.
   " just check os type
   if has('macunix')
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-    silent !echo "\033]50;CursorShape=0\x7"
-    au VimLeave * silent !echo "\033]50;CursorShape=1\x7"
+    let &t_SI  = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI  = "\<Esc>]50;CursorShape=0\x7"
+    let &t_te .= "\<Esc>]50;CursorShape=1\x7"
+    let &t_ti .= "\<Esc>]50;CursorShape=0\x7"
   endif
 endfunction "}}}
 

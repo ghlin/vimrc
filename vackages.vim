@@ -37,11 +37,11 @@
 " }}}
 
 " {{{ Haskell
-  " Plugin 'neovimhaskell/haskell-vim'
+  Plugin 'neovimhaskell/haskell-vim'
   " Plugin 'itchyny/vim-haskell-indent'
-  Plugin 'dag/vim2hs'
-  Plugin 'eagletmt/ghcmod-vim'
-  Plugin 'eagletmt/neco-ghc'
+  " Plugin 'dag/vim2hs'
+  " Plugin 'eagletmt/ghcmod-vim'
+  " Plugin 'eagletmt/neco-ghc'
 
   let g:haskell_conceal_wide  = 0
   let g:haskell_quasi         = 0
@@ -169,6 +169,10 @@ endif
 " }}}
 
 " {{{ Colorscheme
+
+" {{{ Solarized
+  Plugin 'altercation/solarized'
+" }}}
 
 " {{{ One
   Plugin 'rakr/vim-one'
