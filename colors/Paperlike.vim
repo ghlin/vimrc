@@ -1,9 +1,8 @@
 hi clear
 
 set nocul
-
-set background=dark
-let colors_name = "console"
+set background=light
+let colors_name = "Paperlike"
 
 hi! clear Statement
 
@@ -52,13 +51,13 @@ hi! clear StatusLineNC
 hi! clear VertSplit
 
 hi! ColorColumn      cterm=none                                      ctermbg=Black
-hi! CursorLine       cterm=none
+hi! CursorLine       cterm=inverse,inverse
 hi! CursorLineNr     cterm=bold            ctermfg=DarkBlue
 hi! LineNr           cterm=none            ctermfg=Gray
 hi! StatusLine       cterm=none            ctermfg=Black             ctermbg=White
 hi! StatusLineNC                           ctermfg=Gray              ctermbg=White
 hi! VertSplit                              ctermfg=DarkGray
-hi! Conceal          cterm=none            ctermfg=Black             ctermbg=White
+hi! link Conceal Normal
 
 " for c/cpp
 " hi! cStatement     cterm=bold,underline

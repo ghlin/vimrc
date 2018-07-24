@@ -33,8 +33,10 @@ endfunction "}}}
 
 function! BasicSettings() "{{{
   if has('macunix')
-    set pythonthreehome="/usr/local/Frameworks/Python.framework/Versions/3.6"
-    set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib"
+    if !has('nvim')
+    set pythonthreehome="/usr/local/Frameworks/Python.framework/Versions/3.7"
+    set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.7/lib/libpython3.7m.dylib"
+    endif
 
     let $PATH=$PATH . ":" . $HOME . "/Library/Haskell/bin"
   endif
@@ -56,7 +58,8 @@ function! BasicSettings() "{{{
   set list
   set conceallevel =2
   set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
-  set textwidth    =80
+  "set listchars    =tab:\ \ ,trails: 
+  " set textwidth    =80
   "set colorcolumn  =+1
 
   set mousehide
@@ -93,6 +96,9 @@ function! BasicSettings() "{{{
   set matchtime   =4
 
   set timeoutlen =600
+
+  " status line
+  set statusline=[%n]%(\ %.30F%)%(\ \:\:\ %{ProjectNameGuess()}%)%=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
 
   " set working dir automatically.
   autocmd BufEnter * silent! lcd %:p:h
@@ -196,10 +202,10 @@ function! BasicSettings() "{{{
   " hide Visual mode
   nmap    <S-q>       <leader>Q
 
-  set nu
-  set rnu
+  set nonu
+  set nornu
   set so         =4
-  set nowrap
+  set wrap
 
   " set fdc=1
   set foldmethod =marker
@@ -223,13 +229,13 @@ function! BasicSettings() "{{{
 
   set wildmenu
   " set wildmode=list:longest,full
-  set wildignore=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM,node_modules
+  set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM,node_modules,.vscode,.git,.build
 
   set linebreak
   set breakindent
   set breakindentopt =shift:3,sbr
   set breakat        =\ ^I!@*-+;:,./?\(\[\{        " break at these chars
-  let &showbreak     ='\-> '
+  let &showbreak     ='↪ '
 
   set nobackup
   set nowritebackup
@@ -287,7 +293,7 @@ function! GuiSettings() "{{{
   set guicursor  ^=sm:block-Cursor-blinkwait75-blinkoff55-blinkon55
 
   " e for tab.
-  set guioptions  =fmi
+  set guioptions  =fi
 
   if has('macunix')
     set macligatures
@@ -298,37 +304,35 @@ function! GuiSettings() "{{{
     "set noantialias
     " set guifont=Monaco:h14
     "set guifont     =SF\ Mono\ Semibold:h15
-    set guifont     =SF\ Mono:h14
-    " set guifont =SF\ Mono:h14
+    "set guifont     =SF\ Mono:h14
+    set guifont =SF\ Mono:h16
     "set guifont   =Fixedsys\ Excelsior\ 3.01:h16
     "set guifont =Fira\ Code:h13
     "set guifont=Courier:h16
   else
-    set guifont     =SF\ Mono:h14
-    set guifontwide =SF\ Mono:h14
+    "set guifont     =SF\ Mono\ Semibold\ 13
+    set guifont =CamingoCode\ Bold\ 16
   endif
 
-  " set              background=light
-  colorscheme      an-old-hope
-  " set cul
-  " colorscheme      PaperColor
+  set              background=light
+  "colorscheme      an-old-hope
+  set cul
+  "colorscheme      PaperColor
+  colorscheme       an-old-hope
   set mouse        =
 endfunction "}}}
 
 function! TermSettings() "{{{
-  colorscheme console
+  colorscheme numix
+  "colorscheme Paperlike
   set title
   set termencoding=utf-8
   set ttyfast
 
-  " iterm2 only.
-  " just check os type
-  if has('macunix')
-    let &t_SI  = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI  = "\<Esc>]50;CursorShape=0\x7"
-    let &t_te .= "\<Esc>]50;CursorShape=1\x7"
-    let &t_ti .= "\<Esc>]50;CursorShape=0\x7"
-  endif
+  let &t_ti   .= "\e]50;CursorShape=0\x7"
+  let &t_te   .= "\e]50;CursorShape=1\x7"
+  let &t_SI   .= "\e]50;CursorShape=1\x7"
+  let &t_EI   .= "\e]50;CursorShape=0\x7"
 endfunction "}}}
 
 "{{{ apply the settings

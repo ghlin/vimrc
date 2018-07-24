@@ -2,6 +2,7 @@
 #include "execute.h"
 
 #include <unistd.h>
+#include <wait.h>
 
 namespace rin {
 

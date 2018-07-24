@@ -58,7 +58,7 @@ if has("gui_running")
   hi clear StatusLineNC
 
   hi! ColorColumn                                                 guibg=#D4D4D4
-  hi! CursorLine       gui=none
+  hi! CursorLine       gui=inverse
   hi! CursorLineNr     gui=bold           guifg=fg
   hi! LineNr           gui=none           guifg=#5E5E5E
   hi! StatusLine                          guifg=#FFFFFF           guibg=#0077FF
@@ -69,6 +69,7 @@ if has("gui_running")
   hi link cDefine           PreProc
   hi link cPreCondit        PreProc
 else
+  hi  Normal           cterm=none            ctermbg=0
   hi  Comment          cterm=none                                ctermfg=DarkGreen
   hi  Constant         cterm=none                                ctermfg=DarkGray
   hi  DiffAdd                                                                               ctermbg=LightBlue
@@ -114,11 +115,11 @@ else
   hi clear VertSplit
 
   hi! ColorColumn                                                                          ctermbg=Gray
-  hi! CursorLine       cterm=none
+  hi! CursorLine       cterm=bold,inverse
   hi! CursorLineNr     cterm=bold            term=bold           ctermfg=Blue
   hi! LineNr           cterm=none                                ctermfg=DarkGray
-  hi! StatusLine                                                 ctermfg=White             ctermbg=Blue
-  hi! StatusLineNC                                               ctermfg=Black             ctermbg=Gray
+  hi! StatusLine                                                 ctermfg=White             ctermbg=DarkBlue
+  hi! StatusLineNC                                               ctermfg=Black             ctermbg=White
   hi! VertSplit                                                  ctermfg=DarkGray
 endif
 

@@ -20,6 +20,14 @@
 " ====================================================================================
 
 
+" FIXME:
+" comma first indent causes lambda-issue:
+" function_accepts_lambda([] (...)
+"                        {
+"                        | <- indent goes here.
+"                        });
+
+finish
 
 " be a good citizen
 if exists("b:did_indent")

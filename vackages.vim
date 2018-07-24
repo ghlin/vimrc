@@ -5,7 +5,7 @@
 " {{{ Filetype Plugin
 
 " {{{ EBNF
-  Plugin 'ebnf.vim'
+" Plugin 'ebnf.vim'
 " }}}
 
 " {{{ Paredit
@@ -14,18 +14,6 @@
 
 " {{{
   Plugin 'shougo/junkfile.vim'
-" }}}
-
-" {{{
-  Plugin 'thinca/vim-unite-history'
-" }}}
-
-" {{{
-  Plugin 'osyo-manga/unite-filetype'
-" }}}
-
-" {{{
-  Plugin 'ujihisa/unite-colorscheme'
 " }}}
 
 " {{{ QuickRun
@@ -39,7 +27,7 @@
 " {{{ Haskell
   Plugin 'neovimhaskell/haskell-vim'
   " Plugin 'itchyny/vim-haskell-indent'
-  " Plugin 'dag/vim2hs'
+  Plugin 'dag/vim2hs'
   " Plugin 'eagletmt/ghcmod-vim'
   " Plugin 'eagletmt/neco-ghc'
 
@@ -57,16 +45,16 @@
 " }}}
 
 " {{{ Scala
-  Plugin 'derekwyatt/vim-scala'
+" Plugin 'derekwyatt/vim-scala'
 " }}}
 
 " {{{ Coffee
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'noc7c9/vim-iced-coffee-script'
+" Plugin 'kchmck/vim-coffee-script'
+" Plugin 'noc7c9/vim-iced-coffee-script'
 " }}}
 
 " {{{ typescript
-  Plugin 'quramy/tsuquyomi'
+" Plugin 'quramy/tsuquyomi'
   Plugin 'quramy/vim-js-pretty-template'
   Plugin 'leafgarland/typescript-vim'
   hi! link typescriptHtmlEvents Normal
@@ -95,7 +83,7 @@
 " }}}
 
 " {{{ CSS
-  Plugin 'ap/vim-css-color'
+" Plugin 'ap/vim-css-color'
 " }}}
 
 " {{{ Markdown
@@ -123,8 +111,15 @@ endif
 " }}}
 
 " {{{ Jade/Pug
-  Plugin 'digitaltoad/vim-jade'
-  Plugin 'digitaltoad/vim-pug'
+" Plugin 'digitaltoad/vim-jade'
+" Plugin 'digitaltoad/vim-pug'
+" }}}
+
+" {{{ python-mode
+  Plugin 'python-mode/python-mode'
+
+  let g:pymode_options = 0
+  let g:pymode_lint_on_fly = 1
 " }}}
 
 " {{{ C / C++
@@ -163,7 +158,7 @@ endif
 " }}}
 
 " {{{ VXApplet
-  "Plugin 'chemzqm/wxapp.vim'
+" Plugin 'chemzqm/wxapp.vim'
 " }}}
 
 " }}}
@@ -200,6 +195,10 @@ endif
 
 " {{{ Paper-Color
   Plugin 'NLKNguyen/papercolor-theme'
+" }}}
+
+" {{{ panda syntax
+  Plugin 'ctaylo21/pandavim'
 " }}}
 
 " {{{ Pretty Icons
@@ -254,7 +253,7 @@ endif
   let g:rainbow_conf = {
         \   'guifgs'     : [ '#EF2929', '#ED146F', '#D37A35', '#DFCD60',
         \                    '#B75FAD', '#3EBD92', '#61D2D6', '#B75FAD' ],
-        \   'ctermfgs'   : ['1', '2', '3', '4', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15'],
+        \   'ctermfgs'   : ['DarkBlue', 'DarkGreen', 'DarkYellow', 'DarkRed', 'Red' ],
         \   'separately': {
         \     '*':       0,
         \     'c':       { 'parentheses': [ 'start=/(/ end=/)/', 'start=/\[/ end=/\]/' ] },
@@ -278,8 +277,8 @@ endif
 " }}}
 
 " {{{ airline   pretty status-line
-  Plugin 'bling/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
+  "Plugin 'bling/vim-airline'
+  "Plugin 'vim-airline/vim-airline-themes'
 
   let g:airline_mode_map = { '__' : '-', 'n'  : 'N', 'i'  : 'I',
        \ 'R'  : 'R', 'c'  : 'C', 'v'  : 'V', 'V'  : 'V',
@@ -362,7 +361,7 @@ endif
   Plugin 'scrooloose/nerdtree'
   nmap  <leader>E :NERDTreeToggle<CR>
   let g:NERDTreeDirArrows=0
-  let g:NERDTreeWinSize  = 18
+  let g:NERDTreeWinSize  = 25
   let g:NERDTreeSortOrder = [
                   \   '\/$'
                   \ , '\.lst$', '\.txt$', '\.vim$'
@@ -381,8 +380,8 @@ endif
 " }}}
 
 " {{{ VimShell
-  Plugin 'Shougo/vimproc.vim'
-  Plugin 'Shougo/vimshell.vim'
+" Plugin 'Shougo/vimproc.vim'
+" Plugin 'Shougo/vimshell.vim'
 " }}}
 
 " {{{ Emmit (ZenCoding)
@@ -403,7 +402,9 @@ endif
 
 " {{{ UltiSnips
   Plugin 'SirVer/ultisnips'
-  Plugin 'alexbyk/vim-ultisnips-js-testing'
+" Plugin 'alexbyk/vim-ultisnips-js-testing'
+
+  "let g:UltiSnipsExpandTrigger = "<C-a>"
 
   " use py3: clang_complete [snippets engine not found]
   if has('py3')
@@ -458,10 +459,17 @@ endif
 " }}}
 
 " {{{ unite
-  Plugin 'Shougo/unite.vim'
-  Plugin 'Shougo/unite-outline'
+" unite.vim is needed by denite.
+" https://github.com/Shougo/unite-outline/issues/77
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/unite-outline'
+
+if !has('nvim')
   Plugin 'Shougo/neomru.vim'
   Plugin 'Shougo/neoyank.vim'
+  Plugin 'thinca/vim-unite-history'
+  Plugin 'osyo-manga/unite-filetype'
+  Plugin 'ujihisa/unite-colorscheme'
 
   let g:unite_source_history_yank_enable = 1
   let g:unite_enable_auto_select         = 0
@@ -482,6 +490,17 @@ endif
 
   function! s:unite_settings() "{{{ unite settings
   endfunction " }}}
+else
+  Plugin 'Shougo/denite.nvim'
+
+  nnoremap <leader><leader><leader> :<C-u>DeniteProjectDir file/rec<CR>
+  nnoremap <leader><leader>\        :<C-u>Denite buffer file/old<CR>
+  nnoremap <leader><leader><CR>     :<C-u>Denite unite:outline<CR>
+  nnoremap <leader><leader>/        :<C-u>DeniteProjectDir grep<CR>
+  nnoremap <leader><leader>?        :<C-u>Denite change<CR>
+  nnoremap <leader><leader>:        :<C-u>Denite command_history<CR>
+  nnoremap <leader><leader>b        :<C-u>Denite buffer<CR>
+endif
 
 " }}}
 
@@ -495,7 +514,9 @@ endif
   com! -nargs=0 R             :call ProjectRootCD()
 
   nnoremap <leader><leader>!     :ProjectRootExe<space>
-  nnoremap <leader><leader>/     :ProjectRootExe Ack<space>
+
+  " use denite.
+  " nnoremap <leader><leader>/     :ProjectRootExe Ack<space>
 " }}}
 
 " {{{ localvimrc
@@ -507,7 +528,7 @@ endif
     Plugin 'ujihisa/neco-look'
   endif
 
-  Plugin 'shougo/neocomplete.vim'
+  "Plugin 'shougo/neocomplete.vim'
 
   "let g:neocomplete#text_mode_filetypes = { "_" : 1 }
 
@@ -531,7 +552,7 @@ endif
   "let g:neocomplete#force_omni_input_patterns.objcpp =
         "\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-  Plugin 'shougo/neco-vim'
+  "Plugin 'shougo/neco-vim'
 " }}}
 
 " }}}
