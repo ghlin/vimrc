@@ -33,8 +33,10 @@ endfunction "}}}
 
 function! BasicSettings() "{{{
   if has('macunix')
-    set pythonthreehome="/usr/local/Frameworks/Python.framework/Versions/3.6"
-    set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib"
+    if !has('nvim')
+    set pythonthreehome="/usr/local/Frameworks/Python.framework/Versions/3.7"
+    set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.7/lib/libpython3.7m.dylib"
+    endif
 
     let $PATH=$PATH . ":" . $HOME . "/Library/Haskell/bin"
   endif
@@ -305,6 +307,8 @@ function! GuiSettings() "{{{
     "set guifont     =SF\ Mono:h14
     set guifont =SF\ Mono:h16
     "set guifont   =Fixedsys\ Excelsior\ 3.01:h16
+    "set guifont =Fira\ Code:h13
+    "set guifont=Courier:h16
   else
     "set guifont     =SF\ Mono\ Semibold\ 13
     set guifont =CamingoCode\ Bold\ 16

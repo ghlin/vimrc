@@ -165,6 +165,10 @@
 
 " {{{ Colorscheme
 
+" {{{ Solarized
+  Plugin 'altercation/solarized'
+" }}}
+
 " {{{ One
   Plugin 'rakr/vim-one'
 " }}}
@@ -496,7 +500,7 @@ else
 
   nnoremap <leader><leader><leader> :<C-u>DeniteProjectDir file/rec<CR>
   nnoremap <leader><leader>\        :<C-u>Denite buffer file/old<CR>
-  nnoremap <leader><leader><CR>     :<C-u>Denite outline<CR>
+  nnoremap <leader><leader><CR>     :<C-u>Denite unite:outline<CR>
   nnoremap <leader><leader>/        :<C-u>DeniteProjectDir grep<CR>
   nnoremap <leader><leader>?        :<C-u>Denite change<CR>
   nnoremap <leader><leader>:        :<C-u>Denite command_history<CR>
