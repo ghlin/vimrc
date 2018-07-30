@@ -227,7 +227,7 @@ function! BasicSettings() "{{{
 
   set wildmenu
   " set wildmode=list:longest,full
-  set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM,node_modules,.vscode,.git,.build
+  set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so,*.DS_Store,*.run,*.dSYM,node_modules,.vscode,.git,.build,.stack-work
 
   set linebreak
   set breakindent
@@ -319,8 +319,8 @@ function! GuiSettings() "{{{
 endfunction "}}}
 
 function! TermSettings() "{{{
-  colorscheme numix
-  "colorscheme Paperlike
+  "colorscheme numix
+  colorscheme Paperlike
   set title
   set termencoding=utf-8
   set ttyfast

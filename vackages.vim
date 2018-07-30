@@ -25,14 +25,14 @@
 " }}}
 
 " {{{ Haskell
-  " Plugin 'neovimhaskell/haskell-vim'
+    Plugin 'neovimhaskell/haskell-vim'
   " Plugin 'itchyny/vim-haskell-indent'
-  Plugin 'dag/vim2hs'
+  " Plugin 'dag/vim2hs'
   " Plugin 'eagletmt/ghcmod-vim'
   " Plugin 'eagletmt/neco-ghc'
 
   let g:haskell_conceal_wide  = 0
-  let g:haskell_quasi         = 0
+  let g:haskell_quasi         = 1
   let g:haskell_interpolation = 0
   let g:haskell_regex         = 0
   let g:haskell_jmacro        = 0
@@ -54,7 +54,7 @@
 " }}}
 
 " {{{ typescript
-" Plugin 'quramy/tsuquyomi'
+  Plugin 'quramy/tsuquyomi'
   Plugin 'quramy/vim-js-pretty-template'
   Plugin 'leafgarland/typescript-vim'
   hi! link typescriptHtmlEvents Normal
@@ -94,7 +94,7 @@
 
   if has('macunix')
     let g:mkdp_path_to_chrome = "/Users/ghlin/.local/bin/urlhandler"
-endif
+  endif
 " }}}
 
 " {{{ Perl
@@ -118,8 +118,8 @@ endif
 " {{{ python-mode
   Plugin 'python-mode/python-mode'
 
-  let g:pymode_options = 0
-  let g:pymode_lint_on_fly = 1
+  let g:pymode_options = 1
+  let g:pymode_lint_on_fly = 0
 " }}}
 
 " {{{ C / C++
@@ -171,6 +171,11 @@ endif
 
 " {{{ solarized for term.
   "Plugin 'lifepillar/vim-solarized8'
+" }}}
+
+
+" {{{
+  Plugin 'thinkpad.vim'
 " }}}
 
 " {{{ codeschool

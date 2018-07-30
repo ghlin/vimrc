@@ -71,7 +71,7 @@ if has("gui_running")
 else
   hi  Normal           cterm=none            ctermbg=0
   hi  Comment          cterm=none                                ctermfg=DarkGreen
-  hi  Constant         cterm=none                                ctermfg=DarkGray
+  hi  Constant         cterm=none                                ctermfg=LightGray
   hi  DiffAdd                                                                               ctermbg=LightBlue
   hi  DiffChange                                                                            ctermbg=LightMagenta
   hi  DiffDelete                                                 ctermfg=Blue               ctermbg=LightCyan
@@ -82,7 +82,7 @@ else
   hi  Folded                                                     ctermfg=DarkGray           ctermbg=none
   hi  Identifier       cterm=none                                ctermfg=DarkBlue
   hi  IncSearch        cterm=reverse         term=reverse
-  hi  MatchParen       cterm=none     term=italic,bold,underline ctermfg=DarkBlue           ctermbg=none
+  hi  MatchParen       cterm=bold,underline                      ctermfg=Blue               ctermbg=none
   hi  ModeMsg          cterm=bold            term=reverse
   hi  MoreMsg                                                    ctermfg=DarkGreen
   hi  NonText                                                    ctermfg=Gray
@@ -100,7 +100,7 @@ else
   hi  Title                                                      ctermfg=DarkBlue
   hi  Todo             cterm=underline,bold  term=underline,bold ctermfg=Red                ctermbg=none
   hi  Type             cterm=none                                ctermfg=Blue
-  hi  Visual           cterm=reverse         term=reverse                                   ctermbg=none
+  hi  Visual           cterm=italic                              ctermfg=White              ctermbg=DarkBlue
   hi  VisualNOS        cterm=underline,bold  term=underline,bold
   hi  WarningMsg                                                 ctermfg=DarkRed
   hi  WildMenu                                                   ctermfg=White              ctermbg=Red
