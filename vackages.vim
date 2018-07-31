@@ -9,7 +9,7 @@
 " }}}
 
 " {{{ Paredit
-  Plugin 'paredit.vim'
+" Plugin 'paredit.vim'
 " }}}
 
 " {{{
@@ -32,7 +32,7 @@
   " Plugin 'eagletmt/neco-ghc'
 
   let g:haskell_conceal_wide  = 0
-  let g:haskell_quasi         = 0
+  let g:haskell_quasi         = 1
   let g:haskell_interpolation = 0
   let g:haskell_regex         = 0
   let g:haskell_jmacro        = 0
@@ -116,7 +116,7 @@ endif
 " }}}
 
 " {{{ python-mode
-  Plugin 'python-mode/python-mode'
+" Plugin 'python-mode/python-mode'
 
   let g:pymode_options = 0
   let g:pymode_lint_on_fly = 1
@@ -166,11 +166,11 @@ endif
 " {{{ Colorscheme
 
 " {{{ Solarized
-  Plugin 'altercation/solarized'
+" Plugin 'altercation/solarized'
 " }}}
 
 " {{{ One
-  Plugin 'rakr/vim-one'
+" Plugin 'rakr/vim-one'
 " }}}
 
 " {{{ solarized for term.
@@ -186,23 +186,23 @@ endif
 " }}}
 
 " {{{ Molokai
-  Plugin 'tomasr/molokai'
+" Plugin 'tomasr/molokai'
 " }}}
 
 " {{{ Pencil
-  Plugin 'reedes/vim-colors-pencil'
+" Plugin 'reedes/vim-colors-pencil'
 " }}}
 
 " {{{ Paper-Color
-  Plugin 'NLKNguyen/papercolor-theme'
+" Plugin 'NLKNguyen/papercolor-theme'
 " }}}
 
 " {{{ panda syntax
-  Plugin 'ctaylo21/pandavim'
+" Plugin 'ctaylo21/pandavim'
 " }}}
 
 " {{{ Pretty Icons
-  "Plugin 'ryanoasis/vim-devicons'
+" Plugin 'ryanoasis/vim-devicons'
   let g:WebDevIconOS = 'Darwin'
 " }}}
 
@@ -247,7 +247,7 @@ endif
 " }}}
 
 " {{{ rainbow
-  Plugin 'luochen1990/rainbow'
+" Plugin 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
   let g:rainbow_conf = {

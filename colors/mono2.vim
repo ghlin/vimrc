@@ -11,7 +11,8 @@ hi! MoreMsg          guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=non
 hi! ModeMsg          guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
 hi! Operator         guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
 hi! PreProc          guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
-hi! StatusLine       guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
+hi! StatusLine       guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=inverse   term=none
+hi! StatusLineNC     guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=inverse   term=none
 hi! PMenuSBar        guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
 hi! Constant         guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
 hi! TablineFill      guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
@@ -26,6 +27,7 @@ hi! Directory        guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=non
 hi! NERDTreePartFile guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
 hi! NERDTreePart     guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
 hi! CursorLineNr     guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=none      cterm=none      term=none
+hi! CursorLine cterm=reverse
 " }}}
 
 " {{{
@@ -43,7 +45,7 @@ hi! Comment          guifg=#080808 guibg=#00af00 ctermfg=232 ctermbg=034 gui=non
 " }}}
 
 " {{{
-hi! VertSplit        guifg=#00af00 guibg=#00af00 ctermfg=034 ctermbg=034 gui=none      cterm=none      term=none
+hi! VertSplit        guifg=#00af00 guibg=#00af00 ctermfg=232     ctermbg=034 gui=none      cterm=inverse   term=none
 " }}}
 
 " {{{
@@ -61,4 +63,11 @@ hi! Folded           guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=und
 hi! Underlined       guifg=#00af00 guibg=#080808 ctermfg=034 ctermbg=232 gui=underline cterm=underline term=underline
 " }}}
 
+" {{{ haskell
+hi! hsStruct cterm=none
+" }}}
 
+" {{{ NERDTree
+hi! NERDTreeFile cterm=none
+" hi! NERDTreeCurrentNode ctermfg=blue
+" }}}
