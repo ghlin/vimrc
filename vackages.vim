@@ -20,10 +20,6 @@
   Plugin 'thinca/vim-quickrun'
 " }}}
 
-" {{{ Codi
-" Plugin 'metakirby5/codi.vim'
-" }}}
-
 " {{{ Haskell
     Plugin 'neovimhaskell/haskell-vim'
   " Plugin 'itchyny/vim-haskell-indent'
@@ -42,15 +38,6 @@
   let g:haskell_xml           = 0
   let g:haskell_hsp           = 0
 
-" }}}
-
-" {{{ Scala
-" Plugin 'derekwyatt/vim-scala'
-" }}}
-
-" {{{ Coffee
-" Plugin 'kchmck/vim-coffee-script'
-" Plugin 'noc7c9/vim-iced-coffee-script'
 " }}}
 
 " {{{ typescript
@@ -115,13 +102,6 @@
 " Plugin 'digitaltoad/vim-pug'
 " }}}
 
-" {{{ python-mode
-" Plugin 'python-mode/python-mode'
-
-  let g:pymode_options = 1
-  let g:pymode_lint_on_fly = 0
-" }}}
-
 " {{{ C / C++
   Plugin 'vim-jp/cpp-vim'
 " Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -153,14 +133,6 @@
 
 " }}}
 
-" {{{ TOML
-" Plugin 'cespare/vim-toml'
-" }}}
-
-" {{{ VXApplet
-" Plugin 'chemzqm/wxapp.vim'
-" }}}
-
 " }}}
 
 " {{{ Colorscheme
@@ -173,10 +145,9 @@
 " Plugin 'rakr/vim-one'
 " }}}
 
-" {{{ solarized for term.
-  "Plugin 'lifepillar/vim-solarized8'
+" {{{ onehalf (for neovim-gtk)
+  Plugin 'sonph/onehalf', { 'rtp': 'vim/' }
 " }}}
-
 
 " {{{
   Plugin 'thinkpad.vim'
@@ -200,28 +171,6 @@
 
 " {{{ Paper-Color
 " Plugin 'NLKNguyen/papercolor-theme'
-" }}}
-
-" {{{ panda syntax
-" Plugin 'ctaylo21/pandavim'
-" }}}
-
-" {{{ Pretty Icons
-" Plugin 'ryanoasis/vim-devicons'
-  let g:WebDevIconOS = 'Darwin'
-" }}}
-
-" }}}
-
-" {{{ Mode
-
-" {{{ DrawIt
-" Plugin 'DrawIt'
-" }}}
-
-" {{{ Goyo.vim
-  Plugin 'junegunn/goyo.vim'
-  let g:goyo_width = 100
 " }}}
 
 " }}}
@@ -273,73 +222,6 @@
 
 " {{{ tablify   generate tables
   "Plugin 'Stormherz/tablify'
-" }}}
-
-" {{{ startify   a pretty welcome screen
-" Plugin 'mhinz/vim-startify'
-  let g:startify_files_number = 15
-  let g:startify_bookmarks    = [ '~/.vim/vimrc', '~/.zshrc' ]
-" }}}
-
-" {{{ airline   pretty status-line
-  "Plugin 'bling/vim-airline'
-  "Plugin 'vim-airline/vim-airline-themes'
-
-  let g:airline_mode_map = { '__' : '-', 'n'  : 'N', 'i'  : 'I',
-       \ 'R'  : 'R', 'c'  : 'C', 'v'  : 'V', 'V'  : 'V',
-       \ '' : 'V', 's'  : 'S', 'S'  : 'S', '' : 'S', }
-
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-
-  let g:airline_symbols_ascii      = 1
-
-  let g:airline_symbols.paste      = "[Paste]"
-  let g:airline_symbols.whitespace = "[=]"
-  let g:airline_symbols.branch     = "[Branch]"
-  let g:airline_symbols.readonly   = "[RO]"
-  let g:airline_symbols.linenr     = "Ln"
-  let g:airline_symbols.spell      = "[Spell]"
-  let g:airline_symbols.crypt      = "[Crypt]"
-  let g:airline_symbols.notexists  = "[N/A]"
-  let g:airline_symbols.maxlinenr  = ""
-
-  let g:airline_left_sep           = ""
-  let g:airline_left_alt_sep       = ""
-  let g:airline_right_sep          = ""
-  let g:airline_right_alt_sep      = ""
-
-  "let g:airline_powerline_fonts = 1
-
-  let g:airline_theme = 'monochrome'
-  "let g:airline_theme = 'pencil'
-
-  function! AIP_BufNr()
-    return '#' . bufnr('%')
-  endfunction
-
-  function! AIP_FFEnc()
-    return printf('%s%s', &fenc, strlen(&ff) > 0 ? ' ' . &ff : '')
-  endfunction
-
-  function! AirlineInitPart()
-    let g:airline_section_x = airline#section#create([ '%{"#" . bufnr("%") . " "}'
-          \                                          , 'filetype'])
-
-    let g:airline_section_y = airline#section#create(['%{printf("%s%s", &fenc, strlen(&ff) > 0 ? " " . &ff : "")}'])
-
-    "let g:airline_section_z = '%{g:airline_symbols.linenr}'
-          "\                 . '%#__accent_bold#%4l%#__restore__#:%3v'
-  endfunction
-
-  au User AirlineAfterInit call AirlineInitPart()
-
-  let g:airline#extensions#tagbar#enabled              = 0
-  let g:airline#extensions#branch#enabled              = 1
-  let g:airline#extensions#branch#displayed_head_limit = 10
-
-  let g:airline#extensions#tabline#enabled             = 0
 " }}}
 
 " {{{ EasyAlign
@@ -499,9 +381,11 @@ else
   Plugin 'Shougo/denite.nvim'
 
   nnoremap <leader><leader><leader> :<C-u>DeniteProjectDir file/rec<CR>
+  nnoremap <M-p>                    :<C-u>DeniteProjectDir file/rec<CR>
   nnoremap <leader><leader>\        :<C-u>Denite buffer file/old<CR>
   nnoremap <leader><leader><CR>     :<C-u>Denite unite:outline<CR>
   nnoremap <leader><leader>/        :<C-u>DeniteProjectDir grep<CR>
+  nnoremap <M-S-f>                  :<C-u>DeniteProjectDir grep<CR>
   nnoremap <leader><leader>?        :<C-u>Denite change<CR>
   nnoremap <leader><leader>:        :<C-u>Denite command_history<CR>
   nnoremap <leader><leader>b        :<C-u>Denite buffer<CR>
@@ -548,17 +432,16 @@ endif
     let g:neocomplete#force_omni_input_patterns = {}
   endif
 
-  "let g:neocomplete#force_omni_input_patterns.c =
-        "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  "let g:neocomplete#force_omni_input_patterns.cpp =
-        "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  "let g:neocomplete#force_omni_input_patterns.objc =
-        "\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-  "let g:neocomplete#force_omni_input_patterns.objcpp =
-        "\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
-
   "Plugin 'shougo/neco-vim'
 " }}}
 
 " }}}
 
+" {{{ fun stuff.
+" {{{
+  Plugin 'dahu/vim-rng'
+  Plugin 'lucasteles/swtc.vim'
+" }}}
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0

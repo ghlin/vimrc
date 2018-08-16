@@ -6,16 +6,16 @@ let colors_name = "Paperlike"
 
 hi! clear Statement
 
-hi!  Comment          term=none cterm=inverse,bold           ctermfg=DarkGreen
+hi!  Comment          term=none cterm=italic                 ctermfg=253                ctermbg=none
 hi!  Constant         term=none cterm=none                   ctermfg=DarkGray
-hi!  DiffAdd          term=none cterm=none                                              ctermbg=LightBlue
-hi!  DiffChange       term=none cterm=none                                              ctermbg=LightMagenta
-hi!  DiffDelete       term=none cterm=none                   ctermfg=Blue               ctermbg=LightCyan
-hi!  DiffText         term=none cterm=none                                              ctermbg=Red
+hi!  DiffAdd          term=none cterm=none                                              ctermbg=Black
+hi!  DiffChange       term=none cterm=italic                 ctermfg=Black              ctermbg=253
+hi!  DiffDelete       term=none cterm=none                   ctermfg=White              ctermbg=Black
+hi!  DiffText         term=none cterm=none                   ctermfg=226
 hi!  Directory        term=none cterm=none                   ctermfg=DarkBlue
 hi!  ErrorMsg         term=none cterm=none                   ctermfg=White              ctermbg=DarkRed
 hi!  FoldColumn       term=none cterm=none                   ctermfg=DarkBlue           ctermbg=Gray
-hi!  Folded           term=none cterm=none                   ctermfg=DarkGray           ctermbg=none
+hi!  Folded           term=none cterm=bold,italic,underline  ctermfg=DarkGray           ctermbg=White
 hi!  Identifier       term=none cterm=none                   ctermfg=Black
 hi!  IncSearch        term=none cterm=reverse
 hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=DarkBlue           ctermbg=none
@@ -36,7 +36,7 @@ hi!  TabLineFill      term=none cterm=none                   ctermfg=Black      
 hi!  Title            term=none cterm=none                   ctermfg=DarkBlue
 hi!  Todo             term=none cterm=underline,bold         ctermfg=White              ctermbg=Red
 hi!  Type             term=none cterm=bold                   ctermfg=Blue
-hi!  Visual           term=none cterm=reverse                                           ctermbg=none
+hi!  Visual           term=none cterm=bold                   ctermfg=White              ctermbg=DarkGray
 hi!  VisualNOS        term=none cterm=underline
 hi!  WarningMsg                                              ctermfg=DarkRed
 hi!  WildMenu                                                ctermfg=White              ctermbg=Black

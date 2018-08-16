@@ -78,9 +78,11 @@ function! BasicSettings() "{{{
   nnoremap <leader>w <C-w>
   nnoremap <leader>s :split<Space>
 
+  nnoremap ; :
+
   " set ruler
   set showcmd
-  set laststatus =2
+  set laststatus =0
   set cmdheight  =1
   " set report     =0
   set novisualbell
@@ -113,6 +115,18 @@ function! BasicSettings() "{{{
   nnoremap <leader><leader>X   :bd!<CR>
   nnoremap <leader><leader>w   :w<CR>
   nnoremap <leader><leader>Q   :wqa<CR>
+       map <M-w>               <ESC>:close<CR>
+      imap <M-w>               <ESC>:close<CR>
+       map <M-s>               <ESC>:w<CR>
+      imap <M-s>               <ESC>:w<CR>
+       map <M-q>               <ESC>:q<CR>
+      imap <M-q>               <ESC>:q<CR>
+       map <M-S-q>             <ESC>:wqa<CR>
+      imap <M-S-q>             <ESC>:wqa<CR>
+       map <M-f>               <ESC>/
+      imap <M-f>               <ESC>/
+       map <M-S-p>             <ESC>:
+      imap <M-S-p>             <ESC>:
 
   command! -bang -nargs=? Q    :close
   command! -bang -nargs=? Qa   :qa
@@ -243,6 +257,19 @@ function! BasicSettings() "{{{
 
   set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 
+  " simpler way to navigate-to/create file.
+  function! NavigateToOrCreateFilePrompt()
+    call inputsave()
+    let newfile = input('Goto/New: ', getcwd() . '/', "file")
+    call inputrestore()
+
+    if newfile != ""
+      exec 'e ' . newfile
+    endif
+  endfunction
+
+  nnoremap <M-n> :call NavigateToOrCreateFilePrompt()<CR>
+
   " XXX
   com! -nargs=0 LCD           :lcd       %:h
   com! -nargs=0 CD            :cd        %:h
@@ -280,6 +307,15 @@ function! BasicSettings() "{{{
     put=output
   endfunction
 
+  " very useful when save a file in new folder
+  augroup Mkdir
+    autocmd!
+    autocmd BufWritePre *
+          \ if !isdirectory(expand("<afile>:p:h")) |
+          \   call mkdir(expand("<afile>:p:h"), "p") |
+          \ endif
+  augroup END
+
   " enable doxygen highlighting
   let g:load_doxygen_syntax = 1
 endfunction "}}}
@@ -301,29 +337,28 @@ function! GuiSettings() "{{{
   endif
 
   if has('macunix')
-    "set noantialias
-    " set guifont=Monaco:h14
-    "set guifont     =SF\ Mono\ Semibold:h15
-    "set guifont     =SF\ Mono:h14
     set guifont =SF\ Mono:h16
-    "set guifont   =Fixedsys\ Excelsior\ 3.01:h16
-    "set guifont =Fira\ Code:h13
-    "set guifont=Courier:h16
   else
-    "set guifont     =SF\ Mono\ Semibold\ 13
     set guifont =CamingoCode\ Bold\ 16
   endif
 
   set              background=light
-  "colorscheme      an-old-hope
   set cul
   "colorscheme      PaperColor
   colorscheme       an-old-hope
   set mouse        =
 endfunction "}}}
 
+function! NeovimGTKSettings() "{{{
+  call rpcnotify(1, 'Gui', 'Font', 'Lucida Console 11')
+  set background=light
+  set nocul
+  colorscheme onehalflight
+endfunction "}}}
+
 function! TermSettings() "{{{
   "colorscheme numix
+  "colorscheme mono2
   colorscheme Paperlike
   set title
   set termencoding=utf-8
@@ -343,6 +378,8 @@ call LoadPlugins()
 
 if has('gui_running')
   call GuiSettings()
+elseif exists('g:GtkGuiLoaded')
+  call NeovimGTKSettings()
 else
   call TermSettings()
 endif
@@ -350,6 +387,5 @@ endif
 
 "}}}
 
-" vim:foldmethod=marker
-
+" vim:foldmethod=marker:foldlevel=0
 
