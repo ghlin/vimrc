@@ -63,6 +63,7 @@ function! BasicSettings() "{{{
   "set colorcolumn  =+1
 
   set mousehide
+  set mouse        =a
 
   set ruler
 
@@ -260,7 +261,7 @@ function! BasicSettings() "{{{
   " simpler way to navigate-to/create file.
   function! NavigateToOrCreateFilePrompt()
     call inputsave()
-    let newfile = input('Goto/New: ', getcwd() . '/', "file")
+    let newfile = input('Goto/New: ', expand('%:p:h') . '/', "file")
     call inputrestore()
 
     if newfile != ""
@@ -346,7 +347,6 @@ function! GuiSettings() "{{{
   set cul
   "colorscheme      PaperColor
   colorscheme       an-old-hope
-  set mouse        =
 endfunction "}}}
 
 function! NeovimGTKSettings() "{{{
@@ -357,9 +357,18 @@ function! NeovimGTKSettings() "{{{
 endfunction "}}}
 
 function! TermSettings() "{{{
-  "colorscheme numix
-  "colorscheme mono2
-  colorscheme Paperlike
+  " select colorscheme based on terminal color(dark or light)
+  " requires `xtermcontrol` & a piece of code to set env-var.
+  if !exists("$TERM_BACKGROUND")
+    let $TERM_BACKGROUND="rgb:ffff/ffff/ffff"
+  endif
+  let [r, g, b]=split($TERM_BACKGROUND[4:], "/")
+  if (str2nr(r, 16) > 0x7777) || (str2nr(g, 16) > 0x7777) || (str2nr(b, 16) > 0x7777)
+    colorscheme Paperlike
+  else
+    colorscheme numix
+  endif
+
   set title
   set termencoding=utf-8
   set ttyfast
