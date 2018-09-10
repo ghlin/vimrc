@@ -138,6 +138,7 @@ function! BasicSettings() "{{{
 
   " path
   set path^=~/.local/include,.,.. "/usr/local/include makes code completion slow
+  set path^=*,**                  " this is awesome.
 
   set ambiwidth=double
 
@@ -213,9 +214,6 @@ function! BasicSettings() "{{{
     endif
   endfunction
   " nnoremap <leader>l    :call ToggleTab()<CR>
-
-  " hide Visual mode
-  nmap    <S-q>       <leader>Q
 
   set nonu
   set nornu
@@ -350,25 +348,15 @@ function! GuiSettings() "{{{
 endfunction "}}}
 
 function! NeovimGTKSettings() "{{{
-  call rpcnotify(1, 'Gui', 'Font', 'Lucida Console 11')
+  call rpcnotify(1, 'Gui', 'Font', 'Consolas 15')
   set background=light
   set nocul
-  colorscheme onehalflight
+  colorscheme onehalfdark
 endfunction "}}}
 
 function! TermSettings() "{{{
-  " select colorscheme based on terminal color(dark or light)
-  " requires `xtermcontrol` & a piece of code to set env-var.
-  if !exists("$TERM_BACKGROUND")
-    let $TERM_BACKGROUND="rgb:ffff/ffff/ffff"
-  endif
-  let [r, g, b]=split($TERM_BACKGROUND[4:], "/")
-  if (str2nr(r, 16) > 0x7777) || (str2nr(g, 16) > 0x7777) || (str2nr(b, 16) > 0x7777)
-    colorscheme Paperlike
-  else
-    colorscheme numix
-  endif
-
+  " colorscheme onehalfdark
+  " just use the default colorsheme
   set title
   set termencoding=utf-8
   set ttyfast
@@ -377,6 +365,17 @@ function! TermSettings() "{{{
   let &t_te   .= "\e]50;CursorShape=1\x7"
   let &t_SI   .= "\e]50;CursorShape=1\x7"
   let &t_EI   .= "\e]50;CursorShape=0\x7"
+
+  " fix colorscheme
+  let current_scheme = get(g:, 'colors_name', 'default')
+
+  if current_scheme == 'default'
+    hi! clear Visual
+    hi! Visual cterm=inverse
+
+    hi! clear Folded
+    hi! Folded cterm=italic
+  endif
 endfunction "}}}
 
 "{{{ apply the settings

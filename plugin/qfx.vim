@@ -33,6 +33,9 @@ endfunction
 
 nmap <silent> <leader>L :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>Q :call ToggleList("Quickfix List", 'c')<CR>
+nmap <silent> <S-l>     :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <S-q>     :call ToggleList("Quickfix List", 'c')<CR>
+
 
 
 " command -bang -nargs=? QFix    call QFixToggle(<bang>0)

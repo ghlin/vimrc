@@ -257,6 +257,7 @@
                   \ , '\.run$'
                   \ , '*', '\.swp$', '\~$', '.dSYM' ]
   let g:NERDTreeIgnore = [ 'node_modules', '\.swp$', '\~$', '\.dSYM' ]
+  let g:NERDTreeQuitOnOpen=1
 
   hi link NERDTreePart     Normal
   hi link NERDTreePartFile Normal
@@ -442,6 +443,48 @@ endif
   Plugin 'dahu/vim-rng'
   Plugin 'lucasteles/swtc.vim'
 " }}}
+" }}}
+
+" {{{ misc
+
+" {{{ language server protocol
+" let g:LanguageClient_selectionUI = "quickfix"
+  Plugin 'autozimu/LanguageClient-neovim'
+  map <F2>  :call LanguageClient#textDocument_rename()<CR>
+  let g:LanguageClient_serverCommands = {
+        \   'haskell': [ 'hie-wrapper' ]
+        \ }
+
+  function! SetupMappingsForHaskell()
+    function! ListSymbols()
+      call LanguageClient#textDocument_documentSymbol()
+      call ToggleList("Symbols", 'l')
+    endfunction
+
+    function! ListAllSymbols()
+      call LanguageClient_workspace_symbol()
+      call ToggleList("All Symbols", 'l')
+    endfunction
+
+    function! ClosePreviewIfAny()
+      let last_hover_window_id = win_getid(bufwinnr(bufnr('__LanguageClient__')))
+      let winnr = win_id2win(last_hover_window_id)
+      if winnr > 0
+        execute winnr . 'wincmd c'
+      endif
+    endfunction
+
+    map     <buffer> <C-]>      :call LanguageClient#textDocument_definition()<CR>
+    noremap <buffer> <C-x><C-s> :call ListSymbols()<CR>
+    noremap <buffer> <C-x><C-a> :call ListSymbols()<CR>
+    map     <buffer> <C-\>      :call LanguageClient#textDocument_hover()<CR>
+    noremap <buffer> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
+    noremap <buffer> <C-c>      :call ClosePreviewIfAny()<CR><C-c>
+  endfunction
+
+  autocmd! FileType haskell call SetupMappingsForHaskell()
+" }}}
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
