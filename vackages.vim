@@ -173,6 +173,9 @@
 " Plugin 'NLKNguyen/papercolor-theme'
 " }}}
 
+" {{{ monochrome
+  Plugin 'fxn/vim-monochrome'
+" }}}
 " }}}
 
 " {{{ Utilites
@@ -446,13 +449,14 @@ endif
 " }}}
 
 " {{{ misc
-
+ 
 " {{{ language server protocol
-" let g:LanguageClient_selectionUI = "quickfix"
+  " dependence of LanguageClient
+  Plugin 'junegunn/fzf'
   Plugin 'autozimu/LanguageClient-neovim'
   map <F2>  :call LanguageClient#textDocument_rename()<CR>
   let g:LanguageClient_serverCommands = {
-        \   'haskell': [ 'hie-wrapper' ]
+        \   'haskell': [ 'hie-wrapper', '--lsp' ]
         \ }
 
   function! SetupMappingsForHaskell()
@@ -474,9 +478,21 @@ endif
       endif
     endfunction
 
+    function! HIESplitCase()
+      let arguments = [
+            \ {
+            \   'file': 'file://' . expand('%:p'),
+            \   'pos': { 'line': line('.') - 1, 'character': col('.') - 1 }
+            \ }
+            \ ]
+      call LanguageClient#workspace_executeCommand('ghcmod:casesplit', arguments)
+    endfunction
+
+    command! -bang -nargs=? SplitCase   :call HIESplitCase()
+
     map     <buffer> <C-]>      :call LanguageClient#textDocument_definition()<CR>
     noremap <buffer> <C-x><C-s> :call ListSymbols()<CR>
-    noremap <buffer> <C-x><C-a> :call ListSymbols()<CR>
+    noremap <buffer> <C-x><C-a> :call ListAllSymbols()<CR>
     map     <buffer> <C-\>      :call LanguageClient#textDocument_hover()<CR>
     noremap <buffer> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
     noremap <buffer> <C-c>      :call ClosePreviewIfAny()<CR><C-c>
