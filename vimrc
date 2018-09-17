@@ -361,10 +361,12 @@ function! TermSettings() "{{{
   set termencoding=utf-8
   set ttyfast
 
-  let &t_ti   .= "\e]50;CursorShape=0\x7"
-  let &t_te   .= "\e]50;CursorShape=1\x7"
-  let &t_SI   .= "\e]50;CursorShape=1\x7"
-  let &t_EI   .= "\e]50;CursorShape=0\x7"
+  if !has('nvim')
+    let &t_ti   .= "\e]50;CursorShape=0\x7"
+    let &t_te   .= "\e]50;CursorShape=1\x7"
+    let &t_SI   .= "\e]50;CursorShape=1\x7"
+    let &t_EI   .= "\e]50;CursorShape=0\x7"
+  endif
 
   " fix colorscheme
   let current_scheme = get(g:, 'colors_name', 'default')
@@ -375,6 +377,9 @@ function! TermSettings() "{{{
 
     hi! clear Folded
     hi! Folded cterm=italic
+
+    hi! clear Statement
+    hi! Statement ctermfg=White
   endif
 endfunction "}}}
 
