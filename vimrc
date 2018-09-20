@@ -1,2 +1,2 @@
-source $HOME/.vim/rc/main.vim
+runtime rc/main.vim
 
