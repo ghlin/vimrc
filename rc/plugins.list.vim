@@ -456,7 +456,7 @@ endif
   Plugin 'autozimu/LanguageClient-neovim'
   map <F2>  :call LanguageClient#textDocument_rename()<CR>
   let g:LanguageClient_serverCommands = {
-        \   'haskell': [ 'hie-wrapper', '--lsp', '-d', '-l', '.haskell-ide-engine.log' ]
+        \   'haskell': [ 'hie-wrapper', '--lsp' ]
         \ }
 
   function! SetupMappingsForHaskell()

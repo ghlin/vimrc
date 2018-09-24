@@ -95,7 +95,7 @@ set backspace =eol,start,indent
 " mouse would help.
 set mouse=a
 
-set completeopt =menuone
+set completeopt =menu,longest
 set pumheight   =12
 " }}}
 
@@ -118,7 +118,7 @@ autocmd FileType qf wincmd J
 " {{{ formats && encoding stuff
 set fileformat    =unix
 set fileformats   =unix,mac,dos
-set fileencodings =utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileencodings =utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,sjis,latin1
 set fileencoding  =utf-8
 set encoding      =utf-8
 " }}}
