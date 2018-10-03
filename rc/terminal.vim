@@ -23,3 +23,9 @@ if current_scheme == 'default'
   hi! clear Statement
   hi! Statement ctermfg=White
 endif
+
+
+" are we using Paperlike display?
+if $PAPERLIKE == "PAPERLIKE"
+  colorscheme Paperlike
+endif

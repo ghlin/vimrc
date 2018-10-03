@@ -6,7 +6,7 @@ let colors_name = "Paperlike"
 
 hi! clear Statement
 
-hi!  Normal           term=none cterm=none                   ctermfg=Black              ctermbg=White
+hi!  Normal           term=none cterm=none                   ctermfg=Black
 hi!  Comment          term=none cterm=italic                 ctermfg=Gray               ctermbg=none
 hi!  Constant         term=none cterm=none                   ctermfg=DarkGray
 hi!  DiffAdd          term=none cterm=none                                              ctermbg=Black
@@ -16,7 +16,7 @@ hi!  DiffText         term=none cterm=none                   ctermfg=226
 hi!  Directory        term=none cterm=none                   ctermfg=240
 hi!  ErrorMsg         term=none cterm=none                   ctermfg=White              ctermbg=DarkRed
 hi!  FoldColumn       term=none cterm=none                   ctermfg=249                ctermbg=none
-hi!  Folded           term=none cterm=bold,italic,underline  ctermfg=DarkGray           ctermbg=White
+hi!  Folded           term=none cterm=bold,italic,underline  ctermfg=DarkGray
 hi!  Identifier       term=none cterm=none                   ctermfg=Black
 hi!  IncSearch        term=none cterm=reverse
 hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=DarkBlue           ctermbg=none
