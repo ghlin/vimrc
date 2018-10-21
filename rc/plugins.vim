@@ -1,11 +1,5 @@
-" required by Vundle
-filetype off
-set rtp +=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
+call plug#begin('~/.vim/plugs')
 runtime rc/plugins.list.vim
-call vundle#end()
+call plug#end()
 
 runtime rc/plugins.post.vim
-
-filetype plugin indent on
