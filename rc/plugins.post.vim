@@ -1,5 +1,4 @@
-
-" {{{ Unite
+" setup unite/denite
 if !has('nvim')
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   call unite#filters#sorter_default#use(['sorter_ranker'])
@@ -18,5 +17,3 @@ else
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'final_opts', [])
 end
-" }}}
-

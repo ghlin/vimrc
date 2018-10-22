@@ -2,7 +2,6 @@
 
 " For temporary buffer / scratch
 Plug 'shougo/junkfile.vim'
-" TODO: Scratch.vim
 
 " {{{ languages
 

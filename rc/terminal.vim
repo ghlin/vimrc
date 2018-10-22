@@ -21,7 +21,7 @@ if current_scheme == 'default'
   hi! Folded cterm=italic
 
   hi! clear Statement
-  hi! Statement ctermfg=White
+  hi! Statement ctermfg=DarkBlue
 endif
 
 
