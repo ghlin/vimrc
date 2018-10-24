@@ -207,8 +207,8 @@ else
       \ 'do': ':UpdateRemotePlugins'
       \ }
 
-  nnoremap <leader><leader><leader> :<C-u>DeniteProjectDir file/rec<CR>
-  nnoremap <M-p>                    :<C-u>DeniteProjectDir file/rec<CR>
+  nnoremap <leader><leader><leader> :<C-u>DeniteProjectDir buffer file/rec<CR>
+  nnoremap <M-p>                    :<C-u>DeniteProjectDir buffer file/rec<CR>
   nnoremap <leader><leader>\        :<C-u>Denite buffer file/old<CR>
   nnoremap <leader><leader><CR>     :<C-u>Denite unite:outline<CR>
   nnoremap <leader><leader>/        :<C-u>DeniteProjectDir grep<CR>
