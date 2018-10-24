@@ -130,8 +130,12 @@ Plug 'fxn/vim-monochrome'
 " additional text objects
 Plug 'kana/vim-textobj-user'    " required by vim-textobj-indent
 Plug 'kana/vim-textobj-indent'
-Plug 'vim-scripts/argtextobj.vim'
-Plug 'vim-scripts/Parameter-Text-Objects'
+Plug 'kana/vim-textobj-function'
+
+let g:vim_textobj_parameter_mapping = 'a'
+Plug 'sgur/vim-textobj-parameter'
+" Plug 'vim-scripts/argtextobj.vim'
+" Plug 'vim-scripts/Parameter-Text-Objects'
 
 Plug 'vim-scripts/swap-parameters'
 
