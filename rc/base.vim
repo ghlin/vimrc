@@ -87,7 +87,7 @@ set cindent
 set cino =Ls,:0,g0,N-s,(0,w0,Ws,k-1s,t0
 
 " tell (neo)vim how to split words
-set iskeyword   ^=_,\$,?,-
+set iskeyword   ^=_,\$,?
 
 " backspace can erase:
 set backspace =eol,start,indent
