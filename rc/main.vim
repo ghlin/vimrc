@@ -11,7 +11,6 @@ let s:startup_buffer_loaded = 0
 
 function! s:make_scratch_buffer()
   if s:startup_buffer_loaded != 0
-    autocmd! startup VimEnter
     return
   endif
 
@@ -22,6 +21,7 @@ function! s:make_scratch_buffer()
   setlocal buflisted
   setlocal noswapfile
 
+  autocmd! startup VimEnter
   let s:startup_buffer_loaded = 1
 endfunction
 
