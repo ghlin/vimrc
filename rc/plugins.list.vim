@@ -20,10 +20,18 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next'
       \ }
 
-map     <F2>       :call LanguageClient#textDocument_rename()<CR>
-map     <C-]>      :call LanguageClient#textDocument_definition()<CR>
-map     <C-\>      :call LanguageClient#textDocument_hover()<CR>
-noremap <C-x><C-p> :call LanguageClient_contextMenu()<CR>
+function! s:SetupLanguageClient()
+  if has_key(g:LanguageClient_serverCommands, &ft)
+    map     <F2>       :call LanguageClient#textDocument_rename()<CR>
+    map     <C-]>      :call LanguageClient#textDocument_definition()<CR>
+    map     <C-\>      :call LanguageClient#textDocument_hover()<CR>
+    noremap <C-x><C-p> :call LanguageClient_contextMenu()<CR>
+  endif
+endfunction
+
+augroup lang_client
+  autocmd BufRead,BufEnter * :call s:SetupLanguageClient()
+augroup END
 
 
 " Haskell
