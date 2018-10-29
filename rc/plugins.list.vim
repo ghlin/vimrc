@@ -1,4 +1,4 @@
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldlevel=-1
 
 " For temporary buffer / scratch
 Plug 'shougo/junkfile.vim'
@@ -64,6 +64,8 @@ function! SetupMappingsForHaskell()
     let winnr = win_id2win(last_hover_window_id)
     if winnr > 0
       execute winnr . 'wincmd c'
+    else
+      normal <C-c>
     endif
   endfunction
 
@@ -79,9 +81,9 @@ function! SetupMappingsForHaskell()
 
   command! -bang -nargs=? SplitCase   :call HIESplitCase()
 
-  noremap <buffer> <C-x><C-s> :call ListSymbols()<CR>
-  noremap <buffer> <C-x><C-a> :call ListAllSymbols()<CR>
-  noremap <buffer> <C-c>      :call ClosePreviewIfAny()<CR><C-c>
+  noremap <buffer>         <C-x><C-s> :call ListSymbols()<CR>
+  noremap <buffer>         <C-x><C-a> :call ListAllSymbols()<CR>
+  noremap <silent><buffer> <C-c>      :call ClosePreviewIfAny()<CR>
 endfunction
 
 autocmd! FileType haskell call SetupMappingsForHaskell()
@@ -93,6 +95,8 @@ hi! link typescriptHtmlEvents Normal
 
 " Markdown
 Plug 'tpope/vim-markdown'
+let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh' ]
+let g:markdown_syntax_conceal = 1
 
 Plug 'iamcco/markdown-preview.vim'
 let g:mkdp_py_version = 2
@@ -120,7 +124,6 @@ nnoremap <leader>q       :call g:ClangUpdateQuickFix()<CR>
 
 Plug 'Rip-Rip/clang_complete'
 Plug 'vim-jp/cpp-vim'
-
 
 " XML / HTML
 Plug 'mattn/emmet-vim'

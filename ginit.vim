@@ -1,4 +1,5 @@
-Guifont Inconsolata:h20
+Guifont Consolas:h18
 
 colorscheme an-old-hope
+hi Normal guibg=Black
 
