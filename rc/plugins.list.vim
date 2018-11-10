@@ -1,4 +1,4 @@
-" vim:foldmethod=marker:foldlevel=-1
+" vim:foldmethod=marker:foldlevel=0
 
 " For temporary buffer / scratch
 Plug 'shougo/junkfile.vim'
@@ -95,7 +95,7 @@ hi! link typescriptHtmlEvents Normal
 
 " Markdown
 Plug 'tpope/vim-markdown'
-let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh' ]
+let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh', 'json' ]
 let g:markdown_syntax_conceal = 1
 
 Plug 'iamcco/markdown-preview.vim'
@@ -161,8 +161,12 @@ vnoremap <silent> <Enter> :EasyAlign<Enter>
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
 nmap  <leader>E :NERDTreeToggle<CR>
-let g:NERDTreeDirArrows=0
-let g:NERDTreeWinSize  = 25
+let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeDirArrows           = 0
+let g:NERDTreeWinSize             = 25
+let g:NERDTreeMinimalUI           = 1
+let g:NERDTreeHijackNetrw         = 1
+
 let g:NERDTreeSortOrder = [
                 \   '\/$'
                 \ , '\.lst$', '\.txt$', '\.vim$'

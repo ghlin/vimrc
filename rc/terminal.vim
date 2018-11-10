@@ -1,4 +1,3 @@
-
 set title
 set termencoding=utf-8
 set ttyfast
@@ -22,6 +21,9 @@ if current_scheme == 'default'
 
   hi! clear Statement
   hi! Statement ctermfg=DarkBlue
+
+  hi! clear VertSplit
+  hi! VertSplit cterm=none
 endif
 
 
@@ -29,3 +31,6 @@ endif
 if $PAPERLIKE == "PAPERLIKE"
   colorscheme Paperlike
 endif
+
+hi! clear MatchParen
+hi! MatchParen cterm=underline,italic gui=underline,italic

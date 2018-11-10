@@ -20,7 +20,7 @@ endif
 set expandtab
 set shiftwidth  =2
 set softtabstop =2
-set tabstop      =2
+set tabstop     =2
 " }}}
 
 " {{{ better editor inteface
@@ -105,11 +105,16 @@ set incsearch
 set smartcase
 set ignorecase
 set noinfercase
+
+if has('nvim')
+  " as a regex muggle...
+  set inccommand =split
+endif
 " }}}
 
 " {{{ autocmds
-" set working dir automatically.
-autocmd BufEnter * silent! lcd %:p:h
+" set working dir automatically?
+" autocmd BufEnter * silent! lcd %:p:h
 
 " quickfix window goes bottom most.
 autocmd FileType qf wincmd J
@@ -125,13 +130,13 @@ set encoding      =utf-8
 
 " {{{ misc
 " remember more history commands
-set history=2048
-filetype plugin on
+set history    =2048
+
 set timeoutlen =600
 
 set list
-set conceallevel =2
 set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
+set conceallevel =2
 
 " completion & :find command
 set path^=~/.local/include,.,.. "/usr/local/include makes code completion slow
@@ -141,7 +146,6 @@ set ambiwidth=double
 
 " split window to the right
 set splitright
-
 
 " tab completion for commands
 set wildmenu
@@ -154,12 +158,22 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" very useful when save a file in new folder
-augroup Mkdir
+" poor man's version control...
+set undofile
+
+augroup Misc
   autocmd!
+
+  " very useful when saving a file in new folder
   autocmd BufWritePre *
-        \ if !isdirectory(expand("<afile>:p:h")) |
-        \   call mkdir(expand("<afile>:p:h"), "p") |
+        \ if !isdirectory(expand('<afile>:p:h')) |
+        \   call mkdir(expand('<afile>:p:h'), 'p') |
+        \ endif
+
+  " restore cursor position
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line('$') |
+        \   execute 'normal! g`"' |
         \ endif
 augroup END
 " }}}

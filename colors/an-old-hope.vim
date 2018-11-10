@@ -12,7 +12,7 @@ let colors_name = "an-old-hope"
 "                                 #9BF0E9
 "                                 #007792
 
-hi Normal           gui=none            guifg=#E5E6E6           guibg=#202020
+hi Normal           gui=none            guifg=#E5E6E6           guibg=#000000
 hi Comment          gui=none            guifg=#5E5E5E
 hi Constant         gui=none            guifg=#7E7E7E
 hi DiffAdd                                                      guibg=#0040ED
@@ -43,7 +43,7 @@ hi TabLineSel       gui=bold            guifg=#FFFFFF           guibg=#5E5E5E
 hi Title                                guifg=#0077FF
 hi Todo             gui=underline,bold  guifg=#EF2929           guibg=bg
 hi Type             gui=none            guifg=#B75FAD
-hi VertSplit        gui=none            guifg=#000000           guibg=#111111
+hi VertSplit        gui=none            guifg=#232323           guibg=#000000
 hi Visual           gui=reverse                                 guibg=bg
 hi VisualNOS        gui=underline,bold
 hi WarningMsg                           guifg=#B11400
