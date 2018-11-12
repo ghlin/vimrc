@@ -9,16 +9,31 @@ runtime rc/plugins.vim
 " no command line arguments passed
 
 let s:startup_buffer_loaded = 0
-let s:session_path = join([ $HOME, '.vim', 'sessions' ], '/')
-let s:session_mapping = { }
+let s:session_path          = join([ $HOME, '.vim', 'sessions' ], '/')
+let s:session_by_time       = { }
+let s:session_by_file       = { }
 
 function! s:make_session()
+  let l:this_session = get(v:, 'this_session')
+  let cwd            = getcwd()
+  let time           = strftime('%Y-%m-%d %H:%M')
+  let session_name   = printf('%s.session.vim', time)
+  let session_file   = join([ s:session_path, session_name ], '/')
+  let project        = ProjectNameGuess()
+  let project_dir    = expand(get(get(s:session_by_file, l:this_session, { }), 'working_dir'))
+
+  if !empty(l:this_session) && cwd == project_dir
+    let session_file = l:this_session
+  endif
+
+  let metainfo = { 'working_dir': cwd, 'project': project, 'time': time, 'file': session_file }
+  let metaline = json_encode(metainfo)
+
   let temp_file = tempname()
-  let cwd = getcwd()
   execute 'mksession' fnameescape(temp_file)
-  let session_name = strftime('%Y-%m-%d %H:%M.session.vim')
-  let lines = [ '" ' . cwd ] + readfile(temp_file)
-  let session_file = join([ s:session_path, session_name ], '/')
+
+  let lines        = [ '" ' . metaline ] + readfile(temp_file)
+
   call writefile(lines, session_file)
 endfunction
 
@@ -44,10 +59,14 @@ function! s:glob_sessions()
   let session_files = split(glob(printf('%s/*.session.vim', s:session_path)), '\n')
 
   for session_file in session_files
-    let lines = readfile(session_file)
-    let session_directory = s:unify_session_directory(lines[0][2:])
-    let session_time = matchstr(session_file, '\d\d\d\d-\d\d-\d\d \d\d:\d\d')
-    let s:session_mapping[session_time] = [ session_file, session_time, session_directory ]
+    let lines             = readfile(session_file)
+    let metaline          = lines[0][2:]
+    let metainfo          = json_decode(metaline)
+    let session_directory = s:unify_session_directory(get(metainfo, 'working_dir'))
+    let session_time      = get(metainfo, 'time')
+
+    let s:session_by_time[session_time] = metainfo
+    let s:session_by_file[session_file] = metainfo
   endfor
 endfunction
 
@@ -55,8 +74,8 @@ function! s:try_get_session(line)
   let match_result = matchstrpos(a:line, '.*\*\d\d\d\d-\d\d-\d\d \d\d:\d\d\*')
   if match_result[1] != -1
     let session_time = match_result[0][4:-2]
-    let session_file = printf('%s/%s.session.vim', s:session_path, session_time)
-    return session_file
+    let session_meta = get(s:session_by_time, session_time, ['','',''])
+    return get(session_meta, 'file')
   else
     return ''
   endif
@@ -66,6 +85,7 @@ function! LoadSessionUnderCursor()
   let session_file = s:try_get_session(getline('.'))
   if filereadable(session_file)
     execute 'source' fnameescape(session_file)
+    let g:current_session = session_file
   endif
 endfunction
 
@@ -101,13 +121,16 @@ function! s:make_scratch_buffer()
   setlocal noswapfile
 
   call s:glob_sessions()
-  let has_sessions = empty(s:session_mapping) == 0
+  let has_sessions = empty(s:session_by_time) == 0
 
   if has_sessions
     call append(line('^'), '# Sessions')
 
-    for [ session_file, session_time, session_directory ] in values(s:session_mapping)
-      call append(line('$'), printf(' * *%s* at `%s`', session_time, session_directory))
+    for session_meta in values(s:session_by_time)
+      let session_time      = get(session_meta, 'time')
+      let session_directory = get(session_meta, 'working_dir')
+      let session_project   = get(session_meta, 'project')
+      call append(line('$'), printf(' * *%s* `%s :: %s`', session_time, session_project, session_directory))
     endfor
   endif
 
