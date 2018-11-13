@@ -10,10 +10,6 @@ case ${1:expression} of
      ${4:pattern} -> ${5:expression}
 endsnippet
 
-snippet :: "Type signature"
-${1:name} :: ${2:Type} -> ${3:Type}
-endsnippet
-
 snippet => "Type constraint"
 (${1:Class} ${2:Type var}) => ${3:$2}
 endsnippet
@@ -22,40 +18,54 @@ snippet def "Function definition"
 ${1:name} :: ${2:Type} -> ${3:Type}
 endsnippet
 
-snippet def[] "Function definition for list patterns"
-${1:name} :: [${2:Type}] -> ${3:Type}
-$1 [] = ${4:undefined}
-$1 ${5:(x:xs)} = ${6:undefined}
-endsnippet
-
-snippet = "Function clause"
-${1:name} ${2:pattern} = ${3:undefined}
-endsnippet
-
-snippet 2= "Function clause"
-${1:name} ${2:pattern} = ${3:undefined}
-$1 ${4:pattern} = ${5:undefined}
-endsnippet
-
-snippet 3= "Function clause"
-${1:name} ${2:pattern} = ${3:undefined}
-$1 ${4:pattern} = ${5:undefined}
-$1 ${6:pattern} = ${7:undefined}
-endsnippet
-
 snippet | "Guard"
 | ${1:predicate} = ${2:undefined}
 endsnippet
 
 snippet \ "Lambda expression"
-\ ${1:pattern} -> ${2:expression}
-endsnippet
-
-snippet [|] "List comprehension"
-[${3:foo }$1 | ${1:x} <- ${2:xs} ]
+\\${1:pattern} -> ${2:expression}
 endsnippet
 
 snippet let "let ... in ..."
 let ${1:name} = ${2:expression}
-in ${3:expression}
+ in $0
 endsnippet
+
+snippet ! "useful language pragmas" !b
+{-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE TupleSections #-}
+endsnippet
+
+snippet # "pragma" !b
+{-# ${1:LANGUAGE} #-}
+endsnippet
+
+snippet lang "language pragma" !b
+{-# LANGUAGE $0 #-}
+endsnippet
+
+snippet derif "language pragma: DeriveFunctor" !b
+{-# LANGUAGE DeriveFunctor #-}
+endsnippet
+
+snippet lamc "language pragma: LambdaCase" !b
+{-# LANGUAGE LambdaCase #-}
+endsnippet
+
+snippet tmphs "language pragma: TemplateHaskell" !b
+{-# LANGUAGE TemplateHaskell #-}
+endsnippet
+
+snippet tupls "language pragma: TupleSections" !b
+{-# LANGUAGE TupleSections #-}
+endsnippet
+
+snippet multif "language pragma: MultiwayIf" !b
+{-# LANGUAGE MultiWayIf #-}
+endsnippet
+
+snippet cpp "language pragma: CPP" !b
+{-# LANGUAGE CPP #-}
+endsnippet
+
