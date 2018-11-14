@@ -62,7 +62,6 @@ function! s:glob_sessions()
     let lines             = readfile(session_file)
     let metaline          = lines[0][2:]
     let metainfo          = json_decode(metaline)
-    let session_directory = s:unify_session_directory(get(metainfo, 'working_dir'))
     let session_time      = get(metainfo, 'time')
 
     let s:session_by_time[session_time] = metainfo
@@ -127,10 +126,10 @@ function! s:make_scratch_buffer()
     call append(line('^'), '# Sessions')
 
     for session_meta in values(s:session_by_time)
-      let session_time      = get(session_meta, 'time')
-      let session_directory = get(session_meta, 'working_dir')
-      let session_project   = get(session_meta, 'project')
-      call append(line('$'), printf(' * *%s* `%s :: %s`', session_time, session_project, session_directory))
+      let time      = get(session_meta, 'time')
+      let directory = s:unify_session_directory(get(session_meta, 'working_dir'))
+      let project   = get(session_meta, 'project')
+      call append(line('$'), printf(' * *%s* `%s :: %s`', time, project, directory))
     endfor
   endif
 
