@@ -5,3 +5,4 @@ bundle/
 plugs/
 *.o
 *.run
+/sessions/*.session.vim
