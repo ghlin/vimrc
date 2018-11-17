@@ -1,10 +1,9 @@
 " basic settings
 
-" {{{ use <space> as leader-key
+" use <space> as leader-key
 let g:mapleader = "\<Space>"
-" }}}
 
-" {{{ setup python paths for mac
+" setup python library path for mac
 if has('macunix')
   if !has('nvim')
   set pythonthreehome="/usr/local/Frameworks/Python.framework/Versions/3.7"
@@ -14,22 +13,20 @@ if has('macunix')
   " and haskell.
   let $PATH=$PATH . ":" . $HOME . "/Library/Haskell/bin"
 endif
-" }}}
 
-" {{{ sainer tab behavior
 set expandtab
 set shiftwidth  =2
 set softtabstop =2
 set tabstop     =2
-" }}}
 
-" {{{ better editor inteface
 set hidden
 set laststatus =0
 set cmdheight  =1
 set novisualbell
 set noerrorbells
 set showmatch
+
+" match <, >
 set matchpairs +=<:>
 set matchtime   =4
 
@@ -41,8 +38,9 @@ set statusline=[%n]%(\ %.30F%)%(\ \:\:\ %{ProjectNameGuess()}%)%=\ L%l/%L\ C%c%(
 " where am i?
 set ruler
 
-" nicer fold text
-function! FoldText() " {{{
+" fold text formatting
+set foldtext=FoldText()
+function! FoldText()
   let foldlinecnt = v:foldend - v:foldstart
   let line        = substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g')
   let spaces      = ' ... '
@@ -50,15 +48,17 @@ function! FoldText() " {{{
   let fillcnt     = winwidth(0) - len(line) - len(foldinfo) - len(spaces) - &number * &numberwidth
 
   return line . spaces . repeat(' ', fillcnt) . foldinfo
-  return left . right
-endfunction " }}}
-
-set foldtext=FoldText()
+endfunction
 
 " no line-numbers
-set nonu
-set nornu
-set so         =4
+set nonumber
+set norelativenumber
+
+" always keep 4 lines above and below the cursor.
+set scrolloff     =4
+" always keep 4 lines to the left and to the right
+" of the cursor.
+set sidescrolloff =4
 
 " wrap long lines
 set wrap
@@ -68,13 +68,8 @@ set breakindentopt =shift:3,sbr
 set breakat        =\ ^I!@*-+;:,./?\(\[\{        " break at these chars
 let &showbreak     ='↪ '
 
-" set fdc=1
 set foldmethod =marker
 set foldlevel  =3
-
-" }}}
-
-" {{{ better editing experience
 
 " enable syntax highlight
 syntax on
@@ -95,11 +90,12 @@ set backspace =eol,start,indent
 " mouse would help.
 set mouse=a
 
+" insert longest common text, show a menu unless
+" there's only one match
 set completeopt =menu,longest
 set pumheight   =12
-" }}}
 
-" {{{ searching options
+" searching options
 set hlsearch
 set incsearch
 set smartcase
@@ -110,29 +106,21 @@ if has('nvim')
   " as a regex muggle...
   set inccommand =split
 endif
-" }}}
 
-" {{{ autocmds
 " set working dir automatically?
 " autocmd BufEnter * silent! lcd %:p:h
 
 " quickfix window goes bottom most.
 autocmd FileType qf wincmd J
-" }}}
 
-" {{{ formats && encoding stuff
+" formats && encoding
 set fileformat    =unix
 set fileformats   =unix,mac,dos
 set fileencodings =utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,sjis,latin1
 set fileencoding  =utf-8
 set encoding      =utf-8
-" }}}
 
-" {{{ misc
-" remember more history commands
-set history    =2048
-
-set timeoutlen =600
+set timeoutlen    =600
 
 set list
 set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
@@ -164,16 +152,16 @@ set undofile
 augroup Misc
   autocmd!
 
+  " create directory recursively when necessary, this is
   " very useful when saving a file in new folder
   autocmd BufWritePre *
         \ if !isdirectory(expand('<afile>:p:h')) |
         \   call mkdir(expand('<afile>:p:h'), 'p') |
         \ endif
 
-  " restore cursor position
+  " restore cursor position, stolen from vimwiki
   autocmd BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line('$') |
         \   execute 'normal! g`"' |
         \ endif
 augroup END
-" }}}

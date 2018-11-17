@@ -33,14 +33,15 @@ inoremap <C-q> <esc>f)a
 " toggle fold
 nnoremap <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-" simpler way to navigate-to/create file.
+" create / navigate to a file within the same directory of
+" the currently-editing file
 function! NavigateToOrCreateFilePrompt()
   call inputsave()
   let newfile = input('Goto/New: ', expand('%:p:h') . '/', "file")
   call inputrestore()
 
-  if newfile != ""
-    exec 'e ' . newfile
+  if !empty(newfile)
+    exec 'e' newfile
   endif
 endfunction
 

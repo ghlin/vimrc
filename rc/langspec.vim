@@ -1,37 +1,67 @@
-let s:lang_spec_table = {
-      \ 'sh': { 'iskeyword_extra': '-' },
-      \ 'haskell': { 'iskeyword_extra': "'" },
-      \ 'python': { 'foldmethod': 'indent' }
-      \ }
+let s:language_setups = { }
 
-function! s:LangSpecHook()
-  let spec = get(s:lang_spec_table, &ft, { })
-  let keyword_extra = get(spec, 'iskeyword_extra', '')
-  if keyword_extra != ''
-    let &iskeyword = &iskeyword . ',' . keyword_extra
-  endif
-  let foldmethod = get(spec, 'foldmethod', &foldmethod)
-  let &foldmethod = foldmethod
+function! s:setup_shell()
+  setlocal iskeyword  ^=-
+  setlocal iskeyword  -=$
+
+  let &l:makeprg = printf('shellcheck %s', expand('%'))
 endfunction
 
-let s:lang_spec_proto_table = {
-      \ 'sh': { 'content': [ '#!/bin/sh' ] },
-      \ 'PKGBUILD': { 'proto': '/usr/share/pacman/PKGBUILD-vcs.proto' }
-      \ }
-function! s:LangSpecProtoHook()
-  let spec = get(s:lang_spec_proto_table, &ft, { })
-  let content = get(spec, 'content', [])
-  if len(content) != 0
-    call append(0, content)
+function! s:language_setups['sh']()
+  call s:setup_shell()
+endfunction
+
+function! s:language_setups['bash']()
+  call s:setup_shell()
+endfunction
+
+function! s:language_setups['zsh']()
+  call s:setup_shell()
+endfunction
+
+function! s:language_setups['haskell']()
+  if !has_key(b:, 'project_root_ghc')
+    let l:project_root_ghc = projectroot#get()
+    let l:stack_yaml       = printf('%s/stack.yaml', l:project_root_ghc)
+    if !filereadable(l:stack_yaml)
+      echoerr 'Not a stack based project'
+      return
+    endif
+
+    let b:project_root_ghc = l:project_root_ghc
   endif
-  let proto = get(spec, 'proto', '')
-  if proto != ''
-    execute "0r " . proto
+
+  let &l:makeprg = printf('cd %s && stack build', b:project_root_ghc)
+  " TODO: stack repl via :terminal
+  " let b:run_this = printf('cd %s && stack repl', b:project_root_ghc)
+endfunction
+
+function! s:language_setups['python']()
+  setlocal foldmethod =indent
+endfunction
+
+function! s:language_setups['javascript']()
+  let b:run_this = printf('node %s', expand('%'))
+endfunction
+
+function! s:language_setups['typescript']()
+  let b:run_this = printf('ts-node %s', expand('%'))
+endfunction
+
+function! s:LangSpecHook()
+  if !has_key(s:language_setups, &ft)
+    return
   endif
-  echo "LangSpecProtoHook"
+
+  let before = has_key(b:, 'run_this')
+  call s:language_setups[&ft]()
+  let after = has_key(b:, 'run_this')
+
+  if !before && after
+    command! -nargs=0 RunThis      :exec '!' b:run_this
+  endif
 endfunction
 
 augroup langspec
   autocmd BufEnter,BufRead  * :call s:LangSpecHook()
-  autocmd BufNewFile        * :call s:LangSpecProtoHook()
 augroup END
