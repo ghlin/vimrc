@@ -1,6 +1,6 @@
 # My Persional NVIM/VIM configuration
 
-My persional nvim/vim configuration for_(mostly)_ writing c++ & haskell.
+My persional nvim/vim configuration for _(mostly)_ writing c++ & haskell.
 
 # Install <small>_(not always works)_</small>
 
