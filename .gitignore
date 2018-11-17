@@ -6,3 +6,4 @@ plugs/
 *.o
 *.run
 /sessions/*.session.vim
+/local.vim

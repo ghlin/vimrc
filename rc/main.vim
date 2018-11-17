@@ -4,6 +4,7 @@ runtime rc/filetype.vim
 runtime rc/langspec.vim
 runtime rc/terminal.vim
 runtime rc/plugins.vim
+runtime rc/local.vim
 
 " make a scratch buffer on startup when
 " no command line arguments passed
