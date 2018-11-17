@@ -20,6 +20,7 @@ function! s:language_setups['zsh']()
 endfunction
 
 function! s:language_setups['haskell']()
+  setlocal signcolumn=yes
   if !has_key(b:, 'project_root_ghc')
     let l:project_root_ghc = projectroot#get()
     let l:stack_yaml       = printf('%s/stack.yaml', l:project_root_ghc)

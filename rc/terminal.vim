@@ -24,6 +24,9 @@ if current_scheme == 'default'
 
   hi! clear VertSplit
   hi! VertSplit cterm=none
+
+  hi! clear SignColumn
+  hi! SignColumn ctermfg=DarkGray ctermbg=Black
 endif
 
 
