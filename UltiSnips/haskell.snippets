@@ -45,6 +45,10 @@ snippet lang "language pragma" !b
 {-# LANGUAGE $0 #-}
 endsnippet
 
+snippet qqs "language pragma: quasiquotes" !b
+{-# LANGUAGE QuasiQuotes #-}
+endsnippet
+
 snippet derif "language pragma: DeriveFunctor" !b
 {-# LANGUAGE DeriveFunctor #-}
 endsnippet
@@ -69,3 +73,10 @@ snippet cpp "language pragma: CPP" !b
 {-# LANGUAGE CPP #-}
 endsnippet
 
+snippet import "import ...." !b
+import             ${1:Package}              ${2:for}
+endsnippet
+
+snippet importq "qualified import..." !b
+import qualified   ${1:Package}             as ${2:as}
+endsnippet

@@ -13,6 +13,9 @@ Plug 'scrooloose/nerdcommenter'
 let g:LanguageClient_serverCommands = {
       \   'haskell': [ 'hie-wrapper', '--lsp' ]
       \ }
+let g:LanguageClient_rootMarkers = {
+      \   'haskell': [ 'stack.yaml' ]
+      \ }
 
 Plug 'junegunn/fzf'
 Plug 'autozimu/LanguageClient-neovim', {
@@ -22,10 +25,10 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 function! s:SetupLanguageClient()
   if has_key(g:LanguageClient_serverCommands, &ft)
-    map     <F2>       :call LanguageClient#textDocument_rename()<CR>
-    map     <C-]>      :call LanguageClient#textDocument_definition()<CR>
-    map     <C-\>      :call LanguageClient#textDocument_hover()<CR>
-    noremap <C-x><C-p> :call LanguageClient_contextMenu()<CR>
+    map     <buffer><silent> <F2>       :call LanguageClient#textDocument_rename()<CR>
+    map     <buffer><silent> <C-]>      :call LanguageClient#textDocument_definition()<CR>
+    map     <buffer><silent> <C-\>      :call LanguageClient#textDocument_hover()<CR>
+    noremap <buffer><silent> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
   endif
 endfunction
 
@@ -120,7 +123,13 @@ let g:clang_periodic_quickfix    = 0
 let g:clang_close_preview        = 0
 let g:clang_trailing_placeholder = 1
 
-nnoremap <leader>q       :call g:ClangUpdateQuickFix()<CR>
+function! s:setup_clang_complete()
+  nnoremap <buffer><silent> <leader>q :call g:ClangUpdateQuickFix()<CR>
+endfunction
+
+augroup clang_complete_settings
+  autocmd BufEnter,BufRead * :call s:setup_clang_complete()
+augroup END
 
 Plug 'Rip-Rip/clang_complete'
 Plug 'vim-jp/cpp-vim'
