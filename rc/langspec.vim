@@ -1,5 +1,9 @@
 let s:language_setups = { }
 
+function! s:local_chdir()
+  silent! lcd %:p:h
+endfunction
+
 function! s:setup_shell()
   setlocal iskeyword  ^=-
   setlocal iskeyword  -=$
@@ -49,7 +53,15 @@ function! s:language_setups['typescript']()
   let b:run_this = printf('ts-node %s', expand('%'))
 endfunction
 
-function! s:LangSpecHook()
+function! s:language_setups['c']()
+  call s:local_chdir()
+endfunction
+
+function! s:language_setups['cpp']()
+  call s:local_chdir()
+endfunction
+
+function! s:setup_language_spec_settings()
   if !has_key(s:language_setups, &ft)
     return
   endif
@@ -64,5 +76,5 @@ function! s:LangSpecHook()
 endfunction
 
 augroup langspec
-  autocmd BufEnter,BufRead  * :call s:LangSpecHook()
+  autocmd BufEnter,BufRead  * :call s:setup_language_spec_settings()
 augroup END

@@ -130,7 +130,7 @@ set conceallevel =2
 set path^=~/.local/include,.,.. "/usr/local/include makes code completion slow
 set path^=*,**                  " this is awesome.
 
-set ambiwidth=double
+set ambiwidth=single
 
 " split window to the right
 set splitright

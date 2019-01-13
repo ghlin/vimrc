@@ -31,7 +31,7 @@ inoremap <C-q> <esc>f)a
 "inoremap <C-]> <esc>f}a
 
 " toggle fold
-nnoremap <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap <silent> <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 " create / navigate to a file within the same directory of
 " the currently-editing file

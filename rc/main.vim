@@ -119,6 +119,7 @@ function! s:make_scratch_buffer()
   setlocal bufhidden=hide
   setlocal buflisted
   setlocal noswapfile
+  file     [Scratch Buffer]
 
   call s:glob_sessions()
   let has_sessions = empty(s:session_by_time) == 0
