@@ -12,6 +12,11 @@ endif
 " fix colorscheme
 let current_scheme = get(g:, 'colors_name', 'default')
 
+" are we using Paperlike display?
+if $PAPERLIKE == "PAPERLIKE"
+  colorscheme Paperlike
+endif
+
 if current_scheme == 'default'
   hi! clear Visual
   hi! Visual cterm=inverse
@@ -22,17 +27,23 @@ if current_scheme == 'default'
   hi! clear Statement
   hi! Statement ctermfg=DarkBlue
 
+  hi! clear StorageClass
+  hi! StorageClass cterm=none ctermfg=DarkBlue
+
   hi! clear VertSplit
   hi! VertSplit cterm=none
 
   hi! clear SignColumn
-  hi! SignColumn ctermfg=DarkGray ctermbg=Black
-endif
+  hi! SignColumn ctermfg=DarkRed  ctermbg=none
 
+  hi! DiffAdd    ctermfg=Black
+  hi! DiffText   ctermfg=Black
+  hi! DiffChange ctermfg=Black
+  hi! DiffDelete ctermfg=Black
 
-" are we using Paperlike display?
-if $PAPERLIKE == "PAPERLIKE"
-  colorscheme Paperlike
+  " TODO: what if terminal's colorscheme has a light background?
+  hi! TabLine     ctermfg=White ctermbg=Black cterm=none
+  hi! TabLineFill ctermfg=White ctermbg=Black cterm=none
 endif
 
 hi! clear MatchParen
