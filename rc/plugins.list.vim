@@ -17,11 +17,11 @@ let g:LanguageClient_rootMarkers = {
       \   'haskell': [ 'stack.yaml' ]
       \ }
 
-Plug 'junegunn/fzf'
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'do': 'bash install.sh',
-      \ 'branch': 'next'
-      \ }
+" Plug 'junegunn/fzf'
+" Plug 'autozimu/LanguageClient-neovim', {
+"       \ 'do': 'bash install.sh',
+"       \ 'branch': 'next'
+"       \ }
 
 function! s:SetupLanguageClient()
   if has_key(g:LanguageClient_serverCommands, &ft)
@@ -32,9 +32,9 @@ function! s:SetupLanguageClient()
   endif
 endfunction
 
-augroup lang_client
-  autocmd BufRead,BufEnter * :call s:SetupLanguageClient()
-augroup END
+" augroup lang_client
+"   autocmd BufRead,BufEnter * :call s:SetupLanguageClient()
+" augroup END
 
 
 " Haskell
@@ -89,7 +89,7 @@ function! SetupMappingsForHaskell()
   noremap <silent><buffer> <C-c>      :call ClosePreviewIfAny()<CR>
 endfunction
 
-autocmd! FileType haskell call SetupMappingsForHaskell()
+" autocmd! FileType haskell call SetupMappingsForHaskell()
 
 " typescript
 Plug 'quramy/vim-js-pretty-template'
@@ -146,6 +146,9 @@ let g:use_emmet_complete_tag    = 1
 
 " colorschemes
 Plug 'fxn/vim-monochrome'
+Plug 'jonathanfilip/vim-lucius'
+let g:lucius_style = 'light'
+let g:lucius_contrast = 'high'
 
 " additional text objects
 Plug 'kana/vim-textobj-user'    " required by vim-textobj-indent
