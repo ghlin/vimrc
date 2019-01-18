@@ -31,18 +31,46 @@ let ${1:name} = ${2:expression}
  in $0
 endsnippet
 
-snippet ! "useful language pragmas" !b
-{-# LANGUAGE DeriveFunctor #-}
-{-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE TupleSections #-}
-endsnippet
-
-snippet # "pragma" !b
-{-# ${1:LANGUAGE} #-}
+snippet -# "pragma" !b
+{-# $0 #-}
 endsnippet
 
 snippet lang "language pragma" !b
 {-# LANGUAGE $0 #-}
+endsnippet
+
+snippet optghc "ghc options" !b
+{-# OPTIONS_GHC $0 #-}
+endsnippet
+
+snippet specmain "spec main" !b
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+endsnippet
+
+snippet spec "test spec" !b
+module $1 (spec) where
+
+import Test.Hspec
+
+spec :: Spec
+spec = do
+	${2:undefined}
+endsnippet
+
+snippet desc "describe xxx" !b
+describe "$1" $ do
+	${2:it}
+endsnippet
+
+snippet it "it..." !b
+it "$1" $ do
+	${2:undefined}
+endsnippet
+
+snippet ! "useful language pragmas" !b
+{-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE TupleSections #-}
 endsnippet
 
 snippet qqs "language pragma: quasiquotes" !b
@@ -73,10 +101,10 @@ snippet cpp "language pragma: CPP" !b
 {-# LANGUAGE CPP #-}
 endsnippet
 
-snippet import "import ...." !b
-import             ${1:Package}              ${2:for}
+snippet imp "import ...." !b
+import             ${1:Package}
 endsnippet
 
-snippet importq "qualified import..." !b
+snippet impo "qualified import..." !b
 import qualified   ${1:Package}             as ${2:as}
 endsnippet
