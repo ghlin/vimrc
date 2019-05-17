@@ -52,7 +52,7 @@ Option_List collect_options_from_file(const Option_Set &config,
 
   if (!file)
   {
-    log_print(std::cerr, "Cannot open file [%s]!", filename);
+    log_print(std::cerr, "Cannot open file [%s]!\n", filename);
 
     return { };
   }

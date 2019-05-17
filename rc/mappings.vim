@@ -14,8 +14,8 @@ map  <M-s> <ESC>:w<CR>
 imap <M-s> <ESC>:w<CR>
 map  <M-q> <ESC>:q<CR>
 imap <M-q> <ESC>:q<CR>
-map  <M-f> <ESC>/
-imap <M-f> <ESC>/
+map  <M-f> <ESC>:find 
+imap <M-f> <ESC>:find 
 
 com! -bang -nargs=? Q    :close
 com! -bang -nargs=? Qa   :qa

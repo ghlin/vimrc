@@ -24,21 +24,23 @@ function! s:language_setups['zsh']()
 endfunction
 
 function! s:language_setups['haskell']()
-  setlocal signcolumn=yes
-  if !has_key(b:, 'project_root_ghc')
-    let l:project_root_ghc = projectroot#get()
-    let l:stack_yaml       = printf('%s/stack.yaml', l:project_root_ghc)
+  setlocal formatprg=brittany
+  setlocal matchpairs=(:),[:],{:}
+  " setlocal signcolumn=yes
+  if !has_key(b:, 'project_root')
+    let l:project_root = projectroot#get()
+    let l:stack_yaml       = printf('%s/stack.yaml', l:project_root)
     if !filereadable(l:stack_yaml)
-      echoerr 'Not a stack based project'
+      " not a stack based project.
       return
     endif
 
-    let b:project_root_ghc = l:project_root_ghc
+    let b:project_root = l:project_root
   endif
 
-  let &l:makeprg = printf('cd %s && stack build', b:project_root_ghc)
+  let &l:makeprg = printf('cd %s && stack build', b:project_root)
   " TODO: stack repl via :terminal
-  " let b:run_this = printf('cd %s && stack repl', b:project_root_ghc)
+  " let b:run_this = printf('cd %s && stack repl', b:project_root)
 endfunction
 
 function! s:language_setups['python']()
@@ -55,22 +57,23 @@ endfunction
 
 function! s:language_setups['c']()
   call s:local_chdir()
+  nnoremap <buffer><silent> <leader>q :call g:ClangUpdateQuickFix()<CR>
 endfunction
 
 function! s:language_setups['cpp']()
   call s:local_chdir()
+  nnoremap <buffer><silent> <leader>q :call g:ClangUpdateQuickFix()<CR>
 endfunction
 
 function! s:setup_language_spec_settings()
-  if !has_key(s:language_setups, &ft)
+  if has_key(b:, 'done_set_lang_spec_settings') || !has_key(s:language_setups, &ft)
     return
   endif
+  let b:done_set_lang_spec_settings = 1
 
-  let before = has_key(b:, 'run_this')
   call s:language_setups[&ft]()
-  let after = has_key(b:, 'run_this')
 
-  if !before && after
+  if has_key(b:, 'run_this')
     command! -nargs=0 RunThis      :exec '!' b:run_this
   endif
 endfunction

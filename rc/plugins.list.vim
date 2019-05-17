@@ -9,26 +9,29 @@ Plug 'shougo/junkfile.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " LSP support
+Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': 'yarn install' }
+Plug 'neoclide/coc-denite'
 
-let g:LanguageClient_serverCommands = {
-      \   'haskell': [ 'hie-wrapper', '--lsp' ]
-      \ }
-let g:LanguageClient_rootMarkers = {
-      \   'haskell': [ 'stack.yaml' ]
-      \ }
+" Plug 'junegunn/fzf'
 
-Plug 'junegunn/fzf'
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'do': 'bash install.sh',
-      \ 'branch': 'next'
+let s:coc_supported_languages = {
+      \ 'typescript': 1,
+      \ 'typescript.tsx': 1,
+      \ 'javascript': 1,
+      \ 'javascript.jsx': 1,
+      \ 'json': 1,
+      \ 'css': 1,
+      \ 'scss': 1,
       \ }
 
 function! s:SetupLanguageClient()
-  if has_key(g:LanguageClient_serverCommands, &ft)
-    map     <buffer><silent> <F2>       :call LanguageClient#textDocument_rename()<CR>
-    map     <buffer><silent> <C-]>      :call LanguageClient#textDocument_definition()<CR>
-    map     <buffer><silent> <C-\>      :call LanguageClient#textDocument_hover()<CR>
-    noremap <buffer><silent> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
+  if has_key(s:coc_supported_languages, &ft)
+    map     <buffer><silent> <F2>                   <Plug>(coc-rename)
+    map     <buffer><silent> <C-]>                  <Plug>(coc-definition)
+    map     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
+    map     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
+    map     <buffer><silent> <leader><leader><CR>   <ESC>:Denite   coc-symbols<CR>
+    " noremap <buffer><silent> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
   endif
 endfunction
 
@@ -89,7 +92,7 @@ function! SetupMappingsForHaskell()
   noremap <silent><buffer> <C-c>      :call ClosePreviewIfAny()<CR>
 endfunction
 
-autocmd! FileType haskell call SetupMappingsForHaskell()
+" autocmd! FileType haskell call SetupMappingsForHaskell()
 
 " typescript
 Plug 'quramy/vim-js-pretty-template'
@@ -98,7 +101,7 @@ hi! link typescriptHtmlEvents Normal
 
 " Markdown
 Plug 'tpope/vim-markdown'
-let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh', 'json' ]
+let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh', 'json', 'javascript', 'js=javascript', 'typescript', 'ts=typescript' ]
 let g:markdown_syntax_conceal = 1
 
 Plug 'iamcco/markdown-preview.vim'
@@ -123,14 +126,6 @@ let g:clang_periodic_quickfix    = 0
 let g:clang_close_preview        = 0
 let g:clang_trailing_placeholder = 1
 
-function! s:setup_clang_complete()
-  nnoremap <buffer><silent> <leader>q :call g:ClangUpdateQuickFix()<CR>
-endfunction
-
-augroup clang_complete_settings
-  autocmd BufEnter,BufRead * :call s:setup_clang_complete()
-augroup END
-
 Plug 'Rip-Rip/clang_complete'
 Plug 'vim-jp/cpp-vim'
 
@@ -146,6 +141,9 @@ let g:use_emmet_complete_tag    = 1
 
 " colorschemes
 Plug 'fxn/vim-monochrome'
+Plug 'jonathanfilip/vim-lucius'
+let g:lucius_style = 'light'
+let g:lucius_contrast = 'high'
 
 " additional text objects
 Plug 'kana/vim-textobj-user'    " required by vim-textobj-indent
@@ -203,48 +201,19 @@ Plug 'vim-scripts/VisIncr'
 " unite / denite
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
+Plug 'Shougo/denite.nvim', {
+    \ 'do': ':UpdateRemotePlugins'
+    \ }
 
-if !has('nvim')
-  Plug 'Shougo/neomru.vim'
-  Plug 'Shougo/neoyank.vim'
-  Plug 'thinca/vim-unite-history'
-  Plug 'osyo-manga/unite-filetype'
-  Plug 'ujihisa/unite-colorscheme'
-
-  let g:unite_source_history_yank_enable = 1
-  let g:unite_enable_auto_select         = 0
-
-  nnoremap <leader><leader>f       :<C-u>Unite -no-split -start-insert file<CR>
-  nnoremap <leader><leader>F       :<C-u>Unite -no-split -start-insert file_rec/async<CR>
-  nnoremap <leader><leader><space> :<C-u>Unite -no-split -start-insert buffer bookmark<CR>
-  nnoremap <leader><leader>b       :<C-u>Unite -no-split -start-insert bookmark<CR>
-  nnoremap <leader><leader>\       :<C-u>Unite -no-split -start-insert bookmark neomru/file<CR>
-  nnoremap <leader><leader><CR>    :<C-u>Unite -no-split -start-insert outline<CR>
-  nnoremap <leader><leader>y       :<C-u>Unite -no-split -start-insert history/yank<CR>
-  nnoremap <leader><leader>?       :<C-u>Unite -no-split -start-insert history/search<CR>
-  nnoremap <leader><leader>:       :<C-u>Unite -no-split -start-insert history/command<CR>
-  nnoremap <leader><leader>t       :<C-u>Unite -no-split -start-insert filetype<CR>
-  nnoremap <leader><leader>T       :<C-u>Unite -no-split -start-insert colorscheme<CR>
-
-  autocmd Filetype unite call s:unite_settings()
-
-  function! s:unite_settings() "{{{ unite settings
-  endfunction " }}}
-else
-  Plug 'Shougo/denite.nvim', {
-      \ 'do': ':UpdateRemotePlugins'
-      \ }
-
-  nnoremap <leader><leader><leader> :<C-u>DeniteProjectDir buffer file/rec<CR>
-  nnoremap <M-p>                    :<C-u>DeniteProjectDir buffer file/rec<CR>
-  nnoremap <leader><leader>\        :<C-u>Denite buffer file/old<CR>
-  nnoremap <leader><leader><CR>     :<C-u>Denite unite:outline<CR>
-  nnoremap <leader><leader>/        :<C-u>DeniteProjectDir grep<CR>
-  nnoremap <M-S-f>                  :<C-u>DeniteProjectDir grep<CR>
-  nnoremap <leader><leader>?        :<C-u>Denite change<CR>
-  nnoremap <leader><leader>:        :<C-u>Denite command_history<CR>
-  nnoremap <leader><leader>b        :<C-u>Denite buffer<CR>
-endif
+nnoremap <leader><leader><leader> :DeniteProjectDir        buffer     file/rec<CR>
+nnoremap <M-p>                    :DeniteProjectDir        buffer     file/rec<CR>
+nnoremap <leader><leader>\        :Denite                  buffer     file/old<CR>
+nnoremap <leader><leader>b        :Denite                  buffer<CR>
+nnoremap <leader><leader><CR>     :Denite                  unite:outline<CR>
+nnoremap <leader><leader>/        :DeniteProjectDir        grep<CR>
+nnoremap <M-S-f>                  :DeniteProjectDir        grep<CR>
+nnoremap <leader><leader>?        :Denite                  change<CR>
+nnoremap <leader><leader>:        :Denite                  command_history<CR>
 
 " guess project root
 Plug 'dbakker/vim-projectroot'

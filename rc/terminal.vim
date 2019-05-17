@@ -15,11 +15,11 @@ let current_scheme = get(g:, 'colors_name', 'default')
 " are we using Paperlike display?
 if $PAPERLIKE == "PAPERLIKE"
   colorscheme Paperlike
-endif
-
-if current_scheme == 'default'
+elseif current_scheme == 'default'
   hi! clear Visual
   hi! Visual cterm=inverse
+
+  " hi! Pmenu  cterm=none  ctermbg=Megenta ctermfg=Black
 
   hi! clear Folded
   hi! Folded cterm=italic
@@ -44,6 +44,15 @@ if current_scheme == 'default'
   " TODO: what if terminal's colorscheme has a light background?
   hi! TabLine     ctermfg=White ctermbg=Black cterm=none
   hi! TabLineFill ctermfg=White ctermbg=Black cterm=none
+
+  hi! CocFloating ctermbg=235
+
+  hi! Pmenu     ctermfg=15     ctermbg=232
+  hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
+
+  hi! TabLine      cterm=underline
+  hi! TabLineSel   cterm=underline
+  hi! TabLineFill  cterm=underline
 endif
 
 hi! clear MatchParen

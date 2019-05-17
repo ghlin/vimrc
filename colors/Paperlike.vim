@@ -6,40 +6,40 @@ let colors_name = "Paperlike"
 
 hi! clear Statement
 
-hi!  Normal           term=none cterm=none                   ctermfg=Black
-hi!  Comment          term=none cterm=italic                 ctermfg=Gray               ctermbg=none
+hi!  Normal           term=none cterm=none                   ctermfg=Black              ctermbg=White
+hi!  Comment          term=none cterm=italic                 ctermfg=DarkGray           ctermbg=none
 hi!  Constant         term=none cterm=none                   ctermfg=DarkGray
 hi!  DiffAdd          term=none cterm=none                                              ctermbg=Black
 hi!  DiffChange       term=none cterm=italic                 ctermfg=Black              ctermbg=253
 hi!  DiffDelete       term=none cterm=none                   ctermfg=White              ctermbg=Black
 hi!  DiffText         term=none cterm=none                   ctermfg=226
 hi!  Directory        term=none cterm=none                   ctermfg=240
-hi!  ErrorMsg         term=none cterm=none                   ctermfg=White              ctermbg=DarkRed
 hi!  FoldColumn       term=none cterm=none                   ctermfg=249                ctermbg=none
 hi!  Folded           term=none cterm=bold,italic,underline  ctermfg=DarkGray
 hi!  Identifier       term=none cterm=none                   ctermfg=Black
 hi!  IncSearch        term=none cterm=reverse
-hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=DarkBlue           ctermbg=none
+hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=Black           ctermbg=none
 hi!  ModeMsg          term=none cterm=bold
-hi!  MoreMsg          term=none cterm=none                   ctermfg=DarkGreen
-hi!  NonText          term=none cterm=none                   ctermfg=Gray
-hi!  Pmenu            term=none cterm=none                   ctermfg=White              ctermbg=Yellow
-hi!  PmenuSel         term=none cterm=bold                   ctermfg=White              ctermbg=Gray
-hi!  PreProc          term=none cterm=none                   ctermfg=DarkGreen
-hi!  Question         term=none cterm=none                   ctermfg=DarkGreen
+hi!  MoreMsg          term=none cterm=none                   ctermfg=Black
+hi!  NonText          term=none cterm=none                   ctermfg=LightGray
+hi!  Pmenu            term=none cterm=none                   ctermfg=White              ctermbg=Black
+hi!  PmenuSel         term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
+hi!  PreProc          term=none cterm=none                   ctermfg=Black
+hi!  Question         term=none cterm=none                   ctermfg=Black
 hi!  Search           term=none cterm=none                   ctermfg=White              ctermbg=Red
-hi!  Special          term=none cterm=bold,underline         ctermfg=Yellow
-hi!  SpecialKey       term=none cterm=bold,underline         ctermfg=Yellow
-hi!  Statement        term=none cterm=bold                   ctermfg=Yellow
+hi!  Special          term=none cterm=bold,underline         ctermfg=Black
+hi!  SpecialKey       term=none cterm=bold,underline         ctermfg=Black
+hi!  Statement        term=none cterm=bold                   ctermfg=Black
 hi!  TabLineSel       term=none cterm=bold,underline         ctermfg=White              ctermbg=Black
-hi!  TabLine          term=none cterm=none                   ctermfg=Black              ctermbg=White
-hi!  TabLineFill      term=none cterm=none                   ctermfg=Black              ctermbg=White
-hi!  Title            term=none cterm=none                   ctermfg=Yellow
+hi!  TabLine          term=none cterm=underline              ctermfg=Black              ctermbg=White
+hi!  TabLineFill      term=none cterm=underline              ctermfg=Black              ctermbg=White
+hi!  Title            term=none cterm=none                   ctermfg=Black
 hi!  Todo             term=none cterm=underline,bold         ctermfg=White              ctermbg=Red
-hi!  Type             term=none cterm=bold                   ctermfg=Yellow
+hi!  Type             term=none cterm=bold                   ctermfg=Black
 hi!  Visual           term=none cterm=bold                   ctermfg=White              ctermbg=DarkGray
 hi!  VisualNOS        term=none cterm=underline
-hi!  WarningMsg                                              ctermfg=DarkRed
+hi!  WarningMsg       term=none cterm=bold,italic            ctermfg=DarkRed            ctermbg=White
+hi!  ErrorMsg         term=none cterm=bold,italic            ctermfg=DarkRed            ctermbg=White
 hi!  WildMenu                                                ctermfg=White              ctermbg=Black
 
 "just patch here
@@ -53,10 +53,10 @@ hi! clear VertSplit
 
 hi! ColorColumn      cterm=none                                      ctermbg=Black
 hi! CursorLine       cterm=inverse,inverse
-hi! CursorLineNr     cterm=bold            ctermfg=Yellow
+hi! CursorLineNr     cterm=bold            ctermfg=Black
 hi! LineNr           cterm=none            ctermfg=Gray
-hi! StatusLine       cterm=none            ctermfg=Black             ctermbg=White
-hi! StatusLineNC                           ctermfg=Gray              ctermbg=White
+hi! StatusLine       cterm=bold            ctermfg=White             ctermbg=Black
+hi! StatusLineNC                           ctermfg=White             ctermbg=Black
 hi! VertSplit                              ctermfg=DarkGray
 hi! link Conceal Normal
 
@@ -70,9 +70,10 @@ hi! cType          cterm=bold,underline
 " hi! cppRepeat      cterm=bold,underline
 hi! cppType        cterm=bold,underline
 
+hi! Delimiter      cterm=bold ctermfg=DarkGray
 hi! hsDelimiter    cterm=bold ctermfg=DarkGray
 hi! hsStructure    cterm=bold ctermfg=DarkGray
-hi! hsOperator     cterm=bold ctermfg=Yellow
+hi! hsOperator     cterm=bold ctermfg=Black
 hi! link hsExprKeyword Statement
 
 hi! doxygenStartSkip cterm=bold,italic ctermfg=DarkGreen
@@ -83,3 +84,57 @@ hi! doxygenBody      cterm=bold,italic ctermfg=DarkGreen
 " denite
 hi deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black
 hi deniteMatchedRange cterm=underline             ctermfg=Gray
+
+hi! CocFloating ctermbg=253 ctermfg=Black
+
+
+" ============================================= gui ========================
+
+hi! Normal       gui=none                  guifg=Black    guibg=White
+hi! Comment      gui=italic                guifg=DarkGray guibg=none
+hi! Constant     gui=none                  guifg=DarkGray
+hi! DiffAdd      gui=none                  guibg=Black
+hi! DiffChange   gui=italic                guifg=Black    guibg=253
+hi! DiffDelete   gui=none                  guifg=White    guibg=Black
+hi! DiffText     gui=none                  guifg=226
+hi! Directory    gui=none                  guifg=240
+hi! FoldColumn   gui=none                  guifg=249      guibg=none
+hi! Folded       gui=bold,italic,underline guifg=DarkGray
+hi! Identifier   gui=none                  guifg=Black
+hi! IncSearch    gui=reverse
+hi! MatchParen   gui=underline,bold,italic guifg=Black    guibg=none
+hi! ModeMsg      gui=bold
+hi! MoreMsg      gui=none                  guifg=Black
+hi! NonText      gui=none                  guifg=LightGray
+hi! Pmenu        gui=none                  guifg=White    guibg=Black
+hi! PmenuSel     gui=bold,italic           guifg=Black    guibg=White
+hi! PreProc      gui=none                  guifg=Black
+hi! Question     gui=none                  guifg=Black
+hi! Search       gui=none                  guifg=White    guibg=Red
+hi! Special      gui=bold,underline        guifg=Black
+hi! SpecialKey   gui=bold,underline        guifg=Black
+hi! Statement    gui=bold                  guifg=Black
+hi! TabLineSel   gui=bold,italic           guifg=White    guibg=Black
+hi! TabLine      gui=none                  guifg=Black    guibg=White
+hi! TabLineFill  gui=none                  guifg=Black    guibg=White
+hi! Title        gui=none                  guifg=Black
+hi! Todo         gui=underline,bold        guifg=White    guibg=Red
+hi! Type         gui=bold                  guifg=Black
+hi! Visual       gui=bold                  guifg=White    guibg=DarkGray
+hi! VisualNOS    gui=underline
+hi! WarningMsg   gui=bold,italic           guifg=DarkRed  guibg=White
+hi! ErrorMsg     gui=bold,italic           guifg=DarkRed  guibg=White
+hi! WildMenu                                                guifg=White              guibg=Black
+hi! cType              gui=bold,underline
+hi! cppType            gui=bold,underline
+hi! Delimiter          gui=bold                  guifg=DarkGray
+hi! hsDelimiter        gui=bold                  guifg=DarkGray
+hi! hsStructure        gui=bold                  guifg=DarkGray
+hi! hsOperator         gui=bold                  guifg=Black
+hi! doxygenStartSkip   gui=bold,italic           guifg=DarkGreen
+hi! doxygenStart       gui=bold,italic           guifg=DarkGreen
+hi! doxygenComment     gui=bold,italic           guifg=DarkGreen
+hi! doxygenBody        gui=bold,italic           guifg=DarkGreen
+hi  deniteMatchedChar  gui=underline,italic,bold guifg=Black
+hi  deniteMatchedRange gui=underline             guifg=Gray
+hi! link               hsExprKeyword               Statement
