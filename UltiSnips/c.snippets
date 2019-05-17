@@ -205,6 +205,13 @@ snippet rin "@@@" !bs
  */
 endsnippet
 
+snippet in "@@@ in" !bs
+/*
+ * @@@ in: $1
+ * @@@ out: $0
+ */
+endsnippet
+
 snippet "([^ 	])-" "->" !ir
 `!p snip.rv = match.group(1)`->$0
 endsnippet

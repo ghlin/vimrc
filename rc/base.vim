@@ -33,7 +33,8 @@ set matchtime   =4
 " enable doxygen highlighting
 let g:load_doxygen_syntax = 1
 
-set statusline=[%n]%(\ %.30F%)%(\ \:\:\ %{ProjectNameGuess()}%)%=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
+set statusline=[%n]%(\ %.30F%)%(\ \:\:\ %{ProjectNameGuess()}%)\ %=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
+set fillchars=stl:\ ,stlnc:-
 
 " where am i?
 set ruler
@@ -60,8 +61,7 @@ set scrolloff     =4
 " of the cursor.
 set sidescrolloff =4
 
-" wrap long lines
-set wrap
+set nowrap            " dont wrap long lines!
 set linebreak
 set breakindent
 set breakindentopt =shift:3,sbr
@@ -93,7 +93,7 @@ set mouse=a
 " insert longest common text, show a menu unless
 " there's only one match
 set completeopt =menu,longest
-set pumheight   =12
+set pumheight   =7
 
 " searching options
 set hlsearch
@@ -121,9 +121,10 @@ set fileencoding  =utf-8
 set encoding      =utf-8
 
 set timeoutlen    =600
+set updatetime    =800
 
 set list
-set listchars    =tab:\ \ ,trail:⌴,extends:»,precedes:«   ",eol:¬, "⋅
+set listchars    =tab:\ \ ,trail:˽,extends:»,precedes:«   ",eol:¬, "⋅
 set conceallevel =2
 
 " completion & :find command
@@ -137,6 +138,7 @@ set splitright
 
 " tab completion for commands
 set wildmenu
+set wildignorecase
 set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so
 set wildignore^=*.DS_Store,*.run,*.dSYM
 set wildignore^=node_modules,.vscode,.git,.build,.stack-work
@@ -151,6 +153,8 @@ set undofile
 
 augroup Misc
   autocmd!
+
+  autocmd FileType qf setlocal wrap
 
   " create directory recursively when necessary, this is
   " very useful when saving a file in new folder

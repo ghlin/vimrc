@@ -8,8 +8,8 @@ using namespace rin;
 
 int process_file(const Str &input, Option_Set config)
 {
-  bool nodefaults = config.check("nodefaults");
-  bool silent     = config.check("silent");
+  bool nodefaults = config.check("no-defaults");
+  bool silent     = config.check("quiet");
 
   Option_Set cache;
   Option_Set options = make_option_set(collect_options_from_file(config, input));
@@ -19,7 +19,7 @@ int process_file(const Str &input, Option_Set config)
   process_option_set(config, config, options, cache);
   process_option_set(options, config, options, cache);
 
-  if (!nodefaults && !options.check("nodefault-std") && !options.check("std")
+  if (!nodefaults && !options.check("no-defaults-std") && !options.check("std")
     && options.query("compile", "").find("-std=") == Str::npos)
   {
     auto language = get_language(config, options, cache);
@@ -30,12 +30,12 @@ int process_file(const Str &input, Option_Set config)
       apply_preset("c++1y", config, config, options, cache);
   }
 
-  if (!nodefaults && !options.check("nodefault-debug"))
+  if (!nodefaults && !options.check("no-defaults-debug"))
   {
     apply_preset("debug", config, config, options, cache);
   }
 
-  if (!nodefaults && !options.check("nodefault-home"))
+  if (!nodefaults && !options.check("no-defaults-home"))
   {
     apply_preset("home", config, config, options, cache);
     apply_preset("brew", config, config, options, cache);
@@ -43,17 +43,18 @@ int process_file(const Str &input, Option_Set config)
 
   auto command = get_compile_command(config, options, cache);
 
-  log_message("compile command : [%s]", command);
+  log_message("compile command: [%s]", command);
 
-  if (config.check("just-get-command"))
+  if (config.check("command"))
   {
     std::cout << command << std::endl;
 
     return 0;
   }
 
-  if (!silent)
-    std::cout << "Compile command: " << command << std::endl;
+  if (!silent) {
+    std::cerr << command << std::endl;
+  }
 
   auto compile_result = execute(command);
 
@@ -62,12 +63,18 @@ int process_file(const Str &input, Option_Set config)
 
   if (!*compile_result)
   {
-    if (!silent)
-      log_print(std::cerr, "Compiler raised an error : %d\n", compile_result->exit_status);
+    if (!silent) {
+      std::cerr << "*** compiler failed (" << compile_result->exit_status << ") ***" << std::endl;
+    }
 
-    log_print(std::cerr, "%s\n", compile_result->err);
+    std::cerr << compile_result->err << std::endl;
 
     return compile_result->exit_status;
+  }
+
+  if (compile_result->err.length() != 0 && !silent) {
+    std::cerr << "*** compiled with warnings ***" << std::endl;
+    std::cerr << compile_result->err;
   }
 
   if (config.check("run") || options.check("run"))
@@ -75,7 +82,7 @@ int process_file(const Str &input, Option_Set config)
     auto program = get_output_filename(config, options, cache);
 
     if (!silent)
-      std::cout << "===========================[ running: " << program << " ]=====================" << std::endl;
+      std::cerr << "*** running the program ***" << std::endl;
 
     return std::system(program.c_str());
   }
@@ -88,20 +95,20 @@ int main(int argc, char **argv) try
   std::basic_string<const char *> args = argv + 1;
 
   if (args.empty())
-    panic("usage %s inputfile", argv[0]);
+    panic("usage: %s inputfile", argv[0]);
 
   Str_List  input_files;
 
   Option_Set config;
 
-  std::set<Str> acceptable_args = { "-run", "-silent", "-just-get-command", "-nodefaults" };
+  std::set<Str> acceptable_args = { "--run", "--quiet", "--command", "--no-defaults" };
 
   for (auto &&arg : args)
   {
     if (has(acceptable_args, arg))
-      config.insert(arg + 1 /* skip the '-' */, "YES!!!");
+      config.insert(arg + 2, "YES!!!");
     else if (arg[0] == '-')
-      log_print(std::cerr, "!!! WARNING unknown arg : %s\n", arg);
+      log_print(std::cerr, "WARNING: unknown arg : %s\n", arg);
     else
       input_files.push_back(arg);
   }
@@ -109,10 +116,14 @@ int main(int argc, char **argv) try
   if (input_files.empty())
     panic("No input file!");
 
-  for (auto &&input : input_files)
-    process_file(input, config);
+  auto last_error = 0;
 
-  return 0;
+  for (auto &&input : input_files) {
+    auto exit_code = process_file(input, config);
+    if (!last_error) last_error = exit_code;
+  }
+
+  return !!last_error;
 }
 catch (const std::exception &e)
 {
