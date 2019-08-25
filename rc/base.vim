@@ -90,6 +90,9 @@ set backspace =eol,start,indent
 " mouse would help.
 set mouse=a
 
+" disable cursor style changes
+set guicursor  =
+
 " insert longest common text, show a menu unless
 " there's only one match
 set completeopt =menu,longest

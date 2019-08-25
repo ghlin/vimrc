@@ -5,6 +5,7 @@ set background=light
 let colors_name = "Paperlike"
 
 hi! clear Statement
+hi! clear NormalFloat
 
 hi!  Normal           term=none cterm=none                   ctermfg=Black              ctermbg=White
 hi!  Comment          term=none cterm=italic                 ctermfg=DarkGray           ctermbg=none
@@ -40,7 +41,7 @@ hi!  Visual           term=none cterm=bold                   ctermfg=White      
 hi!  VisualNOS        term=none cterm=underline
 hi!  WarningMsg       term=none cterm=bold,italic            ctermfg=DarkRed            ctermbg=White
 hi!  ErrorMsg         term=none cterm=bold,italic            ctermfg=DarkRed            ctermbg=White
-hi!  WildMenu                                                ctermfg=White              ctermbg=Black
+hi!  WildMenu                                                ctermfg=Black              ctermbg=White
 
 "just patch here
 hi! clear CursorLineNr
@@ -82,59 +83,10 @@ hi! doxygenComment   cterm=bold,italic ctermfg=DarkGreen
 hi! doxygenBody      cterm=bold,italic ctermfg=DarkGreen
 
 " denite
-hi deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black
-hi deniteMatchedRange cterm=underline             ctermfg=Gray
+hi deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black ctermbg=White
+hi deniteMatchedRange cterm=underline             ctermfg=Black ctermbg=White
+hi! CocFloating       ctermbg=253 ctermfg=Black
+hi! NormalFloat       ctermbg=253 ctermfg=Black
 
-hi! CocFloating ctermbg=253 ctermfg=Black
 
-
-" ============================================= gui ========================
-
-hi! Normal       gui=none                  guifg=Black    guibg=White
-hi! Comment      gui=italic                guifg=DarkGray guibg=none
-hi! Constant     gui=none                  guifg=DarkGray
-hi! DiffAdd      gui=none                  guibg=Black
-hi! DiffChange   gui=italic                guifg=Black    guibg=253
-hi! DiffDelete   gui=none                  guifg=White    guibg=Black
-hi! DiffText     gui=none                  guifg=226
-hi! Directory    gui=none                  guifg=240
-hi! FoldColumn   gui=none                  guifg=249      guibg=none
-hi! Folded       gui=bold,italic,underline guifg=DarkGray
-hi! Identifier   gui=none                  guifg=Black
-hi! IncSearch    gui=reverse
-hi! MatchParen   gui=underline,bold,italic guifg=Black    guibg=none
-hi! ModeMsg      gui=bold
-hi! MoreMsg      gui=none                  guifg=Black
-hi! NonText      gui=none                  guifg=LightGray
-hi! Pmenu        gui=none                  guifg=White    guibg=Black
-hi! PmenuSel     gui=bold,italic           guifg=Black    guibg=White
-hi! PreProc      gui=none                  guifg=Black
-hi! Question     gui=none                  guifg=Black
-hi! Search       gui=none                  guifg=White    guibg=Red
-hi! Special      gui=bold,underline        guifg=Black
-hi! SpecialKey   gui=bold,underline        guifg=Black
-hi! Statement    gui=bold                  guifg=Black
-hi! TabLineSel   gui=bold,italic           guifg=White    guibg=Black
-hi! TabLine      gui=none                  guifg=Black    guibg=White
-hi! TabLineFill  gui=none                  guifg=Black    guibg=White
-hi! Title        gui=none                  guifg=Black
-hi! Todo         gui=underline,bold        guifg=White    guibg=Red
-hi! Type         gui=bold                  guifg=Black
-hi! Visual       gui=bold                  guifg=White    guibg=DarkGray
-hi! VisualNOS    gui=underline
-hi! WarningMsg   gui=bold,italic           guifg=DarkRed  guibg=White
-hi! ErrorMsg     gui=bold,italic           guifg=DarkRed  guibg=White
-hi! WildMenu                                                guifg=White              guibg=Black
-hi! cType              gui=bold,underline
-hi! cppType            gui=bold,underline
-hi! Delimiter          gui=bold                  guifg=DarkGray
-hi! hsDelimiter        gui=bold                  guifg=DarkGray
-hi! hsStructure        gui=bold                  guifg=DarkGray
-hi! hsOperator         gui=bold                  guifg=Black
-hi! doxygenStartSkip   gui=bold,italic           guifg=DarkGreen
-hi! doxygenStart       gui=bold,italic           guifg=DarkGreen
-hi! doxygenComment     gui=bold,italic           guifg=DarkGreen
-hi! doxygenBody        gui=bold,italic           guifg=DarkGreen
-hi  deniteMatchedChar  gui=underline,italic,bold guifg=Black
-hi  deniteMatchedRange gui=underline             guifg=Gray
 hi! link               hsExprKeyword               Statement

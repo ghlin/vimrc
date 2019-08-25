@@ -20,6 +20,7 @@ let s:coc_supported_languages = {
       \ 'javascript': 1,
       \ 'javascript.jsx': 1,
       \ 'json': 1,
+      \ 'python': 1,
       \ 'css': 1,
       \ 'scss': 1,
       \ }
@@ -29,8 +30,8 @@ function! s:SetupLanguageClient()
     map     <buffer><silent> <F2>                   <Plug>(coc-rename)
     map     <buffer><silent> <C-]>                  <Plug>(coc-definition)
     map     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
-    map     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
-    map     <buffer><silent> <leader><leader><CR>   <ESC>:Denite   coc-symbols<CR>
+    map     <buffer><silent> <M-S-p>                <ESC>:Denite  -split=floating coc-command<CR>
+    map     <buffer><silent> <leader><leader><CR>   <ESC>:Denite  -split=floating coc-symbols<CR>
     " noremap <buffer><silent> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
   endif
 endfunction
@@ -202,18 +203,27 @@ Plug 'vim-scripts/VisIncr'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/denite.nvim', {
-    \ 'do': ':UpdateRemotePlugins'
-    \ }
+      \ 'tag': '2.1',
+      \ 'do': ':UpdateRemotePlugins'
+      \ }
 
-nnoremap <leader><leader><leader> :DeniteProjectDir        buffer     file/rec<CR>
-nnoremap <M-p>                    :DeniteProjectDir        buffer     file/rec<CR>
-nnoremap <leader><leader>\        :Denite                  buffer     file/old<CR>
-nnoremap <leader><leader>b        :Denite                  buffer<CR>
-nnoremap <leader><leader><CR>     :Denite                  unite:outline<CR>
-nnoremap <leader><leader>/        :DeniteProjectDir        grep<CR>
-nnoremap <M-S-f>                  :DeniteProjectDir        grep<CR>
-nnoremap <leader><leader>?        :Denite                  change<CR>
-nnoremap <leader><leader>:        :Denite                  command_history<CR>
+nnoremap <leader><leader><leader> :DeniteProjectDir      -split=floating  buffer     file/rec<CR>
+nnoremap <M-p>                    :DeniteProjectDir      -split=floating  buffer     file/rec<CR>
+nnoremap <leader><leader>\        :Denite                -split=floating  buffer     file/old<CR>
+nnoremap <leader><leader>b        :Denite                -split=floating  buffer<CR>
+nnoremap <leader><leader><CR>     :Denite                -split=floating  unite:outline<CR>
+nnoremap <leader><leader>/        :DeniteProjectDir      -split=floating  grep<CR>
+nnoremap <M-S-f>                  :DeniteProjectDir      -split=floating  grep<CR>
+nnoremap <leader><leader>?        :Denite                -split=floating  change<CR>
+nnoremap <leader><leader>:        :Denite                -split=floating  command_history<CR>
+
+autocmd FileType denite call s:SetupDenite()
+
+function! s:SetupDenite() abort
+  nnoremap <silent><buffer><expr> <CR>   denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> i      denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <tab>  denite#do_map('choose_action')
+endfunction
 
 " guess project root
 Plug 'dbakker/vim-projectroot'
