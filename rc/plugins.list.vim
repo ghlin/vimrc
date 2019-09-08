@@ -23,6 +23,8 @@ let s:coc_supported_languages = {
       \ 'python': 1,
       \ 'css': 1,
       \ 'scss': 1,
+      \ 'c': 1,
+      \ 'cpp': 1
       \ }
 
 function! s:SetupLanguageClient()
@@ -127,7 +129,7 @@ let g:clang_periodic_quickfix    = 0
 let g:clang_close_preview        = 0
 let g:clang_trailing_placeholder = 1
 
-Plug 'Rip-Rip/clang_complete'
+" Plug 'Rip-Rip/clang_complete'
 Plug 'vim-jp/cpp-vim'
 
 " XML / HTML
