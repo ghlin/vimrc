@@ -5,6 +5,11 @@
   "suggest.keepCompleteopt": false,
   "suggest.acceptSuggestionOnCommitCharacter": true,
   "tslint.autoFixOnSave": true,
+
+  "diagnostic.infoSign": "💡",
+  "diagnostic.warningSign": "😕",
+  "diagnostic.errorSign": "😱",
+
   "languageserver": {
     "ccls": {
       "command": "ccls",

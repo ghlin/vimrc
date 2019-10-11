@@ -176,7 +176,8 @@ let g:NERDTreeDirArrows           = 0
 let g:NERDTreeWinSize             = 25
 let g:NERDTreeMinimalUI           = 1
 let g:NERDTreeHijackNetrw         = 1
-
+let g:NERDTreeDirArrowExpandable  = "+"
+let g:NERDTreeDirArrowCollapsible = "-"
 let g:NERDTreeSortOrder = [
                 \   '\/$'
                 \ , '\.lst$', '\.txt$', '\.vim$'
@@ -185,7 +186,7 @@ let g:NERDTreeSortOrder = [
                 \ , '\.run$'
                 \ , '*', '\.swp$', '\~$', '.dSYM' ]
 let g:NERDTreeIgnore = [ 'node_modules', '\.swp$', '\~$', '\.dSYM' ]
-let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen=0
 
 hi link NERDTreePart     Normal
 hi link NERDTreePartFile Normal
