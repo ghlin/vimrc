@@ -57,3 +57,13 @@ com! -nargs=0 RmThis        :!rm       -v %
 " when forget `sudo'
 com! -nargs=0 SudoSave     :w !sudo tee % &>/dev/null
 
+function! TogglePaperlikeMode()
+  if get(g:, 'colors_name', 'default') == 'Paperlike'
+    colorscheme default
+  else
+    colorscheme Paperlike
+  endif
+endfunction
+
+nnoremap <M-S-h> :call TogglePaperlikeMode()<CR>
+
