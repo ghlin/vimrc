@@ -91,7 +91,7 @@ set backspace =eol,start,indent
 set mouse=a
 
 " disable cursor style changes
-set guicursor  =
+" set guicursor  =
 
 " insert longest common text, show a menu unless
 " there's only one match
@@ -129,6 +129,7 @@ set updatetime    =800
 set list
 set listchars    =tab:\ \ ,trail:˽,extends:»,precedes:«   ",eol:¬, "⋅
 set conceallevel =2
+" set signcolumn   =yes
 
 " completion & :find command
 set path^=~/.local/include,.,.. "/usr/local/include makes code completion slow

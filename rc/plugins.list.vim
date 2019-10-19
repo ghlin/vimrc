@@ -98,6 +98,7 @@ endfunction
 " autocmd! FileType haskell call SetupMappingsForHaskell()
 
 " typescript
+let g:typescript_ignore_browserwords = 1
 Plug 'quramy/vim-js-pretty-template'
 Plug 'leafgarland/typescript-vim'
 hi! link typescriptHtmlEvents Normal
@@ -145,6 +146,8 @@ let g:use_emmet_complete_tag    = 1
 " colorschemes
 Plug 'fxn/vim-monochrome'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
 let g:lucius_style = 'light'
 let g:lucius_contrast = 'high'
 
@@ -210,10 +213,11 @@ Plug 'Shougo/denite.nvim', {
       \ 'do': ':UpdateRemotePlugins'
       \ }
 
-nnoremap <leader><leader><leader> :DeniteProjectDir      -split=floating  buffer     file/rec<CR>
+nnoremap <leader><leader><leader> :DeniteProjectDir      -split=floating  buffer<CR>
+nnoremap <M-b>                    :Denite                -split=floating  buffer<CR>
+nnoremap <leader><leader>b        :Denite                -split=floating  buffer<CR>
 nnoremap <M-p>                    :DeniteProjectDir      -split=floating  buffer     file/rec<CR>
 nnoremap <leader><leader>\        :Denite                -split=floating  buffer     file/old<CR>
-nnoremap <leader><leader>b        :Denite                -split=floating  buffer<CR>
 nnoremap <leader><leader><CR>     :Denite                -split=floating  unite:outline<CR>
 nnoremap <leader><leader>/        :DeniteProjectDir      -split=floating  grep<CR>
 nnoremap <M-S-f>                  :DeniteProjectDir      -split=floating  grep<CR>

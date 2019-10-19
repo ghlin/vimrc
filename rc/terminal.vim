@@ -42,17 +42,14 @@ elseif current_scheme == 'default'
   hi! DiffDelete ctermfg=Black
 
   " TODO: what if terminal's colorscheme has a light background?
-  hi! TabLine     ctermfg=White ctermbg=Black cterm=none
-  hi! TabLineFill ctermfg=White ctermbg=Black cterm=none
+  hi! TabLineSel  ctermfg=White ctermbg=Black cterm=bold,italic,underline
+  hi! TabLine     ctermfg=Gray  ctermbg=Black cterm=underline
+  hi! TabLineFill ctermfg=Gray  ctermbg=Black cterm=underline
 
   hi! CocFloating ctermbg=235
 
   hi! Pmenu     ctermfg=15     ctermbg=232
   hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
-
-  hi! TabLine      cterm=underline
-  hi! TabLineSel   cterm=underline
-  hi! TabLineFill  cterm=underline
 endif
 
 hi! clear MatchParen
