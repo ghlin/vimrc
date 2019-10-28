@@ -16,10 +16,10 @@ hi!  DiffDelete       term=none cterm=none                   ctermfg=White      
 hi!  DiffText         term=none cterm=none                   ctermfg=226
 hi!  Directory        term=none cterm=none                   ctermfg=240
 hi!  FoldColumn       term=none cterm=none                   ctermfg=249                ctermbg=none
-hi!  Folded           term=none cterm=bold,italic,underline  ctermfg=DarkGray
+hi!  Folded           term=none cterm=italic                 ctermfg=249                ctermbg=none
 hi!  Identifier       term=none cterm=none                   ctermfg=Black
 hi!  IncSearch        term=none cterm=reverse
-hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=Black           ctermbg=none
+hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=Black              ctermbg=none
 hi!  ModeMsg          term=none cterm=bold
 hi!  MoreMsg          term=none cterm=none                   ctermfg=Black
 hi!  NonText          term=none cterm=none                   ctermfg=LightGray
@@ -83,10 +83,69 @@ hi! doxygenComment   cterm=bold,italic ctermfg=DarkGreen
 hi! doxygenBody      cterm=bold,italic ctermfg=DarkGreen
 
 " denite
-hi deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black ctermbg=White
-hi deniteMatchedRange cterm=underline             ctermfg=Black ctermbg=White
-hi! CocFloating       ctermbg=253 ctermfg=Black
-hi! NormalFloat       ctermbg=253 ctermfg=Black
+hi! deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black ctermbg=White
+hi! deniteMatchedRange cterm=underline             ctermfg=Black ctermbg=White
+hi! CocFloating        ctermbg=253 ctermfg=Black
+hi! NormalFloat        ctermbg=253 ctermfg=Black
 
+" ================================== gui ===============================
 
-hi! link               hsExprKeyword               Statement
+hi!  Normal           gui=none                   guifg=Black              guibg=White
+hi!  Comment          gui=italic                 guifg=DarkGray           guibg=none
+hi!  Constant         gui=none                   guifg=DarkGray
+hi!  DiffAdd          gui=none                                            guibg=Black
+hi!  DiffChange       gui=italic                 guifg=Black              guibg=#DADADA
+hi!  DiffDelete       gui=none                   guifg=White              guibg=Black
+hi!  DiffText         gui=none                   guifg=#FFFF00
+hi!  Directory        gui=none                   guifg=#585858
+hi!  FoldColumn       gui=none                   guifg=#B2B2B2            guibg=none
+hi!  Folded           gui=bold,italic,underline  guifg=DarkGray
+hi!  Identifier       gui=none                   guifg=Black
+hi!  IncSearch        gui=reverse
+hi!  MatchParen       gui=underline,bold,italic  guifg=Black              guibg=none
+hi!  ModeMsg          gui=bold
+hi!  MoreMsg          gui=none                   guifg=Black
+hi!  NonText          gui=none                   guifg=LightGray
+hi!  Pmenu            gui=none                   guifg=White              guibg=Black
+hi!  PmenuSel         gui=bold,italic            guifg=Black              guibg=White
+hi!  PreProc          gui=none                   guifg=Black
+hi!  Question         gui=none                   guifg=Black
+hi!  Search           gui=none                   guifg=White              guibg=Red
+hi!  Special          gui=bold,underline         guifg=Black
+hi!  SpecialKey       gui=bold,underline         guifg=Black
+hi!  Statement        gui=bold                   guifg=Black
+hi!  TabLineSel       gui=bold,underline         guifg=White              guibg=Black
+hi!  TabLine          gui=underline              guifg=Black              guibg=White
+hi!  TabLineFill      gui=underline              guifg=Black              guibg=White
+hi!  Title            gui=none                   guifg=Black
+hi!  Todo             gui=underline,bold         guifg=White              guibg=Red
+hi!  Type             gui=bold                   guifg=Black
+hi!  Visual           gui=bold                   guifg=White              guibg=DarkGray
+hi!  VisualNOS        gui=underline
+hi!  WarningMsg       gui=bold,italic            guifg=DarkRed            guibg=White
+hi!  ErrorMsg         gui=bold,italic            guifg=DarkRed            guibg=White
+hi!  WildMenu                                    guifg=Black              guibg=White
+
+hi! ColorColumn        gui=none                                        guibg=Black
+hi! CursorLine         gui=inverse,inverse
+hi! CursorLineNr       gui=bold              guifg=Black
+hi! LineNr             gui=none              guifg=Gray
+hi! StatusLine         gui=bold              guifg=White               guibg=Black
+hi! StatusLineNC                             guifg=White               guibg=Black
+hi! VertSplit                                guifg=DarkGray
+
+hi! Delimiter      gui=bold guifg=DarkGray
+hi! hsDelimiter    gui=bold guifg=DarkGray
+hi! hsStructure    gui=bold guifg=DarkGray
+hi! hsOperator     gui=bold guifg=Black
+
+hi! doxygenStartSkip gui=bold,italic guifg=DarkGreen
+hi! doxygenStart     gui=bold,italic guifg=DarkGreen
+hi! doxygenComment   gui=bold,italic guifg=DarkGreen
+hi! doxygenBody      gui=bold,italic guifg=DarkGreen
+
+" denite
+hi! deniteMatchedChar  gui=underline,italic,bold guifg=Black    guibg=White
+hi! deniteMatchedRange gui=underline             guifg=Black    guibg=White
+hi! CocFloating                                  guibg=#DADADA  guifg=Black
+hi! NormalFloat                                  guibg=#DADADA  guifg=Black
