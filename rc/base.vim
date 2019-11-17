@@ -174,6 +174,9 @@ augroup Misc
         \ endif
 augroup END
 
+" the silver_searcher
+set grepprg=ag\ --nogroup\ --nocolor
+
 " {{{ digraph subscripts.
 execute "digraphs ks " . 0x2096 
 execute "digraphs as " . 0x2090

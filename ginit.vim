@@ -1,4 +1,8 @@
-if exists('g:GtkGuiLoaded')
+let s:ginit_override_rc=expand('~/.ginit.vim')
+
+if filereadable(s:ginit_override_rc)
+  exec 'source ' . s:ginit_override_rc
+elseif exists('g:GtkGuiLoaded')
   call rpcnotify(1, 'Gui', 'Font', 'Iosevka SS10 Medium 16')
   call rpcnotify(1, 'Gui', 'Popupmenu', 0)
   colorscheme Paperlike
