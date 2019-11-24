@@ -57,12 +57,10 @@ endfunction
 
 function! s:language_setups['c']()
   call s:local_chdir()
-  nnoremap <buffer><silent> <leader>q :call g:ClangUpdateQuickFix()<CR>
 endfunction
 
 function! s:language_setups['cpp']()
   call s:local_chdir()
-  nnoremap <buffer><silent> <leader>q :call g:ClangUpdateQuickFix()<CR>
 endfunction
 
 function! s:setup_language_spec_settings()

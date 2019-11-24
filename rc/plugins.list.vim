@@ -57,44 +57,6 @@ let g:haskell_json          = 0
 let g:haskell_xml           = 0
 let g:haskell_hsp           = 0
 
-function! SetupMappingsForHaskell()
-  function! ListSymbols()
-    call LanguageClient#textDocument_documentSymbol()
-    call ToggleList("Symbols", 'l')
-  endfunction
-
-  function! ListAllSymbols()
-    call LanguageClient_workspace_symbol()
-    call ToggleList("All Symbols", 'l')
-  endfunction
-
-  function! ClosePreviewIfAny()
-    let last_hover_window_id = win_getid(bufwinnr(bufnr('__LanguageClient__')))
-    let winnr = win_id2win(last_hover_window_id)
-    if winnr > 0
-      execute winnr . 'wincmd c'
-    else
-      normal <C-c>
-    endif
-  endfunction
-
-  function! HIESplitCase()
-    let arguments = [
-          \ {
-          \   'file': 'file://' . expand('%:p'),
-          \   'pos': { 'line': line('.') - 1, 'character': col('.') - 1 }
-          \ }
-          \ ]
-    call LanguageClient#workspace_executeCommand('ghcmod:casesplit', arguments)
-  endfunction
-
-  command! -bang -nargs=? SplitCase   :call HIESplitCase()
-
-  noremap <buffer>         <C-x><C-s> :call ListSymbols()<CR>
-  noremap <buffer>         <C-x><C-a> :call ListAllSymbols()<CR>
-  noremap <silent><buffer> <C-c>      :call ClosePreviewIfAny()<CR>
-endfunction
-
 " autocmd! FileType haskell call SetupMappingsForHaskell()
 
 " typescript
@@ -112,26 +74,10 @@ Plug 'iamcco/markdown-preview.vim'
 let g:mkdp_py_version = 2
 
 " C / C++
-if has('macunix')
-  let g:clang_library_path         = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
-endif
-
-let g:clang_complete_auto        = 1
-let g:clang_auto_select          = 1
-let g:clang_complete_copen       = 1
-let g:clang_use_library          = 1
-let g:clang_complete_auto        = 0
-let g:clang_snippets             = 1
-let g:clang_snippets_engine      = 'ultisnips'
-let g:clang_hl_errors            = 0
-let g:clang_complete_macros      = 1
-let g:clang_complete_patterns    = 1
-let g:clang_periodic_quickfix    = 0
-let g:clang_close_preview        = 0
-let g:clang_trailing_placeholder = 1
-
-" Plug 'Rip-Rip/clang_complete'
 Plug 'vim-jp/cpp-vim'
+Plug 'rhysd/vim-clang-format'
+
+autocmd! FileType c,cpp vnoremap <buffer>gq :ClangFormat<CR>
 
 " XML / HTML
 Plug 'mattn/emmet-vim'
@@ -248,31 +194,3 @@ Plug 'embear/vim-localvimrc'
 
 " snipets
 Plug 'SirVer/ultisnips'
-
-" complete
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" let g:deoplete#enable_at_startup = 1
-
-"if has('py3')
-"  let g:UltiSnipsUsePythonVersion = 2
-"endif
-
-"Plug 'Shougo/neosnippet.vim'
-"Plug 'Shougo/neosnippet-snippets'
-"
-"imap <Tab>     <Plug>(neosnippet_expand_or_jump)
-"smap <Tab>     <Plug>(neosnippet_expand_or_jump)
-"xmap <Tab>     <Plug>(neosnippet_expand_target)
-"
-"smap <expr><C-j> neosnippet#expandable_or_jumpable() ?
-"      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-j>"
-"
-"if has('conceal')
-"  set conceallevel=2 concealcursor=niv
-"endif

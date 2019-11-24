@@ -30,6 +30,7 @@ hi!  Question         term=none cterm=none                   ctermfg=Black
 hi!  Search           term=none cterm=none                   ctermfg=White              ctermbg=Red
 hi!  Special          term=none cterm=bold,underline         ctermfg=Black
 hi!  SpecialKey       term=none cterm=bold,underline         ctermfg=Black
+hi!  Operator         term=none cterm=none                   ctermfg=Black              ctermbg=None
 hi!  Statement        term=none cterm=bold                   ctermfg=Black
 hi!  TabLineSel       term=none cterm=bold,underline         ctermfg=White              ctermbg=Black
 hi!  TabLine          term=none cterm=underline              ctermfg=Black              ctermbg=White
@@ -91,8 +92,8 @@ hi! NormalFloat        ctermbg=253 ctermfg=Black
 " ================================== gui ===============================
 
 hi!  Normal           gui=none                   guifg=Black              guibg=White
-hi!  Comment          gui=italic                 guifg=DarkGray           guibg=none
-hi!  Constant         gui=none                   guifg=DarkGray
+hi!  Comment          gui=italic,underline       guifg=#999999            guibg=White
+hi!  Constant         gui=none                   guifg=#888888
 hi!  DiffAdd          gui=none                                            guibg=Black
 hi!  DiffChange       gui=italic                 guifg=Black              guibg=#DADADA
 hi!  DiffDelete       gui=none                   guifg=White              guibg=Black
@@ -105,7 +106,7 @@ hi!  IncSearch        gui=reverse
 hi!  MatchParen       gui=underline,bold,italic  guifg=Black              guibg=none
 hi!  ModeMsg          gui=bold
 hi!  MoreMsg          gui=none                   guifg=Black
-hi!  NonText          gui=none                   guifg=LightGray
+hi!  NonText          gui=none                   guifg=#999999
 hi!  Pmenu            gui=none                   guifg=White              guibg=Black
 hi!  PmenuSel         gui=bold,italic            guifg=Black              guibg=White
 hi!  PreProc          gui=none                   guifg=Black
@@ -113,7 +114,8 @@ hi!  Question         gui=none                   guifg=Black
 hi!  Search           gui=none                   guifg=White              guibg=Red
 hi!  Special          gui=bold,underline         guifg=Black
 hi!  SpecialKey       gui=bold,underline         guifg=Black
-hi!  Statement        gui=bold                   guifg=Black
+hi!  Operator         gui=none                   guifg=Black              guibg=none
+hi!  Statement        gui=bold,underline         guifg=Black
 hi!  TabLineSel       gui=bold,underline         guifg=White              guibg=Black
 hi!  TabLine          gui=underline              guifg=Black              guibg=White
 hi!  TabLineFill      gui=underline              guifg=Black              guibg=White
@@ -125,6 +127,7 @@ hi!  VisualNOS        gui=underline
 hi!  WarningMsg       gui=bold,italic            guifg=DarkRed            guibg=White
 hi!  ErrorMsg         gui=bold,italic            guifg=DarkRed            guibg=White
 hi!  WildMenu                                    guifg=Black              guibg=White
+hi!  SignColumn       gui=none                                            guibg=White
 
 hi! ColorColumn        gui=none                                        guibg=Black
 hi! CursorLine         gui=inverse,inverse
