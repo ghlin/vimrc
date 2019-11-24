@@ -87,6 +87,20 @@ let g:user_emmet_expandword_key = '<c-e>'
 let g:user_emmit_expandabbr_key = '<c-e>'
 
 let g:use_emmet_complete_tag    = 1
+
+" Alda
+Plug 'daveyarwood/vim-alda'
+
+autocmd FileType alda call s:SetupAlda()
+
+function! s:SetupAlda() abort
+  nmap <buffer><C-x><C-p><C-p> <localleader>pp
+  nmap <buffer><C-x><C-p>      <localleader>paw
+  nmap <buffer><C-x><C-a><C-p> :AldaPlayBuffer<CR>
+  vmap <buffer><C-x><C-p>      <localleader>p
+endfunction
+
+
 " }}}
 
 " colorschemes
@@ -156,7 +170,8 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/denite.nvim', {
       \ 'tag': '2.1',
-      \ 'do': ':UpdateRemotePlugins'
+      \ 'do': ':UpdateRemotePlugins',
+      \ 'frozen': 1
       \ }
 
 nnoremap <leader><leader><leader> :DeniteProjectDir      -split=floating  buffer<CR>

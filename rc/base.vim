@@ -1,7 +1,8 @@
 " basic settings
 
 " use <space> as leader-key
-let g:mapleader = "\<Space>"
+let g:mapleader      = "\<Space>"
+let g:maplocalleader = "\<Space>"
 
 " setup python library path for mac
 if has('macunix')
