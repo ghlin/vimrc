@@ -197,3 +197,6 @@ execute "digraphs us " . 0x1D64
 execute "digraphs vs " . 0x1D65
 execute "digraphs xs " . 0x2093
 " }}}
+
+" sql.vim:
+let g:sql_type_default = 'mysql'

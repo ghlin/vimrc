@@ -42,4 +42,13 @@ class $1
 
 endsnippet
 
+snippet foreach "for (iter..)"
+for ( std::${1:vector}<${2:type}>::${4:const_}iterator ${5:iter} = ${3:container}.begin()
+    ; $5 != $3.end()
+    ; ++$5)
+{
+    $0
+}
+endsnippet
+
 # vim:ft=snippets:
