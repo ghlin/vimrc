@@ -32,8 +32,8 @@ function! s:SetupLanguageClient()
     map     <buffer><silent> <F2>                   <Plug>(coc-rename)
     map     <buffer><silent> <C-]>                  <Plug>(coc-definition)
     map     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
-    map     <buffer><silent> <M-S-p>                <ESC>:Denite  -split=floating coc-command<CR>
-    map     <buffer><silent> <leader><leader><CR>   <ESC>:Denite  -split=floating coc-symbols<CR>
+    map     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
+    map     <buffer><silent> <leader><leader><CR>   <ESC>:Denite   coc-symbols<CR>
     " noremap <buffer><silent> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
   endif
 endfunction
@@ -169,28 +169,39 @@ Plug 'vim-scripts/VisIncr'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/denite.nvim', {
-      \ 'tag': '2.1',
       \ 'do': ':UpdateRemotePlugins',
-      \ 'frozen': 1
       \ }
 
-nnoremap <leader><leader><leader> :DeniteProjectDir      -split=floating  buffer<CR>
-nnoremap <M-b>                    :Denite                -split=floating  buffer<CR>
-nnoremap <leader><leader>b        :Denite                -split=floating  buffer<CR>
-nnoremap <M-p>                    :DeniteProjectDir      -split=floating  buffer     file/rec<CR>
-nnoremap <leader><leader>\        :Denite                -split=floating  buffer     file/old<CR>
-nnoremap <leader><leader><CR>     :Denite                -split=floating  unite:outline<CR>
-nnoremap <leader><leader>/        :DeniteProjectDir      -split=floating  grep<CR>
-nnoremap <M-S-f>                  :DeniteProjectDir      -split=floating  grep<CR>
-nnoremap <leader><leader>?        :Denite                -split=floating  change<CR>
-nnoremap <leader><leader>:        :Denite                -split=floating  command_history<CR>
+nnoremap <silent><leader><leader><leader> :DeniteProjectDir  buffer<CR>
+nnoremap <silent><M-b>                    :Denite            buffer<CR>
+nnoremap <silent><leader><leader>b        :Denite            buffer<CR>
+nnoremap <silent><M-p>                    :DeniteProjectDir  buffer     file/rec<CR>
+nnoremap <silent><leader><leader>\        :Denite            buffer     file/old<CR>
+nnoremap <silent><leader><leader><CR>     :Denite            unite:outline<CR>
+nnoremap <silent><leader><leader>/        :DeniteProjectDir  grep<CR>
+nnoremap <silent><M-S-f>                  :DeniteProjectDir  grep<CR>
+nnoremap <silent><leader><leader>?        :Denite            change<CR>
+nnoremap <silent><leader><leader>:        :Denite            command_history<CR>
 
-autocmd FileType denite call s:SetupDenite()
+autocmd FileType denite        call s:SetupDenite()
+autocmd FileType denite-filter call s:SetupDeniteFilter()
 
 function! s:SetupDenite() abort
   nnoremap <silent><buffer><expr> <CR>   denite#do_map('do_action')
   nnoremap <silent><buffer><expr> i      denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <tab>  denite#do_map('choose_action')
+endfunction
+
+function! s:SetupDeniteFilter() abort
+  inoremap <silent><buffer>        <C-n>   <ESC><C-w>p:call cursor(line('.') + 1, 0)<CR><C-w>pA
+  inoremap <silent><buffer>        <C-p>   <ESC><C-w>p:call cursor(line('.') - 1, 0)<CR><C-w>pA
+  inoremap <silent><buffer><expr>  <CR>    denite#do_map('do_action')
+  inoremap <silent><buffer><expr>  <ESC>   denite#do_map('quit')
+  inoremap <silent><buffer><expr>  <C-c>   denite#do_map('quit')
+  inoremap <silent><buffer><expr>  <M-n>   denite#do_map('quit')
+  inoremap <silent><buffer><expr>  <M-w>   denite#do_map('quit')
+  inoremap <silent><buffer><expr>  zz      denite#do_map('quit')
+  inoremap <silent><buffer><expr>  <tab>   denite#do_map('choose_action')
 endfunction
 
 " guess project root

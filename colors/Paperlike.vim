@@ -10,15 +10,15 @@ hi! clear NormalFloat
 hi!  Normal           term=none cterm=none                   ctermfg=Black              ctermbg=White
 hi!  Comment          term=none cterm=italic                 ctermfg=DarkGray           ctermbg=none
 hi!  Constant         term=none cterm=none                   ctermfg=DarkGray
-hi!  DiffAdd          term=none cterm=none                                              ctermbg=Black
+hi!  DiffAdd          term=none cterm=bold                   ctermfg=White              ctermbg=DarkGray
 hi!  DiffChange       term=none cterm=italic                 ctermfg=Black              ctermbg=253
-hi!  DiffDelete       term=none cterm=none                   ctermfg=White              ctermbg=Black
-hi!  DiffText         term=none cterm=none                   ctermfg=226
+hi!  DiffDelete       term=none cterm=none                   ctermfg=Black              ctermbg=White
+hi!  DiffText         term=none cterm=none                   ctermfg=White              ctermbg=Black
 hi!  Directory        term=none cterm=none                   ctermfg=240
 hi!  FoldColumn       term=none cterm=none                   ctermfg=249                ctermbg=none
 hi!  Folded           term=none cterm=italic                 ctermfg=249                ctermbg=none
 hi!  Identifier       term=none cterm=none                   ctermfg=Black
-hi!  IncSearch        term=none cterm=reverse
+hi!  IncSearch        term=none cterm=reverse,italic
 hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=Black              ctermbg=none
 hi!  ModeMsg          term=none cterm=bold
 hi!  MoreMsg          term=none cterm=none                   ctermfg=Black
@@ -27,7 +27,7 @@ hi!  Pmenu            term=none cterm=none                   ctermfg=White      
 hi!  PmenuSel         term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
 hi!  PreProc          term=none cterm=none                   ctermfg=Black
 hi!  Question         term=none cterm=none                   ctermfg=Black
-hi!  Search           term=none cterm=none                   ctermfg=White              ctermbg=Red
+hi!  Search           term=none cterm=italic                 ctermfg=White              ctermbg=Black
 hi!  Special          term=none cterm=bold,underline         ctermfg=Black
 hi!  SpecialKey       term=none cterm=bold,underline         ctermfg=Black
 hi!  Operator         term=none cterm=none                   ctermfg=Black              ctermbg=None
@@ -36,13 +36,14 @@ hi!  TabLineSel       term=none cterm=bold,underline         ctermfg=White      
 hi!  TabLine          term=none cterm=underline              ctermfg=Black              ctermbg=White
 hi!  TabLineFill      term=none cterm=underline              ctermfg=Black              ctermbg=White
 hi!  Title            term=none cterm=none                   ctermfg=Black
-hi!  Todo             term=none cterm=underline,bold         ctermfg=White              ctermbg=Red
+hi!  Todo             term=none cterm=underline,bold         ctermfg=White              ctermbg=Black
 hi!  Type             term=none cterm=bold                   ctermfg=Black
 hi!  Visual           term=none cterm=bold                   ctermfg=White              ctermbg=DarkGray
 hi!  VisualNOS        term=none cterm=underline
-hi!  WarningMsg       term=none cterm=bold,italic            ctermfg=DarkRed            ctermbg=White
-hi!  ErrorMsg         term=none cterm=bold,italic            ctermfg=DarkRed            ctermbg=White
+hi!  WarningMsg       term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
+hi!  ErrorMsg         term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
 hi!  WildMenu                                                ctermfg=Black              ctermbg=White
+hi!  Error            term=none cterm=bold,italic            ctermfg=White              ctermbg=Black
 
 "just patch here
 hi! clear CursorLineNr
@@ -78,10 +79,10 @@ hi! hsStructure    cterm=bold ctermfg=DarkGray
 hi! hsOperator     cterm=bold ctermfg=Black
 hi! link hsExprKeyword Statement
 
-hi! doxygenStartSkip cterm=bold,italic ctermfg=DarkGreen
-hi! doxygenStart     cterm=bold,italic ctermfg=DarkGreen
-hi! doxygenComment   cterm=bold,italic ctermfg=DarkGreen
-hi! doxygenBody      cterm=bold,italic ctermfg=DarkGreen
+hi! doxygenStartSkip cterm=bold,italic ctermfg=Black
+hi! doxygenStart     cterm=bold,italic ctermfg=Black
+hi! doxygenComment   cterm=bold,italic ctermfg=Black
+hi! doxygenBody      cterm=bold,italic ctermfg=Black
 
 " denite
 hi! deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black ctermbg=White
