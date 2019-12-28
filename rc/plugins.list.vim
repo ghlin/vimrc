@@ -105,7 +105,7 @@ endfunction
 
 " colorschemes
 Plug 'fxn/vim-monochrome'
-Plug 'jonathanfilip/vim-lucius'
+Plug 'jaredgorski/SpaceCamp'
 Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
 let g:lucius_style = 'light'
@@ -155,9 +155,11 @@ hi link NERDTreePart     Normal
 hi link NERDTreePartFile Normal
 
 " visualize undo tree
-Plug 'vim-scripts/Gundo'
 
-nmap <leader><leader><BS>    :GundoToggle<CR>
+" let g:gundo_prefer_python3=1
+Plug 'mbbill/undotree'
+
+nmap <leader><leader><BS>    :UndotreeToggle<CR>
 
 " grep
 Plug 'mileszs/ack.vim'

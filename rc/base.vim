@@ -200,3 +200,5 @@ execute "digraphs xs " . 0x2093
 
 " sql.vim:
 let g:sql_type_default = 'mysql'
+
+let g:prefered_colorscheme = 'daily'

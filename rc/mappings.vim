@@ -59,7 +59,7 @@ com! -nargs=0 SudoSave     :w !sudo tee % &>/dev/null
 
 function! TogglePaperlikeMode()
   if get(g:, 'colors_name', 'default') == 'Paperlike'
-    colorscheme default
+    exec 'colorscheme ' . g:prefered_colorscheme
   else
     colorscheme Paperlike
   endif
