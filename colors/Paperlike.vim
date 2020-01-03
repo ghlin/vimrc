@@ -27,7 +27,7 @@ hi!  Pmenu            term=none cterm=none                   ctermfg=White      
 hi!  PmenuSel         term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
 hi!  PreProc          term=none cterm=none                   ctermfg=Black
 hi!  Question         term=none cterm=none                   ctermfg=Black
-hi!  Search           term=none cterm=italic                 ctermfg=White              ctermbg=Black
+hi!  Search           term=none cterm=bold,underline         ctermfg=Black              ctermbg=White
 hi!  Special          term=none cterm=bold,underline         ctermfg=Black
 hi!  SpecialKey       term=none cterm=bold,underline         ctermfg=Black
 hi!  Operator         term=none cterm=none                   ctermfg=Black              ctermbg=None
@@ -43,7 +43,7 @@ hi!  VisualNOS        term=none cterm=underline
 hi!  WarningMsg       term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
 hi!  ErrorMsg         term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
 hi!  WildMenu                                                ctermfg=Black              ctermbg=White
-hi!  Error            term=none cterm=bold,italic            ctermfg=White              ctermbg=Black
+hi!  Error            term=none cterm=italic,strikethrough   ctermfg=DarkRed            ctermbg=White
 
 "just patch here
 hi! clear CursorLineNr
@@ -90,6 +90,9 @@ hi! deniteMatchedRange cterm=underline             ctermfg=Black ctermbg=White
 hi! CocFloating        ctermbg=253 ctermfg=Black
 hi! NormalFloat        ctermbg=253 ctermfg=Black
 
+" make
+hi! makeSpecial       cterm=none                   ctermfg=Black ctermbg=White
+
 " ================================== gui ===============================
 
 hi!  Normal           gui=none                   guifg=Black              guibg=White
@@ -112,7 +115,7 @@ hi!  Pmenu            gui=none                   guifg=White              guibg=
 hi!  PmenuSel         gui=bold,italic            guifg=Black              guibg=White
 hi!  PreProc          gui=none                   guifg=Black
 hi!  Question         gui=none                   guifg=Black
-hi!  Search           gui=none                   guifg=White              guibg=Red
+hi!  Search           gui=bold,underline,italic  guifg=Black              guibg=White
 hi!  Special          gui=bold,underline         guifg=Black
 hi!  SpecialKey       gui=bold,underline         guifg=Black
 hi!  Operator         gui=none                   guifg=Black              guibg=none
@@ -153,3 +156,6 @@ hi! deniteMatchedChar  gui=underline,italic,bold guifg=Black    guibg=White
 hi! deniteMatchedRange gui=underline             guifg=Black    guibg=White
 hi! CocFloating                                  guibg=#DADADA  guifg=Black
 hi! NormalFloat                                  guibg=#DADADA  guifg=Black
+
+" make
+hi! makeSpecial       gui=none                   guifg=Black    guibg=White
