@@ -27,6 +27,8 @@ set novisualbell
 set noerrorbells
 set showmatch
 
+set virtualedit=block  " allow selection past end of line
+
 " match <, >
 set matchpairs +=<:>
 set matchtime   =4
