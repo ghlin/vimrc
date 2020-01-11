@@ -4,17 +4,6 @@
 let g:mapleader      = "\<Space>"
 let g:maplocalleader = "\<Space>"
 
-" setup python library path for mac
-if has('macunix')
-  if !has('nvim')
-  set pythonthreehome="/usr/local/Frameworks/Python.framework/Versions/3.7"
-  set pythonthreedll="/usr/local/Frameworks/Python.framework/Versions/3.7/lib/libpython3.7m.dylib"
-  endif
-
-  " and haskell.
-  let $PATH=$PATH . ":" . $HOME . "/Library/Haskell/bin"
-endif
-
 set expandtab
 set shiftwidth  =2
 set softtabstop =2
@@ -36,8 +25,8 @@ set matchtime   =4
 " enable doxygen highlighting
 let g:load_doxygen_syntax = 1
 
-set statusline=[%n]%(\ %.30F%)%(\ \:\:\ %{ProjectNameGuess()}%)\ %=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
-set fillchars=stl:\ ,stlnc:-
+set statusline=[%n]%(\ %.35F%)\ %=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
+set fillchars=stl:\ ,stlnc:-,vert:¦
 
 " where am i?
 set ruler
