@@ -108,8 +108,8 @@ Plug 'fxn/vim-monochrome'
 Plug 'jaredgorski/SpaceCamp'
 Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
-let g:lucius_style = 'light'
-let g:lucius_contrast = 'high'
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'lifepillar/vim-solarized8'
 
 " additional text objects
 Plug 'kana/vim-textobj-user'    " required by vim-textobj-indent
