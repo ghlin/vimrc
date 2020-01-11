@@ -39,5 +39,8 @@ hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
 
 hi! clear MatchParen
 hi! MatchParen cterm=underline,italic gui=underline,italic
+hi! NonText    cterm=none             ctermfg=19
+
+" hi! link typescriptReserved Normal
 
 let colors_name="daily"

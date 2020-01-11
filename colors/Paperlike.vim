@@ -61,7 +61,6 @@ hi! LineNr           cterm=none            ctermfg=Gray
 hi! StatusLine       cterm=bold            ctermfg=White             ctermbg=Black
 hi! StatusLineNC                           ctermfg=White             ctermbg=Black
 hi! VertSplit                              ctermfg=DarkGray
-hi! link Conceal Normal
 
 " for c/cpp
 " hi! cStatement     cterm=bold,underline
@@ -77,7 +76,6 @@ hi! Delimiter      cterm=bold ctermfg=DarkGray
 hi! hsDelimiter    cterm=bold ctermfg=DarkGray
 hi! hsStructure    cterm=bold ctermfg=DarkGray
 hi! hsOperator     cterm=bold ctermfg=Black
-hi! link hsExprKeyword Statement
 
 hi! doxygenStartSkip cterm=bold,italic ctermfg=Black
 hi! doxygenStart     cterm=bold,italic ctermfg=Black
@@ -159,3 +157,8 @@ hi! NormalFloat                                  guibg=#DADADA  guifg=Black
 
 " make
 hi! makeSpecial       gui=none                   guifg=Black    guibg=White
+
+" misc
+hi! link Conceal            Normal
+hi! link hsExprKeyword      Statement
+" hi! link typescriptReserved Normal
