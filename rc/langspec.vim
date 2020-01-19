@@ -56,11 +56,11 @@ function! s:language_setups['typescript']()
 endfunction
 
 function! s:language_setups['c']()
-  call s:local_chdir()
+  " call s:local_chdir()
 endfunction
 
 function! s:language_setups['cpp']()
-  call s:local_chdir()
+  " call s:local_chdir()
 endfunction
 
 function! s:setup_language_spec_settings()
@@ -77,5 +77,6 @@ function! s:setup_language_spec_settings()
 endfunction
 
 augroup langspec
+  autocmd!
   autocmd BufEnter,BufRead  * :call s:setup_language_spec_settings()
 augroup END
