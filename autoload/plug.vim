@@ -841,6 +841,7 @@ function! s:prepare(...)
     execute 'silent! unmap <buffer>' k
   endfor
   setlocal buftype=nofile bufhidden=wipe nobuflisted nolist noswapfile nowrap cursorline modifiable nospell
+  set nocul
   if exists('+colorcolumn')
     setlocal colorcolumn=
   endif

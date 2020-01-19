@@ -104,12 +104,8 @@ endfunction
 " }}}
 
 " colorschemes
-Plug 'fxn/vim-monochrome'
-Plug 'jaredgorski/SpaceCamp'
 Plug 'nanotech/jellybeans.vim'
-Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'lifepillar/vim-solarized8'
 
 " additional text objects
 Plug 'kana/vim-textobj-user'    " required by vim-textobj-indent
@@ -161,15 +157,10 @@ Plug 'mbbill/undotree'
 
 nmap <leader><leader><BS>    :UndotreeToggle<CR>
 
-" grep
-Plug 'mileszs/ack.vim'
-
 " insert sequence
 Plug 'vim-scripts/VisIncr'
 
-" unite / denite
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
+" denite
 Plug 'Shougo/denite.nvim', {
       \ 'do': ':UpdateRemotePlugins',
       \ }
@@ -180,7 +171,7 @@ nnoremap <silent><leader><leader>b        :Denite            buffer<CR>
 nnoremap <silent><M-p>                    :DeniteProjectDir  buffer file/rec<CR>
 nnoremap <silent><M-o>                    :Denite            file<CR>
 nnoremap <silent><leader><leader>\        :Denite            buffer file/old<CR>
-nnoremap <silent><leader><leader><CR>     :Denite            unite:outline<CR>
+nnoremap <silent><leader><leader><CR>     :Denite            outline<CR>
 
 autocmd FileType denite        call s:SetupDenite()
 autocmd FileType denite-filter call s:SetupDeniteFilter()
@@ -212,7 +203,7 @@ endfunction
 
 com! -nargs=0 R             :call ProjectRootCD()
 
-nnoremap <leader><leader>!     :ProjectRootExe<space>
+nnoremap <leader>! :ProjectRootExe<space>
 
 " per-project vimrc
 Plug 'embear/vim-localvimrc'
