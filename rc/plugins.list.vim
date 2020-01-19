@@ -174,16 +174,13 @@ Plug 'Shougo/denite.nvim', {
       \ 'do': ':UpdateRemotePlugins',
       \ }
 
-nnoremap <silent><leader><leader><leader> :DeniteProjectDir  buffer<CR>
+nnoremap <silent><leader><leader><leader> :DeniteProjectDir  buffer file<CR>
 nnoremap <silent><M-b>                    :Denite            buffer<CR>
 nnoremap <silent><leader><leader>b        :Denite            buffer<CR>
-nnoremap <silent><M-p>                    :DeniteProjectDir  buffer     file/rec<CR>
-nnoremap <silent><leader><leader>\        :Denite            buffer     file/old<CR>
+nnoremap <silent><M-p>                    :DeniteProjectDir  buffer file/rec<CR>
+nnoremap <silent><M-o>                    :Denite            file<CR>
+nnoremap <silent><leader><leader>\        :Denite            buffer file/old<CR>
 nnoremap <silent><leader><leader><CR>     :Denite            unite:outline<CR>
-nnoremap <silent><leader><leader>/        :DeniteProjectDir  grep<CR>
-nnoremap <silent><M-S-f>                  :DeniteProjectDir  grep<CR>
-nnoremap <silent><leader><leader>?        :Denite            change<CR>
-nnoremap <silent><leader><leader>:        :Denite            command_history<CR>
 
 autocmd FileType denite        call s:SetupDenite()
 autocmd FileType denite-filter call s:SetupDeniteFilter()
