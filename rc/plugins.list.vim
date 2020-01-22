@@ -29,16 +29,16 @@ let s:coc_supported_languages = {
 
 function! s:SetupLanguageClient()
   if has_key(s:coc_supported_languages, &ft)
-    map     <buffer><silent> <F2>                   <Plug>(coc-rename)
-    map     <buffer><silent> <C-]>                  <Plug>(coc-definition)
-    map     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
-    map     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
-    map     <buffer><silent> <leader><leader><CR>   <ESC>:Denite   coc-symbols<CR>
-    " noremap <buffer><silent> <C-x><C-p> :call LanguageClient_contextMenu()<CR>
+    nmap     <buffer><silent> <F2>                   <Plug>(coc-rename)
+    nmap     <buffer><silent> <C-]>                  <Plug>(coc-definition)
+    nmap     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
+    nmap     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
+    nmap     <buffer><silent> <M-l>                  <ESC>:Denite   coc-symbols<CR>
   endif
 endfunction
 
 augroup lang_client
+  autocmd!
   autocmd BufRead,BufEnter * :call s:SetupLanguageClient()
 augroup END
 
@@ -165,13 +165,11 @@ Plug 'Shougo/denite.nvim', {
       \ 'do': ':UpdateRemotePlugins',
       \ }
 
-nnoremap <silent><leader><leader><leader> :DeniteProjectDir  buffer file<CR>
 nnoremap <silent><M-b>                    :Denite            buffer<CR>
-nnoremap <silent><leader><leader>b        :Denite            buffer<CR>
 nnoremap <silent><M-p>                    :DeniteProjectDir  buffer file/rec<CR>
 nnoremap <silent><M-o>                    :Denite            file<CR>
-nnoremap <silent><leader><leader>\        :Denite            buffer file/old<CR>
-nnoremap <silent><leader><leader><CR>     :Denite            outline<CR>
+nnoremap <silent><M-m>                    :Denite            file/old<CR>
+nnoremap <silent><M-l>                    :Denite            outline<CR>
 
 autocmd FileType denite        call s:SetupDenite()
 autocmd FileType denite-filter call s:SetupDeniteFilter()
@@ -189,6 +187,7 @@ function! s:SetupDeniteFilter() abort
   inoremap <silent><buffer><expr>  <ESC>   denite#do_map('quit')
   inoremap <silent><buffer><expr>  <C-c>   denite#do_map('quit')
   inoremap <silent><buffer><expr>  <M-n>   denite#do_map('quit')
+  inoremap <silent><buffer><expr>  <M-p>   denite#do_map('quit')
   inoremap <silent><buffer><expr>  <M-w>   denite#do_map('quit')
   inoremap <silent><buffer><expr>  zz      denite#do_map('quit')
   inoremap <silent><buffer><expr>  <tab>   denite#do_map('choose_action')

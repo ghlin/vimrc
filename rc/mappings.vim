@@ -37,6 +37,8 @@ nnoremap <silent> <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (fol
 " the currently-editing file
 function! NavigateToOrCreateFilePrompt()
   call inputsave()
+
+  echohl None
   let newfile = input('Goto/New: ', expand('%:p:h') . '/', "file")
   call inputrestore()
 
@@ -46,7 +48,6 @@ function! NavigateToOrCreateFilePrompt()
 endfunction
 
 nnoremap <M-n> :call NavigateToOrCreateFilePrompt()<CR>
-nnoremap <M-g> :call NavigateToOrCreateFilePrompt()<CR>
 
 com! -nargs=0 LCD           :lcd       %:h
 com! -nargs=0 CD            :cd        %:h
@@ -59,13 +60,13 @@ com! -nargs=0 SudoSave     :w !sudo tee % &>/dev/null
 
 function! TogglePaperlikeMode()
   if get(g:, 'colors_name', 'default') == 'Paperlike'
-    exec 'colorscheme ' . g:prefered_colorscheme
+    silent exec 'colorscheme ' . g:prefered_colorscheme
   else
-    colorscheme Paperlike
+    silent colorscheme Paperlike
   endif
 endfunction
 
-nnoremap <M-S-h> :call TogglePaperlikeMode()<CR>
+nnoremap <silent><M-S-h> :call TogglePaperlikeMode()<CR>
 
 nnoremap /       /\v
 nnoremap ?       /\?
