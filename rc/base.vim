@@ -10,7 +10,7 @@ set softtabstop =2
 set tabstop     =2
 
 set hidden
-set laststatus =1
+set laststatus =0
 set cmdheight  =1
 set novisualbell
 set noerrorbells
@@ -25,8 +25,31 @@ set matchtime   =4
 " enable doxygen highlighting
 let g:load_doxygen_syntax = 1
 
-set statusline=[%n]%(\ %.35F%)\ %=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
-set fillchars=stl:\ ,stlnc:-,vert:¦
+" set statusline=[%n]%(\ %.35F%)\ %=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
+set statusline=-
+set fillchars=stl:-,stlnc:-,vert:¦
+
+augroup StatusLineStyleHack
+  autocmd!
+
+  autocmd ColorScheme *
+        \   hi! clear VertSplit
+        \ | hi! clear StatusLine
+        \ | hi! clear StatusLineNC
+        \ | hi! link VertSplit    Normal
+        \ | hi! link StatusLine   Normal
+        \ | hi! link StatusLineNC Normal
+        \ | hi! VertSplit
+        \ | hi! StatusLine    gui=bold " IMPORTANT!
+        \ | hi! StatusLineNC
+
+      " :help hl-StatusLineNC says:
+      "
+      " StatusLineNC
+      " status lines of not-current windows
+      "     Note: if this is equal to "StatusLine" Vim will use "^^^" in
+      "     the status line of the current window.
+augroup END
 
 " where am i?
 set ruler
