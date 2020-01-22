@@ -7,3 +7,4 @@ plugs/
 *.run
 /sessions/*.session.vim
 /local.vim
+.ccls-cache
