@@ -41,6 +41,8 @@ hi! clear MatchParen
 hi! MatchParen cterm=underline,italic gui=underline,italic
 hi! NonText    cterm=none             ctermfg=19
 
+hi! clear CursorLine
+hi! CursorLine ctermbg=235
 " hi! link typescriptReserved Normal
 
 let colors_name="daily"

@@ -39,9 +39,8 @@ augroup StatusLineStyleHack
         \ | hi! link VertSplit    Normal
         \ | hi! link StatusLine   Normal
         \ | hi! link StatusLineNC Normal
-        \ | hi! VertSplit
         \ | hi! StatusLine    gui=bold " IMPORTANT!
-        \ | hi! StatusLineNC
+        \ | hi! StatusLineNC  gui=none
 
       " :help hl-StatusLineNC says:
       "

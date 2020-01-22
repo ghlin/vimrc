@@ -175,12 +175,16 @@ autocmd FileType denite        call s:SetupDenite()
 autocmd FileType denite-filter call s:SetupDeniteFilter()
 
 function! s:SetupDenite() abort
+  set cul
+
   nnoremap <silent><buffer><expr> <CR>   denite#do_map('do_action')
   nnoremap <silent><buffer><expr> i      denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <tab>  denite#do_map('choose_action')
 endfunction
 
 function! s:SetupDeniteFilter() abort
+  set cul
+
   inoremap <silent><buffer>        <C-n>   <ESC><C-w>p:call cursor(line('.') + 1, 0)<CR><C-w>pA
   inoremap <silent><buffer>        <C-p>   <ESC><C-w>p:call cursor(line('.') - 1, 0)<CR><C-w>pA
   inoremap <silent><buffer><expr>  <CR>    denite#do_map('do_action')
