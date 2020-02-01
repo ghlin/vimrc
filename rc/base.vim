@@ -29,25 +29,33 @@ let g:load_doxygen_syntax = 1
 set statusline=-
 set fillchars=stl:-,stlnc:-,vert:¦
 
+function! s:apply_status_line_style_hack() abort
+  hi! clear VertSplit
+  hi! clear StatusLine
+  hi! clear StatusLineNC
+  hi! link VertSplit    Normal
+  hi! link StatusLine   Normal
+  hi! link StatusLineNC Normal
+
+  " :help hl-StatusLineNC says:
+  "
+  " StatusLineNC
+  " status lines of not-current windows
+  "     Note: if this is equal to "StatusLine" Vim will use "^^^" in
+  "     the status line of the current window.
+  if get(g:, 'gui_running', 0) == 1
+    hi! StatusLine    gui=bold cterm=none
+    hi! StatusLineNC  gui=bold cterm=bold
+  else
+    hi! StatusLine    gui=bold cterm=none
+    hi! StatusLineNC  gui=none cterm=none
+  endif
+endfunction
+
 augroup StatusLineStyleHack
   autocmd!
 
-  autocmd ColorScheme *
-        \   hi! clear VertSplit
-        \ | hi! clear StatusLine
-        \ | hi! clear StatusLineNC
-        \ | hi! link VertSplit    Normal
-        \ | hi! link StatusLine   Normal
-        \ | hi! link StatusLineNC Normal
-        \ | hi! StatusLine    gui=bold " IMPORTANT!
-        \ | hi! StatusLineNC  gui=none
-
-      " :help hl-StatusLineNC says:
-      "
-      " StatusLineNC
-      " status lines of not-current windows
-      "     Note: if this is equal to "StatusLine" Vim will use "^^^" in
-      "     the status line of the current window.
+  autocmd ColorScheme * call s:apply_status_line_style_hack()
 augroup END
 
 " where am i?
@@ -105,7 +113,7 @@ set backspace =eol,start,indent
 set mouse=a
 
 " disable cursor style changes
-" set guicursor  =
+set guicursor  =
 
 " insert longest common text, show a menu unless
 " there's only one match
@@ -123,12 +131,6 @@ if has('nvim')
   " as a regex muggle...
   set inccommand =split
 endif
-
-" set working dir automatically?
-" autocmd BufEnter * silent! lcd %:p:h
-
-" quickfix window goes bottom most.
-autocmd FileType qf wincmd J
 
 " formats && encoding
 set fileformat    =unix
@@ -172,7 +174,12 @@ set undofile
 augroup Misc
   autocmd!
 
-  autocmd FileType qf setlocal wrap
+  " set working dir automatically?
+  " autocmd BufEnter * silent! lcd %:p:h
+
+  autocmd FileType qf
+        \   wincmd J       " quickfix window goes bottom
+        \ | setlocal wrap
 
   " create directory recursively when necessary, this is
   " very useful when saving a file in new folder

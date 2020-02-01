@@ -45,4 +45,6 @@ hi! clear CursorLine
 hi! CursorLine ctermbg=235
 " hi! link typescriptReserved Normal
 
+hi! NonText    ctermfg=235
+
 let colors_name="daily"

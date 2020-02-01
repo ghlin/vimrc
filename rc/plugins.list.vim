@@ -103,10 +103,6 @@ endfunction
 
 " }}}
 
-" colorschemes
-Plug 'nanotech/jellybeans.vim'
-Plug 'lifepillar/vim-gruvbox8'
-
 " additional text objects
 Plug 'kana/vim-textobj-user'    " required by vim-textobj-indent
 Plug 'kana/vim-textobj-indent'

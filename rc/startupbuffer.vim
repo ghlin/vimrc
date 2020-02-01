@@ -25,7 +25,7 @@ function! s:make_session()
   let temp_file = tempname()
   execute 'mksession' fnameescape(temp_file)
 
-  let lines        = [ '" ' . metaline ] + readfile(temp_file)
+  let lines = [ '" ' . metaline ] + readfile(temp_file)
 
   call writefile(lines, session_file)
 endfunction
