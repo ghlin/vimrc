@@ -149,12 +149,14 @@ function! s:make_scratch_buffer()
   nnoremap <buffer> <CR> :call LoadSessionUnderCursor()<CR>
   nnoremap <buffer> <BS> :call DeleteSessionUnderCursor()<CR>
 
-  autocmd! startup VimEnter
+  autocmd! Startup VimEnter
   let s:startup_buffer_loaded = 1
 endfunction
 
 if argc() == 0
-  augroup startup
+  augroup Startup
+    autocmd!
+
     autocmd! VimEnter * :call s:make_scratch_buffer()
   augroup END
 endif

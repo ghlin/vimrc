@@ -5,7 +5,7 @@ syntax reset
 hi! clear Visual
 hi! Visual cterm=inverse
 
-" hi! Pmenu  cterm=none  ctermbg=Megenta ctermfg=Black
+" hi! Pmenu  cterm=none  ctermbg=Magenta ctermfg=Black
 
 hi! clear Folded
 hi! Folded cterm=italic
@@ -36,15 +36,19 @@ hi! CocFloating ctermbg=235
 
 hi! Pmenu     ctermfg=15     ctermbg=232
 hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
+hi! Type      ctermfg=Green
 
 hi! clear MatchParen
 hi! MatchParen cterm=underline,italic gui=underline,italic
 hi! NonText    cterm=none             ctermfg=19
 
+hi! ColorColumn ctermbg=233
+
 hi! clear CursorLine
 hi! CursorLine ctermbg=235
 " hi! link typescriptReserved Normal
 
+hi! Cursor     ctermfg=White ctermbg=Magenta
 hi! NonText    ctermfg=235
 
 let colors_name="daily"

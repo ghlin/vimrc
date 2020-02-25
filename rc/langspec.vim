@@ -76,7 +76,7 @@ function! s:setup_language_spec_settings()
   endif
 endfunction
 
-augroup langspec
+augroup PerLanguageSettings
   autocmd!
   autocmd BufEnter,BufRead  * :call s:setup_language_spec_settings()
 augroup END

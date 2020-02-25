@@ -52,10 +52,16 @@ function! s:apply_status_line_style_hack() abort
   endif
 endfunction
 
-augroup StatusLineStyleHack
+augroup ColorSchemeOverride
   autocmd!
 
-  autocmd ColorScheme * call s:apply_status_line_style_hack()
+  autocmd ColorScheme *
+        \   call s:apply_status_line_style_hack()
+        \ | hi! link typescriptBrowserObjects Normal
+        \ | hi! clear MatchParen
+        \ | hi! MatchParen cterm=underline,italic,bold gui=underline,italic,bold
+        \ | hi! link typescriptBraces Normal
+        \ | hi! link typescriptParens Normal
 augroup END
 
 " where am i?
@@ -66,11 +72,12 @@ set foldtext=FoldText()
 function! FoldText()
   let foldlinecnt = v:foldend - v:foldstart
   let line        = substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g')
+  let text        = substitute(line, '{{{', '', 'g')
   let spaces      = ' ... '
   let foldinfo    = ' ' . foldlinecnt . ' Ln. '
-  let fillcnt     = winwidth(0) - len(line) - len(foldinfo) - len(spaces) - &number * &numberwidth
+  let fillcnt     = winwidth(0) - strdisplaywidth(text) - len(foldinfo) - len(spaces) - &number * &numberwidth
 
-  return line . spaces . repeat(' ', fillcnt) . foldinfo
+  return text . spaces . repeat(' ', fillcnt) . foldinfo
 endfunction
 
 " no line-numbers
@@ -83,7 +90,7 @@ set scrolloff     =4
 " of the cursor.
 set sidescrolloff =4
 
-set nowrap            " dont wrap long lines!
+set nowrap            " don't wrap long lines!
 set linebreak
 set breakindent
 set breakindentopt =shift:3,sbr

@@ -68,5 +68,5 @@ endfunction
 
 nnoremap <silent><M-S-h> :call TogglePaperlikeMode()<CR>
 
-nnoremap /       /\v
-nnoremap ?       /\?
+nnoremap <leader>/       /\v
+nnoremap <leader>?       ?\v

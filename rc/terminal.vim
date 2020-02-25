@@ -18,10 +18,3 @@ else
   exec 'colorscheme ' . g:prefered_colorscheme
 endif
 
-augroup ColorschemeOverrides
-  autocmd!
-
-  autocmd ColorScheme *
-        \   hi! clear MatchParen
-        \ | hi! MatchParen cterm=underline,italic gui=underline,italic
-augroup END

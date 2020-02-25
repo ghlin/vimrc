@@ -37,7 +37,7 @@ function! s:SetupLanguageClient()
   endif
 endfunction
 
-augroup lang_client
+augroup LSPClientSettings
   autocmd!
   autocmd BufRead,BufEnter * :call s:SetupLanguageClient()
 augroup END
