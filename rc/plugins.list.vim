@@ -9,7 +9,7 @@ Plug 'shougo/junkfile.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " LSP support
-Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': 'yarn install' }
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 Plug 'neoclide/coc-denite'
 
 " Plug 'junegunn/fzf'
@@ -60,10 +60,12 @@ let g:haskell_hsp           = 0
 " autocmd! FileType haskell call SetupMappingsForHaskell()
 
 " typescript
-let g:typescript_ignore_browserwords = 1
+let g:yats_host_keyword = 0
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'quramy/vim-js-pretty-template'
-Plug 'leafgarland/typescript-vim'
-hi! link typescriptHtmlEvents Normal
+
+" let g:typescript_ignore_browserwords = 1
+" Plug 'leafgarland/typescript-vim'
 
 " Markdown
 Plug 'tpope/vim-markdown'
@@ -148,6 +150,7 @@ hi link NERDTreePartFile Normal
 
 " visualize undo tree
 
+let g:undotree_RelativeTimestamp = 0
 " let g:gundo_prefer_python3=1
 Plug 'mbbill/undotree'
 
@@ -162,7 +165,7 @@ Plug 'Shougo/denite.nvim', {
       \ }
 
 nnoremap <silent><M-b>                    :Denite            buffer<CR>
-nnoremap <silent><M-p>                    :DeniteProjectDir  buffer file/rec<CR>
+nnoremap <silent><M-p>                    :DeniteProjectDir  file/rec<CR>
 nnoremap <silent><M-o>                    :Denite            file<CR>
 nnoremap <silent><M-m>                    :Denite            file/old<CR>
 nnoremap <silent><M-l>                    :Denite            outline<CR>

@@ -32,7 +32,7 @@ hi!  Special          term=none cterm=bold,underline         ctermfg=Black
 hi!  SpecialKey       term=none cterm=bold,underline         ctermfg=Black
 hi!  Operator         term=none cterm=none                   ctermfg=Black              ctermbg=None
 hi!  Statement        term=none cterm=bold                   ctermfg=Black
-hi!  TabLineSel       term=none cterm=bold,underline         ctermfg=White              ctermbg=Black
+hi!  TabLineSel       term=none cterm=bold                   ctermfg=White              ctermbg=Black
 hi!  TabLine          term=none cterm=underline              ctermfg=Black              ctermbg=White
 hi!  TabLineFill      term=none cterm=underline              ctermfg=Black              ctermbg=White
 hi!  Title            term=none cterm=none                   ctermfg=Black
