@@ -71,7 +71,10 @@ endfunction
 
 " Add all the default extensions
 " Mappings for C and C++
-call <SID>AddAlternateExtensionMapping('h',"cpp,cxx,cc,CC,c")
+call <SID>AddAlternateExtensionMapping('h',"c,cpp,cxx,cc,CC")
+call <SID>AddAlternateExtensionMapping('hxx',"cxx,cpp,cc,CC")
+call <SID>AddAlternateExtensionMapping('hh',"cc,cpp,cxx,CC")
+call <SID>AddAlternateExtensionMapping('HH',"CC,cpp,cxx,CC")
 call <SID>AddAlternateExtensionMapping('H',"C,CPP,CXX,CC")
 call <SID>AddAlternateExtensionMapping('hpp',"cpp,c")
 call <SID>AddAlternateExtensionMapping('HPP',"CPP,C")
@@ -79,11 +82,11 @@ call <SID>AddAlternateExtensionMapping('c',"h")
 call <SID>AddAlternateExtensionMapping('hh',"cc")
 call <SID>AddAlternateExtensionMapping('HH',"CC")
 call <SID>AddAlternateExtensionMapping('C',"H")
-call <SID>AddAlternateExtensionMapping('cpp',"h,hpp")
-call <SID>AddAlternateExtensionMapping('CPP',"H,HPP")
+call <SID>AddAlternateExtensionMapping('cpp',"h,hh,hpp")
+call <SID>AddAlternateExtensionMapping('CPP',"H,HH,HPP")
 call <SID>AddAlternateExtensionMapping('cc',"hh,h")
 call <SID>AddAlternateExtensionMapping('CC',"HH,H,h")
-call <SID>AddAlternateExtensionMapping('cxx',"h")
+call <SID>AddAlternateExtensionMapping('cxx',"hxx,h")
 call <SID>AddAlternateExtensionMapping('CXX',"H")
 " Mappings for tsx
 call <SID>AddAlternateExtensionMapping('tsx',"scss,less,css")
@@ -110,6 +113,11 @@ call <SID>AddAlternateExtensionMapping('mli',"ml")
 call <SID>AddAlternateExtensionMapping('aspx.cs', 'aspx')
 call <SID>AddAlternateExtensionMapping('aspx.vb', 'aspx')
 call <SID>AddAlternateExtensionMapping('aspx', 'aspx.cs,aspx.vb')
+" tsx stuff
+call <SID>AddAlternateExtensionMapping('tsx', 'scss,css,less')
+call <SID>AddAlternateExtensionMapping('scss', 'tsx')
+call <SID>AddAlternateExtensionMapping('css', 'tsx')
+call <SID>AddAlternateExtensionMapping('less', 'tsx')
 
 " Setup default search path, unless the user has specified
 " a path in their [._]vimrc. 
