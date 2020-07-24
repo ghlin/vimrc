@@ -14,8 +14,9 @@
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/" ]
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".svn/" ]
     }
   },
+  "javascript.suggestionActions.enabled": false,
   "suggest.labelMaxLength": 25
 }

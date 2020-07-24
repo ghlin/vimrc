@@ -22,7 +22,7 @@ hi!  IncSearch        term=none cterm=reverse,italic
 hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=Black              ctermbg=none
 hi!  ModeMsg          term=none cterm=bold
 hi!  MoreMsg          term=none cterm=none                   ctermfg=Black
-hi!  NonText          term=none cterm=none                   ctermfg=LightGray
+hi!  NonText          term=none cterm=none                   ctermfg=253
 hi!  Pmenu            term=none cterm=none                   ctermfg=White              ctermbg=Black
 hi!  PmenuSel         term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
 hi!  PreProc          term=none cterm=none                   ctermfg=Black
@@ -161,4 +161,5 @@ hi! makeSpecial       gui=none                   guifg=Black    guibg=White
 " misc
 hi! link Conceal            Normal
 hi! link hsExprKeyword      Statement
+hi! link shCommandSub       Normal
 " hi! link typescriptReserved Normal

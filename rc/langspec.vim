@@ -23,6 +23,10 @@ function! s:language_setups['zsh']()
   call s:setup_shell()
 endfunction
 
+function! s:language_setups['text']()
+  setlocal nocindent
+endfunction
+
 function! s:language_setups['haskell']()
   setlocal formatprg=brittany
   setlocal matchpairs=(:),[:],{:}

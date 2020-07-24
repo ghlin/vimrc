@@ -64,9 +64,12 @@ function! TogglePaperlikeMode()
   else
     silent colorscheme Paperlike
   endif
+
+  echo 'Colorscheme set to: ' . g:colors_name
 endfunction
 
 nnoremap <silent><M-S-h> :call TogglePaperlikeMode()<CR>
 
-nnoremap <leader>/       /\v
-nnoremap <leader>?       ?\v
+" Search only over a visual range.
+vnoremap / <Esc>/\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
+vnoremap ? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l

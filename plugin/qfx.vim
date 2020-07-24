@@ -1,8 +1,6 @@
-
 """""""""""""""""""""""""""""""""""""""""""
-"  toggle quickfix windo - from vim wiki  "
+"  toggle quickfix window - from vim wiki  "
 """""""""""""""""""""""""""""""""""""""""""
-
 
 function! GetBufferList()
   redir =>buflist
@@ -31,23 +29,8 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nmap <silent> <leader>L :call ToggleList("Location List", 'l')<CR>
-nmap <silent> <leader>Q :call ToggleList("Quickfix List", 'c')<CR>
 nmap <silent> <S-l>     :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <S-q>     :call ToggleList("Quickfix List", 'c')<CR>
 
 command! -bang QClear  :call setqflist([], 'f')
 command! -bang QBuffer :caddbuffer
-
-" command -bang -nargs=? QFix    call QFixToggle(<bang>0)
-
-function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-    unlet g:qfix_win
-  else
-    copen 10
-    let g:qfix_win = bufnr("$")
-  endif
-endfunction
-

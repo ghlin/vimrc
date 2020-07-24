@@ -3,7 +3,7 @@ set bg&
 syntax reset
 
 hi! clear Visual
-hi! Visual cterm=inverse
+hi! Visual ctermfg=Black ctermbg=14 cterm=none
 
 " hi! Pmenu  cterm=none  ctermbg=Magenta ctermfg=Black
 
@@ -34,7 +34,7 @@ hi! TabLineFill ctermfg=Gray  ctermbg=Black cterm=underline
 
 hi! CocFloating ctermbg=235
 
-hi! Pmenu     ctermfg=15     ctermbg=232
+hi! Pmenu     ctermfg=15     ctermbg=238
 hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
 hi! Type      ctermfg=Green
 
@@ -49,6 +49,6 @@ hi! CursorLine ctermbg=235
 " hi! link typescriptReserved Normal
 
 hi! Cursor     ctermfg=White ctermbg=Magenta
-hi! NonText    ctermfg=235
+hi! NonText    ctermfg=243
 
 let colors_name="daily"

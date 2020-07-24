@@ -24,6 +24,7 @@ set matchtime   =4
 
 " enable doxygen highlighting
 let g:load_doxygen_syntax = 1
+let g:yats_host_keyword = 0
 
 " set statusline=[%n]%(\ %.35F%)\ %=\ L%l/%L\ C%c%(\ %m\ %r%h%w%q%)%(\ %y%)
 set statusline=-
@@ -57,11 +58,27 @@ augroup ColorSchemeOverride
 
   autocmd ColorScheme *
         \   call s:apply_status_line_style_hack()
-        \ | hi! link typescriptBrowserObjects Normal
         \ | hi! clear MatchParen
         \ | hi! MatchParen cterm=underline,italic,bold gui=underline,italic,bold
-        \ | hi! link typescriptBraces Normal
-        \ | hi! link typescriptParens Normal
+        \ | hi! link typescriptBrowserObjects Normal
+        \ | hi! link typescriptBraces         Normal
+        \ | hi! link typescriptParens         Normal
+        \ | hi! link typescriptMessage        Normal
+        \ | hi! link typescriptGlobal         Normal
+        \ | hi! link typescriptHtmlEvents     Normal
+        \ | hi! link typescriptMember         Normal
+        \ | hi! link typescriptKeywordOp      Normal
+        \ | hi! link typescriptObjectLabel    Normal
+        \ | hi! link typescriptCall           Normal
+        \ | hi! link typescriptFuncComma      Normal
+        \ | hi! link typescriptFuncType       Normal
+        \ | hi! link typescriptExport         Keyword
+        \ | hi! link typescriptImport         Keyword
+        \ | hi! link typescriptVariable       Keyword
+        \ | hi! link typescriptIdentifier     Keyword
+        \ | hi! link cppType                  Type
+        \ | hi! link cType                    Type
+        \ | hi! link vimContinue              Normal
 augroup END
 
 " where am i?
