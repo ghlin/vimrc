@@ -1,1 +1,1 @@
-source $HOME/.config/nvim/vimrc
+exec 'source ' . expand('~/AppData/Local/nvim/rc/main.vim')

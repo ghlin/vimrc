@@ -24,4 +24,10 @@ augroup ColorschemeOverrides
   autocmd ColorScheme *
         \   hi! clear MatchParen
         \ | hi! MatchParen cterm=underline,italic gui=underline,italic
+        \ | hi! link CocFloating PMenu
 augroup END
+
+set guicursor=i-ci-ve:ver25,r-cr-o:hor25,n-v-c:block
+
+set guifont=Consolas:h17
+

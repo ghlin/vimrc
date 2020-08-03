@@ -10,12 +10,5 @@
   "diagnostic.warningSign": "😕",
   "diagnostic.errorSign": "😱",
 
-  "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/" ]
-    }
-  },
   "suggest.labelMaxLength": 25
 }

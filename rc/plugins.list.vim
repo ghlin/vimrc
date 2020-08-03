@@ -20,12 +20,13 @@ let s:coc_supported_languages = {
       \ 'javascript': 1,
       \ 'javascript.jsx': 1,
       \ 'json': 1,
-      \ 'python': 1,
       \ 'css': 1,
       \ 'scss': 1,
-      \ 'c': 1,
-      \ 'cpp': 1
       \ }
+
+      " \ 'python': 1,
+      " \ 'c': 1,
+      " \ 'cpp': 1
 
 function! s:SetupLanguageClient()
   if has_key(s:coc_supported_languages, &ft)
@@ -162,7 +163,7 @@ Plug 'Shougo/denite.nvim', {
       \ }
 
 nnoremap <silent><M-b>                    :Denite            buffer<CR>
-nnoremap <silent><M-p>                    :DeniteProjectDir  buffer file/rec<CR>
+nnoremap <silent><M-p>                    :DeniteProjectDir  file/rec<CR>
 nnoremap <silent><M-o>                    :Denite            file<CR>
 nnoremap <silent><M-m>                    :Denite            file/old<CR>
 nnoremap <silent><M-l>                    :Denite            outline<CR>

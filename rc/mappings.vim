@@ -38,8 +38,13 @@ nnoremap <silent> <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (fol
 function! NavigateToOrCreateFilePrompt()
   call inputsave()
 
+  let open_folder = expand('%:p:h')
+  if expand('%') == '/[Scratch Buffer]'
+    let open_folder = getcwd()
+  endif
+
   echohl None
-  let newfile = input('Goto/New: ', expand('%:p:h') . '/', "file")
+  let newfile = input('Open/New: ', open_folder . '/', "file")
   call inputrestore()
 
   if !empty(newfile)
@@ -68,5 +73,3 @@ endfunction
 
 nnoremap <silent><M-S-h> :call TogglePaperlikeMode()<CR>
 
-nnoremap /       /\v
-nnoremap ?       /\?
