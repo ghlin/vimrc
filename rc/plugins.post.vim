@@ -1,7 +1,7 @@
 " setup unite/denite
 if !has('nvim')
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_ranker'])
+  " call unite#filters#sorter_default#use(['sorter_ranker'])
 else
   " ['ag', '--follow', '--nocolor', '--nogroup', '-g', '']
   call denite#custom#var('file/rec', 'command',

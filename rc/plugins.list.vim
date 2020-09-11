@@ -34,6 +34,7 @@ function! s:SetupLanguageClient()
     nmap     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
     nmap     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
     nmap     <buffer><silent> <M-l>                  <ESC>:Denite   coc-symbols<CR>
+    nmap     <buffer>         <F12>                  <ESC>:CocRestart<CR>
   endif
 endfunction
 

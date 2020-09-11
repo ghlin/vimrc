@@ -73,3 +73,8 @@ nnoremap <silent><M-S-h> :call TogglePaperlikeMode()<CR>
 " Search only over a visual range.
 vnoremap / <Esc>/\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
 vnoremap ? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
+
+" command line mode mappings
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>

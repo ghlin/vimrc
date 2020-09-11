@@ -30,6 +30,21 @@ let g:yats_host_keyword = 0
 set statusline=-
 set fillchars=stl:-,stlnc:-,vert:¦
 
+" make the title text less verbose, also don't mess up with denite.
+function! s:override_titlestring() abort
+  if &ft == 'denite-filter'
+    return
+  endif
+
+  setlocal titlestring=%<%f%m\ -\ Neovim
+endfunction
+
+augroup TitlestringOverride
+  autocmd!
+
+  autocmd BufEnter * :call s:override_titlestring()
+augroup END
+
 function! s:apply_status_line_style_hack() abort
   hi! clear VertSplit
   hi! clear StatusLine
@@ -167,7 +182,7 @@ set timeoutlen    =600
 set updatetime    =800
 
 set list
-set listchars    =tab:»\ ,trail:˽,extends:»,precedes:«   ",eol:¬, "⋅
+set listchars    =tab:»-,trail:-,extends:»,precedes:«   ",eol:¬, "⋅
 set conceallevel =2
 " set signcolumn   =yes
 

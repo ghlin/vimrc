@@ -12,8 +12,8 @@ hi!  Comment          term=none cterm=italic                 ctermfg=DarkGray   
 hi!  Constant         term=none cterm=none                   ctermfg=DarkGray
 hi!  DiffAdd          term=none cterm=bold                   ctermfg=White              ctermbg=DarkGray
 hi!  DiffChange       term=none cterm=italic                 ctermfg=Black              ctermbg=253
-hi!  DiffDelete       term=none cterm=none                   ctermfg=Black              ctermbg=White
-hi!  DiffText         term=none cterm=none                   ctermfg=White              ctermbg=Black
+hi!  DiffDelete       term=none cterm=none                   ctermfg=fg                 ctermbg=bg
+hi!  DiffText         term=none cterm=italic,bold            ctermfg=White              ctermbg=Black
 hi!  Directory        term=none cterm=none                   ctermfg=240
 hi!  FoldColumn       term=none cterm=none                   ctermfg=249                ctermbg=none
 hi!  Folded           term=none cterm=italic                 ctermfg=249                ctermbg=none
@@ -22,7 +22,7 @@ hi!  IncSearch        term=none cterm=reverse,italic
 hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=Black              ctermbg=none
 hi!  ModeMsg          term=none cterm=bold
 hi!  MoreMsg          term=none cterm=none                   ctermfg=Black
-hi!  NonText          term=none cterm=none                   ctermfg=253
+hi!  NonText          term=none cterm=none                   ctermfg=252
 hi!  Pmenu            term=none cterm=none                   ctermfg=White              ctermbg=Black
 hi!  PmenuSel         term=none cterm=bold,italic            ctermfg=Black              ctermbg=White
 hi!  PreProc          term=none cterm=none                   ctermfg=Black
@@ -45,7 +45,7 @@ hi!  ErrorMsg         term=none cterm=bold,italic            ctermfg=Black      
 hi!  WildMenu                                                ctermfg=Black              ctermbg=White
 hi!  Error            term=none cterm=italic,strikethrough   ctermfg=DarkRed            ctermbg=White
 
-"just patch here
+" just patch here
 hi! clear CursorLineNr
 hi! clear CursorLine
 hi! clear ColorColumn
