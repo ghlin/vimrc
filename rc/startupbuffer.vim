@@ -13,11 +13,10 @@ function! s:make_scratch_buffer()
   setlocal bufhidden=hide
   setlocal buflisted
   setlocal noswapfile
-  file     \[Scratch Buffer]
+  file     \[Scratch]
 
   call append(line('^'),
-        \ [ 'This is a scratch buffer.'
-        \ , 'Type anything you want, this file will not be saved to disk.'
+        \ [ 'This is a scratch buffer, type anything you want, this file will not be saved to disk anyway.'
         \ , '' ])
 
   autocmd! Startup VimEnter

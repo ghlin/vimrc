@@ -87,6 +87,9 @@ augroup ColorSchemeOverride
         \ | hi! link typescriptCall           Normal
         \ | hi! link typescriptFuncComma      Normal
         \ | hi! link typescriptFuncType       Normal
+        \ | hi! link typescriptArrowFunc      Normal
+        \ | hi! link typescriptArrowFuncArg   Normal
+        \ | hi! link typescriptFuncTypeArrow  Normal
         \ | hi! link typescriptExport         Keyword
         \ | hi! link typescriptImport         Keyword
         \ | hi! link typescriptVariable       Keyword
@@ -116,10 +119,8 @@ endfunction
 set nonumber
 set norelativenumber
 
-" always keep 4 lines above and below the cursor.
+" margin: 4
 set scrolloff     =4
-" always keep 4 lines to the left and to the right
-" of the cursor.
 set sidescrolloff =4
 
 set nowrap            " don't wrap long lines!

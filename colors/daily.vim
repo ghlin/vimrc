@@ -2,6 +2,8 @@ hi! clear
 set bg&
 syntax reset
 
+set background=light
+
 hi! clear Visual
 hi! Visual ctermfg=Black ctermbg=14 cterm=none
 
