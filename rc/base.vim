@@ -246,3 +246,12 @@ execute "digraphs xs " . 0x2093
 let g:sql_type_default = 'mysql'
 
 let g:prefered_colorscheme = 'daily'
+
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+nnoremap <F10> :call SynStack()<CR>

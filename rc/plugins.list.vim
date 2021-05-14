@@ -37,9 +37,16 @@ function! s:SetupLanguageClient()
   endif
 endfunction
 
+function! s:UpdateLanguageClient() abort
+  if has_key(s:coc_supported_languages, &ft)
+    silent call coc#rpc#request('fillDiagnostics', [bufnr('%')])
+  endif
+endfunction
+
 augroup LSPClientSettings
   autocmd!
   autocmd BufRead,BufEnter * :call s:SetupLanguageClient()
+  autocmd CursorHold       * :call s:UpdateLanguageClient()
 augroup END
 
 

@@ -1,14 +1,21 @@
 {
-  // "suggest.autoTrigger": "none"
   "suggest.triggerAfterInsertEnter": true,
   "suggest.noselect": false,
   "suggest.keepCompleteopt": false,
   "suggest.acceptSuggestionOnCommitCharacter": true,
-  "tslint.autoFixOnSave": true,
 
-  "diagnostic.infoSign": "💡",
-  "diagnostic.warningSign": "😕",
-  "diagnostic.errorSign": "😱",
+  "diagnostic.infoSign": "I",
+  "diagnostic.warningSign": "W",
+  "diagnostic.errorSign": "E",
+
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+
+  "typescript.format.semicolons": "remove",
+  "javascript.format.semicolons": "remove",
 
   "languageserver": {
     "ccls": {
