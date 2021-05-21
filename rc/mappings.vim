@@ -35,7 +35,7 @@ nnoremap <silent> <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (fol
 
 " create / navigate to a file within the same directory of
 " the currently-editing file
-function! NavigateToOrCreateFilePrompt()
+function! NavigateToOrCreateFilePrompt(verb)
   call inputsave()
 
   echohl None
@@ -43,11 +43,12 @@ function! NavigateToOrCreateFilePrompt()
   call inputrestore()
 
   if !empty(newfile)
-    exec 'e' newfile
+    exec a:verb . ' ' . newfile
   endif
 endfunction
 
-nnoremap <M-n> :call NavigateToOrCreateFilePrompt()<CR>
+nnoremap <M-n> :call NavigateToOrCreateFilePrompt('e')<CR>
+nnoremap <M-v> :call NavigateToOrCreateFilePrompt('vs')<CR>
 
 com! -nargs=0 LCD           :lcd       %:h
 com! -nargs=0 CD            :cd        %:h

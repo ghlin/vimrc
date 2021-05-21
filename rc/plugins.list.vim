@@ -32,8 +32,10 @@ function! s:SetupLanguageClient()
     nmap     <buffer><silent> <F2>                   <Plug>(coc-rename)
     nmap     <buffer><silent> <C-]>                  <Plug>(coc-definition)
     nmap     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
+    nmap     <buffer><silent> <F12>                  <Plug>(coc-references)
     nmap     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
     nmap     <buffer><silent> <M-l>                  <ESC>:Denite   coc-symbols<CR>
+    nmap     <buffer><silent> <M-S-l>                <ESC>:Denite   coc-workspace<CR>
   endif
 endfunction
 
