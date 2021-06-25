@@ -79,6 +79,8 @@ augroup ColorSchemeOverride
         \ | hi! link cppType                  Type
         \ | hi! link cType                    Type
         \ | hi! link vimContinue              Normal
+        \ | hi! link xmlTagName               htmlTagName
+        \ | hi! link xmlEndTag                htmlEndTag
 augroup END
 
 " where am i?
@@ -89,7 +91,7 @@ set foldtext=FoldText()
 function! FoldText()
   let foldlinecnt = v:foldend - v:foldstart
   let line        = substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g')
-  let text        = substitute(line, '{{{', '', 'g')
+  let text        = substitute(line, '\({{{\s*\)\|\(//\s*\)\|\(/\*\s*\)', '', 'g')
   let spaces      = ' ... '
   let foldinfo    = ' ' . foldlinecnt . ' Ln. '
   let fillcnt     = winwidth(0) - strdisplaywidth(text) - len(foldinfo) - len(spaces) - &number * &numberwidth

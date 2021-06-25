@@ -17,14 +17,18 @@ Plug 'neoclide/coc-denite'
 let s:coc_supported_languages = {
       \ 'typescript': 1,
       \ 'typescript.tsx': 1,
+      \ 'typescriptreact': 1,
       \ 'javascript': 1,
       \ 'javascript.jsx': 1,
+      \ 'javascriptreact': 1,
       \ 'json': 1,
       \ 'python': 1,
       \ 'css': 1,
       \ 'scss': 1,
       \ 'c': 1,
-      \ 'cpp': 1
+      \ 'cpp': 1,
+      \ 'vim': 1,
+      \ 'vue': 1
       \ }
 
 function! s:SetupLanguageClient()
@@ -69,16 +73,17 @@ let g:haskell_hsp           = 0
 " autocmd! FileType haskell call SetupMappingsForHaskell()
 
 " typescript
-let g:yats_host_keyword = 0
-Plug 'HerringtonDarkholme/yats.vim'
+" let g:yats_host_keyword = 0
+" Plug 'HerringtonDarkholme/yats.vim'
+let g:typescript_ignore_browserwords = 1
+Plug 'leafgarland/typescript-vim'
 Plug 'quramy/vim-js-pretty-template'
+Plug 'peitalin/vim-jsx-typescript'
 
-" let g:typescript_ignore_browserwords = 1
-" Plug 'leafgarland/typescript-vim'
 
 " Markdown
 Plug 'tpope/vim-markdown'
-let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh', 'json', 'javascript', 'js=javascript', 'typescript', 'ts=typescript' ]
+let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh', 'json', 'javascript', 'js=javascript', 'typescript', 'ts=typescript', 'vim', 'help' ]
 let g:markdown_syntax_conceal = 1
 
 Plug 'iamcco/markdown-preview.vim'
