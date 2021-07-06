@@ -72,6 +72,9 @@ augroup ColorSchemeOverride
         \ | hi! link typescriptCall           Normal
         \ | hi! link typescriptFuncComma      Normal
         \ | hi! link typescriptFuncType       Normal
+        \ | hi! link typescriptArrowFunc      Normal
+        \ | hi! link typescriptArrowFuncArg   Normal
+        \ | hi! link typescriptFuncTypeArrow  Normal
         \ | hi! link typescriptExport         Keyword
         \ | hi! link typescriptImport         Keyword
         \ | hi! link typescriptVariable       Keyword
@@ -81,6 +84,9 @@ augroup ColorSchemeOverride
         \ | hi! link vimContinue              Normal
         \ | hi! link xmlTagName               htmlTagName
         \ | hi! link xmlEndTag                htmlEndTag
+
+  autocmd ColorScheme Paperlike
+        \ set guicursor=
 augroup END
 
 " where am i?
@@ -225,7 +231,7 @@ augroup END
 set grepprg=ag\ --nogroup\ --nocolor
 
 " {{{ digraph subscripts.
-execute "digraphs ks " . 0x2096 
+execute "digraphs ks " . 0x2096
 execute "digraphs as " . 0x2090
 execute "digraphs es " . 0x2091
 execute "digraphs hs " . 0x2095

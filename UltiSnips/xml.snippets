@@ -12,3 +12,9 @@ endsnippet
 snippet ti "Inline tag" b
 <${1:tag}>${2:content}</${1/([\w:._-]+).*/$1/}>
 endsnippet
+
+snippet cdata "ctag"
+<![CDATA[
+  $0
+]]>
+endsnippet
