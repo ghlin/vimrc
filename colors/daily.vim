@@ -8,7 +8,8 @@ hi! Visual ctermfg=Black ctermbg=14 cterm=none
 " hi! Pmenu  cterm=none  ctermbg=Magenta ctermfg=Black
 
 hi! clear Folded
-hi! Folded cterm=italic
+hi! Folded   ctermfg=240 cterm=none
+hi! Comment  ctermfg=240
 
 hi! clear Statement
 hi! Statement ctermfg=DarkBlue
@@ -39,7 +40,7 @@ hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
 hi! Type      ctermfg=Green
 
 hi! clear MatchParen
-hi! MatchParen cterm=underline,italic gui=underline,italic
+hi! MatchParen cterm=underline,bold   gui=underline,italic
 hi! NonText    cterm=none             ctermfg=19
 
 hi! ColorColumn ctermbg=233
@@ -50,5 +51,7 @@ hi! CursorLine ctermbg=235
 
 hi! Cursor     ctermfg=White ctermbg=Magenta
 hi! NonText    ctermfg=243
+
+hi! Identifier cterm=none
 
 let colors_name="daily"

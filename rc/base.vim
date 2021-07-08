@@ -59,7 +59,7 @@ augroup ColorSchemeOverride
   autocmd ColorScheme *
         \   call s:apply_status_line_style_hack()
         \ | hi! clear MatchParen
-        \ | hi! MatchParen cterm=underline,italic,bold gui=underline,italic,bold
+        \ | hi! MatchParen cterm=underline,bold gui=underline,italic,bold
         \ | hi! link typescriptBrowserObjects Normal
         \ | hi! link typescriptBraces         Normal
         \ | hi! link typescriptParens         Normal
