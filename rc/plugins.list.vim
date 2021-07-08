@@ -12,6 +12,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 Plug 'neoclide/coc-denite'
 
+Plug 'liuchengxu/vista.vim'
+let g:vista_icon_indent       = ["`-> ", "+-> "]
+let g:vista_fold_toggle_icons = ['>', '-']
+let g:vista_close_on_jump     = 1
+let g:vista_default_executive = 'coc'
+let g:vista#renderer#enable_icon = 0
+
 " Plug 'junegunn/fzf'
 
 let s:coc_supported_languages = {
@@ -44,7 +51,8 @@ function! s:SetupLanguageClient()
     nmap     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
     nmap     <buffer><silent> <F12>                  <Plug>(coc-references)
     nmap     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
-    nmap     <buffer><silent> <M-l>                  <ESC>:Denite   coc-symbols<CR>
+    " nmap     <buffer><silent> <M-l>                  <ESC>:Denite   coc-symbols<CR>
+    nmap     <buffer><silent> <M-l>                  <ESC>:Vista    finder<CR>
     nmap     <buffer><silent> <M-S-l>                <ESC>:Denite   coc-workspace<CR>
   endif
 endfunction
@@ -74,7 +82,7 @@ let g:haskell_hsp           = 0
 " typescript
 " let g:yats_host_keyword = 0
 " Plug 'HerringtonDarkholme/yats.vim'
-let g:typescript_ignore_browserwords = 1
+let g:typescript_ignore_browserwords = 0
 Plug 'leafgarland/typescript-vim'
 Plug 'quramy/vim-js-pretty-template'
 Plug 'peitalin/vim-jsx-typescript'
