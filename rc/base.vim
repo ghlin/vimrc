@@ -263,3 +263,17 @@ function! SynStack()
 endfunc
 
 nnoremap <F10> :call SynStack()<CR>
+
+command! -nargs=* -bang                    Grep :call s:keep(<bang>0, "ag " . <q-args>)
+command! -nargs=* -bang -complete=shellcmd Keep :call s:keep(<bang>0, <q-args>)
+
+function! s:keep(bang, command)
+  if a:bang
+    cexpr []
+  endif
+
+  if len(a:command)
+    caddexpr system(a:command)
+    copen
+  endif
+endfunc
