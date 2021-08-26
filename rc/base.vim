@@ -135,6 +135,8 @@ set smartindent
 set cindent
 set cino =Ls,:0,g0,N-s,(0,w0,Ws,k-1s,t0
 
+set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,fb:-")
+
 " tell (neo)vim how to split words
 set iskeyword   ^=_,\$,?
 
