@@ -8,8 +8,8 @@ hi! Visual ctermfg=Black ctermbg=14 cterm=none
 " hi! Pmenu  cterm=none  ctermbg=Magenta ctermfg=Black
 
 hi! clear Folded
-hi! Folded   ctermfg=240 cterm=none
-hi! Comment  ctermfg=240
+hi! Folded   ctermfg=245 cterm=none
+hi! Comment  ctermfg=245
 
 hi! clear Statement
 hi! Statement ctermfg=DarkBlue

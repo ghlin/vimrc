@@ -133,7 +133,7 @@ filetype indent on
 set autoindent
 set smartindent
 set cindent
-set cino =Ls,:0,g0,N-s,(0,w0,Ws,k-1s,t0
+set cino =Ls,g0,N-s,(0,w0,Ws,k-1s,t0
 
 set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,fb:-")
 
@@ -194,8 +194,8 @@ set splitright
 set wildmenu
 set wildignorecase
 set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so
-set wildignore^=*.DS_Store,*.run,*.dSYM
-set wildignore^=node_modules,.vscode,.git,.build,.stack-work
+set wildignore^=*.DS_Store,*.run,*.dSYM,*.js.map
+set wildignore^=node_modules,.vscode,.git,.build,.stack-work,dist
 
 " no backup/swap files
 set nobackup
