@@ -10,7 +10,6 @@ Plug 'scrooloose/nerdcommenter'
 
 " LSP support
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
-Plug 'neoclide/coc-denite'
 
 Plug 'liuchengxu/vista.vim'
 let g:vista_icon_indent       = ["`-> ", "+-> "]
@@ -30,6 +29,7 @@ let s:coc_supported_languages = {
       \ 'javascriptreact': 1,
       \ 'json': 1,
       \ 'python': 1,
+      \ 'java': 1,
       \ 'css': 1,
       \ 'scss': 1,
       \ 'c': 1,
@@ -50,10 +50,8 @@ function! s:SetupLanguageClient()
     nmap     <buffer><silent> <C-]>                  <Plug>(coc-definition)
     nmap     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
     nmap     <buffer><silent> <F12>                  <Plug>(coc-references)
-    nmap     <buffer><silent> <M-S-p>                <ESC>:Denite   coc-command<CR>
-    " nmap     <buffer><silent> <M-l>                  <ESC>:Denite   coc-symbols<CR>
+    nmap     <buffer><silent> <M-S-p>                <ESC>:CocCommand<CR>
     nmap     <buffer><silent> <M-l>                  <ESC>:Vista    finder<CR>
-    nmap     <buffer><silent> <M-S-l>                <ESC>:Denite   coc-workspace<CR>
   endif
 endfunction
 
@@ -180,44 +178,14 @@ nmap <leader><leader><BS>    :UndotreeToggle<CR>
 " insert sequence
 Plug 'vim-scripts/VisIncr'
 
-" denite
-Plug 'Shougo/denite.nvim', {
-      \ 'do': ':UpdateRemotePlugins',
-      \ }
+" fzf, byebye denite.
+Plug 'junegunn/fzf.vim'
 
-nnoremap <silent><M-b>                    :Denite            buffer<CR>
-nnoremap <silent><M-p>                    :DeniteProjectDir  file/rec<CR>
-nnoremap <silent><M-o>                    :Denite            file<CR>
-nnoremap <silent><M-m>                    :Denite            file/old<CR>
-nnoremap <silent><M-l>                    :Denite            outline<CR>
-
-autocmd FileType denite        call s:SetupDenite()
-autocmd FileType denite-filter call s:SetupDeniteFilter()
-
-function! s:SetupDenite() abort
-  setlocal cul
-
-  nnoremap <silent><buffer><expr> <CR>   denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> i      denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <tab>  denite#do_map('choose_action')
-endfunction
-
-function! s:SetupDeniteFilter() abort
-  setlocal cul
-
-  inoremap <silent><buffer>        <C-n>   <ESC><C-w>p:call cursor(line('.') + 1, 0)<CR><C-w>pA
-  inoremap <silent><buffer>        <C-p>   <ESC><C-w>p:call cursor(line('.') - 1, 0)<CR><C-w>pA
-  inoremap <silent><buffer><expr>  <CR>    denite#do_map('do_action')
-  inoremap <silent><buffer><expr>  <ESC>   denite#do_map('quit')
-  inoremap <silent><buffer><expr>  <C-c>   denite#do_map('quit')
-  inoremap <silent><buffer><expr>  <M-n>   denite#do_map('quit')
-  inoremap <silent><buffer><expr>  <M-p>   denite#do_map('quit')
-  inoremap <silent><buffer><expr>  <M-l>   denite#do_map('quit')
-  inoremap <silent><buffer><expr>  <M-o>   denite#do_map('quit')
-  inoremap <silent><buffer><expr>  <M-w>   denite#do_map('quit')
-  inoremap <silent><buffer><expr>  zz      denite#do_map('quit')
-  inoremap <silent><buffer><expr>  <tab>   denite#do_map('choose_action')
-endfunction
+nnoremap <silent><M-b>     :Buffers<CR>
+nnoremap <silent><M-p>     :Files<CR>
+nnoremap <silent><M-o>     :Files<CR>
+nnoremap <silent><M-m>     :History<CR>
+nnoremap <silent><M-l>     :Vista finder<CR>
 
 " guess project root
 Plug 'dbakker/vim-projectroot'
