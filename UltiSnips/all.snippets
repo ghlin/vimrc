@@ -11,6 +11,30 @@ import string, vim
 Automatically filled during usage"""
 _commentDict = { }
 
+"""Helper methods used in UltiSnips snippets."""
+
+import string, vim, re
+
+def complete(tab, opts):
+    """
+    get options that match with tab
+    :param tab: query string
+    :param opts: list that needs to be completed
+    :return: a string that match with tab
+    """
+    el = [x for x in tab]
+    pat = "".join(list(map(lambda x: x + "\w*" if re.match("\w", x) else x,
+                           el)))
+    try:
+        opts = [x for x in opts if re.search(pat, x, re.IGNORECASE)]
+    except:
+        opts = [x for x in opts if x.startswith(tab)]
+    if not len(opts) or str.lower(tab) in list(map(str.lower, opts)):
+        return ""
+    cads = "|".join(opts[:5])
+    if len(opts) > 5: cads += "|..."
+    return "({0})".format(cads)
+
 def _parse_comments(s):
     """ Parses vim's comments option to extract comment format """
     i = iter(s.split(","))
@@ -19,65 +43,94 @@ def _parse_comments(s):
     try:
         while True:
             # get the flags and text of a comment part
-            flags,text = i.next().split(':', 1)
+            flags, text = next(i).split(':', 1)
 
             if len(flags) == 0:
-                if len(text) == 1:
-                    rv.append((text,text,text, ""))
+                rv.append(('OTHER', text, text, text, ""))
             # parse 3-part comment, but ignore those with O flag
-            elif flags[0] == 's' and 'O' not in flags:
-                ctriple = []
+            elif 's' in flags and 'O' not in flags:
+                ctriple = ["TRIPLE"]
                 indent = ""
 
                 if flags[-1] in string.digits:
                     indent = " " * int(flags[-1])
                 ctriple.append(text)
 
-                flags,text = i.next().split(':', 1)
-                assert(flags[0] == 'm')
+                flags, text = next(i).split(':', 1)
+                assert flags[0] == 'm'
                 ctriple.append(text)
 
-                flags,text = i.next().split(':', 1)
-                assert(flags[0] == 'e')
+                flags, text = next(i).split(':', 1)
+                assert flags[0] == 'e'
                 ctriple.append(text)
                 ctriple.append(indent)
 
                 rv.append(ctriple)
-
-            elif flags[0] == 'b':
+            elif 'b' in flags:
                 if len(text) == 1:
-                    rv.insert(0, (text,text,text, ""))
-
+                    rv.insert(0, ("SINGLE_CHAR", text, text, text, ""))
     except StopIteration:
-       return rv
+        return rv
 
-def _get_comment_format():
-    """ Returns a 4-element tuple representing the comment format for
-    the current file. """
+def get_comment_format():
+    """ Returns a 4-element tuple (first_line, middle_lines, end_line, indent)
+    representing the comment format for the current file.
+    It first looks at the 'commentstring', if that ends with %s, it uses that.
+    Otherwise it parses '&comments' and prefers single character comment
+    markers if there are any.
+    """
+    commentstring = vim.eval("&commentstring")
+    if commentstring.endswith("%s"):
+        c = commentstring[:-2]
+        return (c.rstrip(), c.rstrip(), c.rstrip(), "")
+    comments = _parse_comments(vim.eval("&comments"))
+    for c in comments:
+        if c[0] == "SINGLE_CHAR":
+            return c[1:]
+    return comments[0][1:]
 
-    ft = vim.eval("&filetype")
-    # check if the comment dict has the format for the current file
-    if _commentDict.has_key(ft):
-        return _commentDict[ft]
 
-    # otherwise parse vim's comments and add it for later use
-    commentformat = _parse_comments(vim.eval("&comments"))[0]
-    _commentDict[ft] = commentformat
+def make_box(twidth, bwidth=None):
+    b, m, e, i = (s.strip() for s in get_comment_format())
+    m0 = m[0] if m else ''
+    bwidth_inner = bwidth - 3 - max(len(b), len(i + e)) if bwidth else twidth + 2
+    sline = b + m + bwidth_inner * m0 + 2 * m0
+    nspaces = (bwidth_inner - twidth) // 2
+    mlines = i + m + " " + " " * nspaces
+    mlinee = " " + " "*(bwidth_inner - twidth - nspaces) + m
+    eline = i + m + bwidth_inner * m0 + 2 * m0 + e
+    return sline, mlines, mlinee, eline
 
-    return commentformat
+def make_note_comment_start():
+  commentstring = vim.eval("&commentstring")
+  if commentstring.endswith("%s"):
+    c = commentstring[:-2]
+    return c.strip() + ' '
 
+  b, m, e, i = (s.strip() for s in get_comment_format())
+  return b + ' '
 
-def make_box(twidth, bwidth = None):
-   if bwidth is None:
-      bwidth = twidth + 2
-   b,m,e,i = _get_comment_format()
-   sline = b + m + bwidth*m + 2*m
-   nspaces = (bwidth - twidth)//2
-   mlines = i + m + " " + " "*nspaces
-   mlinee = " " + " "*(bwidth-twidth-nspaces) + m
-   eline = i + 2*m + bwidth*m + m + e
-   return sline, mlines, mlinee, eline
+def make_note_comment_end():
+  commentstring = vim.eval("&commentstring")
+  if commentstring.endswith("%s"):
+    return ''
+
+  b, m, e, i = (s.strip() for s in get_comment_format())
+  return ' ' + e
+
 endglobal
+
+snippet todo "TODO reminder"
+`!p snip.rv = make_note_comment_start()`${1:TODO}: ${2:reminder} `!v strftime("%F %T")``!p snip.rv = make_note_comment_end()`
+endsnippet
+
+snippet xxx "XXX reminder"
+`!p snip.rv = make_note_comment_start()`${1:XXX}: ${2:reminder} `!v strftime("%F %T")``!p snip.rv = make_note_comment_end()`
+endsnippet
+
+snippet fixme "FIXME reminder"
+`!p snip.rv = make_note_comment_start()`${1:FIXME}: ${2:reminder} `!v strftime("%F %T")``!p snip.rv = make_note_comment_end()`
+endsnippet
 
 snippet box "A nice box with the current comment symbol" b
 `!p
@@ -98,6 +151,7 @@ box = make_box(len(t[1]), 71)
 snip.rv = box[2] + '\n' + box[3]`
 $0
 endsnippet
+
 
 ##########################
 # LOREM IPSUM GENERATORS #

@@ -145,25 +145,6 @@ int main(int argc, const char **argv)
 
 endsnippet
 
-
-#
-# snippet once "Include header once only guard"
-# #ifndef ${1:`!p
-# if not snip.c:
-#   import random, string
-#   name    = re.sub(r'[^A-Za-z0-9]+', '_', snip.fn).upper()
-#   rand    = ''.join(random.sample(string.ascii_letters + string.digits, 8))
-#   snip.rv = ('%s_INCLUDED_%s' % (name, rand)).upper()
-# else:
-#     snip.rv = snip.c`}
-# #define $1
-# 
-# ${0}
-# 
-# #endif // end of include guard: $1
-# 
-# endsnippet
-
 snippet ince "Include header once only guard"
 #ifndef ${1:`!p
 if not snip.c:
@@ -187,18 +168,6 @@ snippet	once "pragma once"
 ${0}
 endsnippet
 
-snippet todo "a todo reminder" !bs
-// ${1:TODO}: ${2:reminder} `!v strftime("%F %T")`
-endsnippet
-
-snippet xxx "a xxx reminder" !bs
-// ${1:XXX}: ${2:reminder} `!v strftime("%F %T")`
-endsnippet
-
-snippet fixme "a fixme reminder" !bs
-// ${1:FIXME}: ${2:reminder} `!v strftime("%F %T")`
-endsnippet
-
 snippet doxy "doxygen comment" !bs
 /*!
  * $1
@@ -207,13 +176,6 @@ endsnippet
 
 snippet doxi "inline doxygen comment" !b
 /*!< $1 */$0
-endsnippet
-
-snippet comment "a nice comment" !bs
-/*
- * $1
- */
-$0
 endsnippet
 
 snippet rin "@@@" !bs
@@ -301,17 +263,6 @@ do { \
 } while (false)
 endsnippet
 
-snippet ghl "My notes"
-/* ghlin: $0 - `!v strftime("%F %T")` */
-endsnippet
-
-snippet ghlin "My notes"
-/* ghlin: $0 - `!v strftime("%F %T")` */
-endsnippet
-
-snippet ghli "My notes"
-/* ghlin: $0 - `!v strftime("%F %T")` */
-endsnippet
 # vim:ft=snippets:
 
 
