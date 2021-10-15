@@ -180,6 +180,13 @@ Plug 'vim-scripts/VisIncr'
 
 " fzf, byebye denite.
 Plug 'junegunn/fzf.vim'
+let $FZF_DEFAULT_OPTS='--border=sharp --preview-window=border-sharp'
+let g:fzf_layout = { 'window': { 'height': 0.6, 'width': 0.9, 'border': 'sharp' } }
+
+augroup FzfHooks
+  autocmd! FileType fzf set titlestring=finder
+        \| autocmd BufLeave <buffer> set titlestring=
+augroup END
 
 nnoremap <silent><M-b>     :Buffers<CR>
 nnoremap <silent><M-p>     :Files<CR>
