@@ -13,6 +13,8 @@ hi! Comment  ctermfg=245
 
 hi! clear Statement
 hi! Statement ctermfg=DarkBlue
+hi! clear Operator
+hi! link Operator Normal
 
 hi! clear StorageClass
 hi! StorageClass cterm=none ctermfg=DarkBlue
@@ -37,7 +39,13 @@ hi! CocFloating ctermbg=235
 
 hi! Pmenu     ctermfg=15     ctermbg=238
 hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
-hi! Type      ctermfg=Green
+hi! Type      ctermfg=DarkGreen
+
+hi! clear Constant
+hi! Constant ctermfg=247
+
+hi! clear Special
+hi! Special ctermfg=240
 
 hi! clear MatchParen
 hi! MatchParen cterm=underline,bold   gui=underline,italic

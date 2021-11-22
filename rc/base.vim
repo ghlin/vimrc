@@ -75,10 +75,13 @@ augroup ColorSchemeOverride
         \ | hi! link typescriptArrowFunc      Normal
         \ | hi! link typescriptArrowFuncArg   Normal
         \ | hi! link typescriptFuncTypeArrow  Normal
+        \ | hi! link typescriptEndColons      Normal
         \ | hi! link typescriptExport         Keyword
         \ | hi! link typescriptImport         Keyword
         \ | hi! link typescriptVariable       Keyword
-        \ | hi! link typescriptIdentifier     Keyword
+        \ | hi! link typescriptIdentifier     Statement
+        \ | hi! link typescriptGlobalObjects  Type
+        \ | hi! link typescriptInterpolation  Comment
         \ | hi! link cppType                  Type
         \ | hi! link cType                    Type
         \ | hi! link vimContinue              Normal
