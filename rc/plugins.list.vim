@@ -210,3 +210,35 @@ Plug 'embear/vim-localvimrc'
 
 " snipets
 Plug 'SirVer/ultisnips'
+
+" git helper
+let g:gitgutter_enabled              = 0
+let g:gitgutter_preview_win_floating = 0
+let g:gitgutter_map_keys             = 0
+let g:gitgutter_async                = 0
+Plug 'airblade/vim-gitgutter'
+
+function! s:toggle_gitgutter() abort
+  :GitGutterToggle
+  if g:gitgutter_enabled
+    set signcolumn=auto
+  else
+    set signcolumn=no
+  endif
+endfunction
+
+function! s:with_gitgutter(command, cnt) abort
+  if g:gitgutter_enabled == 0
+    set signcolumn=auto
+    :GitGutterEnable
+  endif
+
+  execute ':' . a:command . ' ' . a:cnt
+endfunction
+
+nnoremap <silent><M-S-g>      :call <SID>toggle_gitgutter()<CR>
+nnoremap <silent>]c           :call <SID>with_gitgutter('GitGutterNextHunk', v:count1)<CR>
+nnoremap <silent>[c           :call <SID>with_gitgutter('GitGutterPrevHunk', v:count1)<CR>
+nnoremap <silent><leader>hp   :GitGutterPreviewHunk<CR>
+nnoremap <silent><leader>hu   :GitGutterUndoHunk<CR>
+nnoremap <silent><leader>hs   :GitGutterStageHunk<CR>

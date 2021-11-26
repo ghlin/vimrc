@@ -19,7 +19,7 @@ function! s:magnify()
   setlocal noswapfile
 
   exec 'file ' . filename . ' \[Magnified]'
-  silent Goyo 90%
+  " silent Goyo 90%
 endfunction
 
 command! -range -nargs=0 Magnify :call s:magnify()
