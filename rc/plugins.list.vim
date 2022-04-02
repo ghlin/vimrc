@@ -134,7 +134,11 @@ Plug 'sgur/vim-textobj-parameter'
 " Plug 'vim-scripts/argtextobj.vim'
 " Plug 'vim-scripts/Parameter-Text-Objects'
 
-Plug 'vim-scripts/swap-parameters'
+let g:swap_no_default_key_mappings = 1
+Plug 'machakann/vim-swap'
+
+nmap gb      <Plug>(swap-next)
+nmap gB      <Plug>(swap-prev)
 
 " pair manip.
 Plug 'tpope/vim-surround'
@@ -242,3 +246,5 @@ nnoremap <silent>[c           :call <SID>with_gitgutter('GitGutterPrevHunk', v:c
 nnoremap <silent><leader>hp   :GitGutterPreviewHunk<CR>
 nnoremap <silent><leader>hu   :GitGutterUndoHunk<CR>
 nnoremap <silent><leader>hs   :GitGutterStageHunk<CR>
+
+" Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }

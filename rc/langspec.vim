@@ -52,6 +52,7 @@ function! s:language_setups['python']()
 endfunction
 
 function! s:language_setups['javascript']()
+  setlocal cinoptions=
   let b:run_this = printf('node %s', expand('%'))
 endfunction
 
