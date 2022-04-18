@@ -11,12 +11,30 @@ Plug 'scrooloose/nerdcommenter'
 " LSP support
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 
+let g:fzf_colors = {
+  \   'fg':      ['fg', 'Normal'],
+  \   'bg':      ['bg', 'Normal'],
+  \   'hl':      ['fg', 'Comment'],
+  \   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \   'hl+':     ['fg', 'Statement'],
+  \   'info':    ['fg', 'PreProc'],
+  \   'border':  ['fg', 'Ignore'],
+  \   'prompt':  ['fg', 'Conditional'],
+  \   'pointer': ['fg', 'Exception'],
+  \   'marker':  ['fg', 'Keyword'],
+  \   'spinner': ['fg', 'Label'],
+  \   'header':  ['fg', 'Comment']
+  \ }
+
+
 Plug 'liuchengxu/vista.vim'
-let g:vista_icon_indent       = ["`-> ", "+-> "]
-let g:vista_fold_toggle_icons = ['>', '-']
-let g:vista_close_on_jump     = 1
-let g:vista_default_executive = 'coc'
+let g:vista_icon_indent          = ["`-> ", "+-> "]
+let g:vista_fold_toggle_icons    = ['>', '-']
+let g:vista_close_on_jump        = 1
+let g:vista_default_executive    = 'coc'
 let g:vista#renderer#enable_icon = 0
+let g:vista_keep_fzf_colors      = 1
 
 " Plug 'junegunn/fzf'
 
