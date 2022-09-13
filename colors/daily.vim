@@ -45,7 +45,7 @@ hi! clear Constant
 hi! Constant ctermfg=247
 
 hi! clear Special
-hi! Special ctermfg=240
+hi! Special ctermfg=Blue cterm=underline
 
 hi! clear MatchParen
 hi! MatchParen cterm=underline,bold   gui=underline,italic

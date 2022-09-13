@@ -12,13 +12,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 
 Plug 'liuchengxu/vista.vim'
-let g:vista_icon_indent       = ["`-> ", "+-> "]
-let g:vista_fold_toggle_icons = ['>', '-']
-let g:vista_close_on_jump     = 1
-let g:vista_default_executive = 'coc'
+let g:vista_highlight_whole_line = 1
+let g:vista_keep_fzf_colors      = 1
+let g:vista_icon_indent          = ["`-> ", "+-> "]
+let g:vista_fold_toggle_icons    = ['>', '-']
+let g:vista_close_on_jump        = 1
+let g:vista_default_executive    = 'coc'
 let g:vista#renderer#enable_icon = 0
-
-" Plug 'junegunn/fzf'
 
 let s:coc_supported_languages = {
       \ 'typescript': 1,
@@ -52,6 +52,7 @@ function! s:SetupLanguageClient()
     nmap     <buffer><silent> <F12>                  <Plug>(coc-references)
     nmap     <buffer><silent> <M-S-p>                <ESC>:CocCommand<CR>
     nmap     <buffer><silent> <M-l>                  <ESC>:Vista    finder<CR>
+    inoremap <buffer><silent><expr> <c-space> coc#refresh()
   endif
 endfunction
 
@@ -184,6 +185,22 @@ Plug 'vim-scripts/VisIncr'
 
 " fzf, byebye denite.
 Plug 'junegunn/fzf.vim'
+let g:fzf_colors = {
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Keyword'],
+      \ 'fg+':     ['bg', 'Normal'],
+      \ 'bg+':     ['fg', 'Normal'],
+      \ 'hl+':     ['fg', 'IncSearch'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Special'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment']
+      \ }
+
 let $FZF_DEFAULT_OPTS='--border=sharp --preview-window=border-sharp'
 let g:fzf_layout = { 'window': { 'height': 0.6, 'width': 0.9, 'border': 'sharp' } }
 
@@ -210,6 +227,8 @@ com! -nargs=0 R             :call ProjectRootCD()
 nnoremap <leader>! :ProjectRootExe<space>
 
 " per-project vimrc
+let g:localvimrc_persistent_file = "$HOME/.local/share/nvim/localvimrc_persistent"
+let g:localvimrc_persistent = 1
 Plug 'embear/vim-localvimrc'
 
 " snipets

@@ -87,6 +87,10 @@ augroup ColorSchemeOverride
         \ | hi! link vimContinue              Normal
         \ | hi! link xmlTagName               htmlTagName
         \ | hi! link xmlEndTag                htmlEndTag
+        \ | hi! clear FZFVistaTag
+        \ | hi!       FZFVistaTag   ctermfg=none
+        \ | hi! clear Tag
+        \ | hi!       Tag   ctermfg=none ctermbg=none
 
   autocmd ColorScheme Paperlike
         \ set guicursor=
@@ -182,7 +186,7 @@ set updatetime    =800
 set list
 set listchars    =tab:»\ ,trail:˽,extends:»,precedes:«   ",eol:¬, "⋅
 set conceallevel =2
-" set signcolumn   =yes
+set signcolumn   =no
 
 " completion & :find command
 set path^=~/.local/include,.,.. "/usr/local/include makes code completion slow
