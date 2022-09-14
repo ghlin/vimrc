@@ -77,14 +77,6 @@ function! s:read_cdb(cdbpath)
   let s:loaded = 1
 endfunction
 
-function! s:lookup(code)
-  if !s:loaded 
-    call s:read_cdb(g:cdbpath)
-  endif
-
-  return s:dict[a:code]
-endfunction
-
 let s:tkeys = [
       \   'MONSTER'
       \ , 'SPELL'
@@ -113,44 +105,73 @@ let s:tkeys = [
       \ , 'LINK'
       \ ]
 
+function! s:show_preview_window()
+  let l:command = "silent! pedit! +setlocal\\ " .
+                \ "buftype=nofile\\ nobuflisted\\ " .
+                \ "noswapfile\\ nonumber\\ wrap __YGOINFO__"
+
+  exe l:command
+endfunction
+
 function! s:lookup_and_display(word)
-  let code  = substitute(a:word, "\\\D", '', 'g')
-  let found = s:lookup(code)
-  echo '--- ' . code . ' ' . repeat('-', &columns - 6 - strlen(code))
-  echo '   Name:  ' . found['name']
+  if !s:loaded
+    call s:read_cdb(g:cdbpath)
+  endif
+
+  let l:code  = substitute(a:word, "\\\D", '', 'g')
+  if has_key(s:dict, l:code) == 0
+    return
+  endif
+
+  let l:found = s:dict[l:code]
+  let l:lines = []
+
+  call add(l:lines, '   Code:  ' . l:code)
+  call add(l:lines, '   Name:  ' . l:found['name'])
 
   let types = []
   for k in s:tkeys
-    if found['_' .. k]
+    if l:found['_' .. k]
       call add(types, k)
     endif
   endfor
 
-  echo '   Type:  ' . join(types, ', ')
+  call add(l:lines, '   Type:  ' . join(types, ', '))
 
-  if found['_MONSTER']
-    echo '   Attr:  ' . found['attr']
-    echo '   Race:  ' . found['race']
-    if found['_LINK']
-      echo '   Link:  ' . found['level']
-      echo '   Atk:   ' . found['atk']
-    elseif found['_XYZ']
-      echo '   Rank:  ' . found['level']
-      echo '   Atk:   ' . found['atk']
-      echo '   Def:   ' . found['def']
+  if l:found['_MONSTER']
+    call add(l:lines, '   Attr:  ' . l:found['attr'])
+    call add(l:lines, '   Race:  ' . l:found['race'])
+    if l:found['_LINK']
+      call add(l:lines, '   Link:  ' . l:found['level'])
+      call add(l:lines, '   Atk:   ' . l:found['atk'])
+    elseif l:found['_XYZ']
+      call add(l:lines, '   Rank:  ' . l:found['level'])
+      call add(l:lines, '   Atk:   ' . l:found['atk'])
+      call add(l:lines, '   Def:   ' . l:found['def'])
     else
-      echo '   Level: ' . found['level']
-      echo '   Atk:   ' . found['atk']
-      echo '   Def:   ' . found['def']
+      call add(l:lines, '   Level: ' . l:found['level'])
+      call add(l:lines, '   Atk:   ' . l:found['atk'])
+      call add(l:lines, '   Def:   ' . l:found['def'])
     endif
   endif
 
-  echo repeat('-', &columns - 1)
-  echo found['desc']
-  echo repeat('-', &columns - 1)
+  for l:line in split(l:found['desc'], '\n', 0)
+    call add(l:lines, substitute(l:line, '\\\r', '', 'g'))
+  endfor
+
+  if &previewwindow
+    " if not?
+  else
+    call s:show_preview_window()
+  endif
+
+  let l:bufnr = bufnr("__YGOINFO__")
+
+  call nvim_buf_set_lines(l:bufnr, 0, -1, 0, l:lines)
 endfunction
 
 nnoremap <silent><F8> :call <SID>lookup_and_display(expand("<cword>"))<CR>
+command! YLookup      call <SID>lookup_and_display(expand("<cword>"))
 
 " test: 44508094
 " test: 10000
