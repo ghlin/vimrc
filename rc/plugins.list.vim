@@ -227,7 +227,7 @@ com! -nargs=0 R             :call ProjectRootCD()
 nnoremap <leader>! :ProjectRootExe<space>
 
 " per-project vimrc
-let g:localvimrc_persistent_file = "$HOME/.local/share/nvim/localvimrc_persistent"
+let g:localvimrc_persistence_file = expand('~') . "/.local/share/nvim/localvimrc_persistent"
 let g:localvimrc_persistent = 1
 Plug 'embear/vim-localvimrc'
 
