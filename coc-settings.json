@@ -1,12 +1,16 @@
 {
   "suggest.triggerAfterInsertEnter": true,
   "suggest.noselect": false,
-  "suggest.keepCompleteopt": false,
+  "suggest.autoTrigger": "always",
+  "suggest.minTriggerInputLength": 3,
   "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.virtualText": true,
 
   "diagnostic.infoSign": "I",
   "diagnostic.warningSign": "W",
   "diagnostic.errorSign": "E",
+
+  "coc.preferences.promptInput": false,
 
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
@@ -19,13 +23,31 @@
 
   "typescript.suggest.completeFunctionCalls": false,
 
+  "html.autoClosingTags": false,
+  "typescript.autoClosingTags": false,
+  "javascript.autoClosingTags": false,
+
+  "typescript.suggest.includeCompletionsWithSnippetText": false,
+
   "languageserver": {
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".svn/" ]
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".svn/"]
     }
   },
   "javascript.suggestionActions.enabled": false,
-  "suggest.labelMaxLength": 25
+  "suggest.labelMaxLength": 25,
+  "json.schemas": [
+    {
+      "fileMatch": ["smsplat/config.*.json", "smsplat/config.json"],
+      "url": "./modules/supports/src/configuration/schema.json"
+    }
+  ],
+  "coc.preferences.rootPatterns": [
+    "tailwind.config.js",
+    ".git",
+    ".hg",
+    ".projections.json"
+  ]
 }

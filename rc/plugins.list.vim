@@ -11,6 +11,10 @@ Plug 'scrooloose/nerdcommenter'
 " LSP support
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 
+" CR to trigger coc completion
+inoremap <silent><expr> <cr>        coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
+inoremap <silent><expr> <c-space>   coc#refresh()
+
 Plug 'liuchengxu/vista.vim'
 let g:vista_highlight_whole_line = 1
 let g:vista_keep_fzf_colors      = 1
@@ -46,13 +50,12 @@ endfunction
 
 function! s:SetupLanguageClient()
   if has_key(s:coc_supported_languages, &ft)
-    nmap     <buffer><silent> <F2>                   <Plug>(coc-rename)
-    nmap     <buffer><silent> <C-]>                  <Plug>(coc-definition)
-    nmap     <buffer><silent> <C-\>                  <ESC>:call CocAction('doHover')<CR>
-    nmap     <buffer><silent> <F12>                  <Plug>(coc-references)
-    nmap     <buffer><silent> <M-S-p>                <ESC>:CocCommand<CR>
-    nmap     <buffer><silent> <M-l>                  <ESC>:Vista    finder<CR>
-    inoremap <buffer><silent><expr> <c-space> coc#refresh()
+    nmap     <buffer><silent>       <F2>        <Plug>(coc-rename)
+    nmap     <buffer><silent>       <C-]>       <Plug>(coc-definition)
+    nmap     <buffer><silent>       <C-\>       <ESC>:call CocAction('doHover')<CR>
+    nmap     <buffer><silent>       <F12>       <Plug>(coc-references)
+    nmap     <buffer><silent>       <M-S-p>     <ESC>:CocCommand<CR>
+    nmap     <buffer><silent>       <M-l>       <ESC>:Vista finder<CR>
   endif
 endfunction
 
@@ -82,7 +85,7 @@ let g:haskell_hsp           = 0
 " let g:yats_host_keyword = 0
 " Plug 'HerringtonDarkholme/yats.vim'
 let g:typescript_ignore_browserwords = 0
-Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim', { 'frozen': 1 }
 Plug 'quramy/vim-js-pretty-template'
 Plug 'peitalin/vim-jsx-typescript'
 
@@ -93,7 +96,7 @@ let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh', 'json
 let g:markdown_syntax_conceal = 1
 
 Plug 'iamcco/markdown-preview.vim'
-let g:mkdp_py_version = 2
+let g:mkdp_py_version = 3
 
 " C / C++
 Plug 'vim-jp/cpp-vim'
@@ -213,7 +216,7 @@ nnoremap <silent><M-b>     :Buffers<CR>
 nnoremap <silent><M-p>     :Files<CR>
 nnoremap <silent><M-o>     :Files<CR>
 nnoremap <silent><M-m>     :History<CR>
-nnoremap <silent><M-l>     :Vista finder<CR>
+nnoremap <silent><M-k>     :Marks<CR>
 
 " guess project root
 Plug 'dbakker/vim-projectroot'

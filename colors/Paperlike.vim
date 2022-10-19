@@ -8,7 +8,7 @@ hi! clear Statement
 hi! clear NormalFloat
 
 hi!  Normal           term=none cterm=none                   ctermfg=Black              ctermbg=none
-hi!  Comment          term=none cterm=italic                 ctermfg=DarkGray           ctermbg=none
+hi!  Comment          term=none cterm=bold                   ctermfg=DarkGray           ctermbg=none
 hi!  Constant         term=none cterm=none                   ctermfg=DarkGray
 hi!  DiffAdd          term=none cterm=bold                   ctermfg=White              ctermbg=DarkGray
 hi!  DiffChange       term=none cterm=italic                 ctermfg=Black              ctermbg=253
@@ -24,12 +24,12 @@ hi!  ModeMsg          term=none cterm=bold
 hi!  MoreMsg          term=none cterm=none                   ctermfg=Black
 hi!  NonText          term=none cterm=none                   ctermfg=253
 hi!  Pmenu            term=none cterm=none                   ctermfg=White              ctermbg=Black
-hi!  PmenuSel         term=none cterm=bold,italic            ctermfg=Black              ctermbg=none
+hi!  PmenuSel         term=none cterm=underline,bold,italic  ctermfg=Black              ctermbg=none
 hi!  PreProc          term=none cterm=none                   ctermfg=Black
 hi!  Question         term=none cterm=none                   ctermfg=Black
-hi!  Search           term=none cterm=bold,underline         ctermfg=Black              ctermbg=none
-hi!  Special          term=none cterm=bold,underline         ctermfg=Black
-hi!  SpecialKey       term=none cterm=bold,underline         ctermfg=Black
+hi!  Search           term=none cterm=underline,italic       ctermfg=White              ctermbg=242
+hi!  Special          term=none cterm=underline,bold         ctermfg=Black              ctermbg=none
+hi!  SpecialKey       term=none cterm=underline,bold         ctermfg=Black
 hi!  Operator         term=none cterm=none                   ctermfg=Black              ctermbg=None
 hi!  Statement        term=none cterm=bold                   ctermfg=Black
 hi!  TabLineSel       term=none cterm=bold                   ctermfg=White              ctermbg=Black
@@ -85,8 +85,8 @@ hi! doxygenBody      cterm=bold,italic ctermfg=Black
 " denite
 hi! deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black ctermbg=none
 hi! deniteMatchedRange cterm=underline             ctermfg=Black ctermbg=none
-hi! CocFloating        ctermbg=253 ctermfg=Black
-hi! NormalFloat        ctermbg=253 ctermfg=Black
+hi! CocFloating        ctermbg=250 ctermfg=Black
+hi! NormalFloat        ctermbg=250 ctermfg=Black
 
 " make
 hi! makeSpecial       cterm=none                   ctermfg=Black ctermbg=none
