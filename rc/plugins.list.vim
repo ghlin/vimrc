@@ -15,6 +15,7 @@ Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 inoremap <silent><expr> <cr>        coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 inoremap <silent><expr> <c-space>   coc#refresh()
 
+
 Plug 'liuchengxu/vista.vim'
 let g:vista_highlight_whole_line = 1
 let g:vista_keep_fzf_colors      = 1
