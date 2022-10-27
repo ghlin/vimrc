@@ -156,9 +156,9 @@ set mouse=a
 " disable cursor style changes
 set guicursor  =
 
-" insert longest common text, show a menu unless
+" insert longest common text, show a menu also when
 " there's only one match
-set completeopt =menu,longest
+set completeopt =menuone,longest
 set pumheight   =7
 
 " searching options
