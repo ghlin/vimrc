@@ -17,11 +17,11 @@ function! ToggleList(bufname, pfx)
       return
     endif
   endfor
+
   if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty!"
       return
   endif
+
   let winnr = winnr()
   exec(a:pfx . 'open')
   if winnr() != winnr

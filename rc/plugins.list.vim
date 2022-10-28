@@ -10,13 +10,16 @@ Plug 'scrooloose/nerdcommenter'
 
 " LSP support
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+
+let g:coc_fzf_preview='right:40%'
 
 " CR to trigger coc completion
 inoremap <silent><expr> <cr>        coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 inoremap <silent><expr> <c-space>   coc#refresh()
 
 
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 let g:vista_highlight_whole_line = 1
 let g:vista_keep_fzf_colors      = 1
 let g:vista_icon_indent          = ["`-> ", "+-> "]
@@ -56,7 +59,7 @@ function! s:SetupLanguageClient()
     nmap     <buffer><silent>       <C-\>       <ESC>:call CocAction('doHover')<CR>
     nmap     <buffer><silent>       <F12>       <Plug>(coc-references)
     nmap     <buffer><silent>       <M-S-p>     <ESC>:CocCommand<CR>
-    nmap     <buffer><silent>       <M-l>       <ESC>:Vista finder<CR>
+    nmap     <buffer><silent>       <M-l>       <ESC>:CocFzfList outline<CR>
   endif
 endfunction
 

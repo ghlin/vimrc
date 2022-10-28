@@ -11,7 +11,7 @@ set tabstop     =2
 
 set hidden
 set laststatus =0
-set cmdheight  =1
+set cmdheight  =0
 set novisualbell
 set noerrorbells
 set showmatch

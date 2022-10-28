@@ -47,8 +47,8 @@ function! NavigateToOrCreateFilePrompt(verb)
   endif
 endfunction
 
-nnoremap <M-n> :call NavigateToOrCreateFilePrompt('e')<CR>
-nnoremap <M-v> :call NavigateToOrCreateFilePrompt('vs')<CR>
+nnoremap <silent><M-n> :call NavigateToOrCreateFilePrompt('e')<CR>
+nnoremap <silent><M-v> :call NavigateToOrCreateFilePrompt('vs')<CR>
 
 com! -nargs=0 LCD           :lcd       %:h
 com! -nargs=0 CD            :cd        %:h
