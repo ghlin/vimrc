@@ -1,4 +1,4 @@
-"" general mappings
+" general mappings
 
 " switch window via leader-key
 nnoremap <leader>w <C-w>
@@ -79,4 +79,3 @@ vnoremap ? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
 cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
-

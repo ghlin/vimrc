@@ -8,17 +8,17 @@ hi! clear Statement
 hi! clear NormalFloat
 
 hi!  Normal           term=none cterm=none                   ctermfg=Black              ctermbg=none
-hi!  Comment          term=none cterm=bold                   ctermfg=DarkGray           ctermbg=none
+hi!  Comment          term=none cterm=italic,bold            ctermfg=DarkGray           ctermbg=White
 hi!  Constant         term=none cterm=none                   ctermfg=DarkGray
 hi!  DiffAdd          term=none cterm=bold                   ctermfg=White              ctermbg=DarkGray
 hi!  DiffChange       term=none cterm=italic                 ctermfg=Black              ctermbg=253
 hi!  DiffDelete       term=none cterm=none                   ctermfg=Black              ctermbg=none
 hi!  DiffText         term=none cterm=none                   ctermfg=White              ctermbg=Black
-hi!  Directory        term=none cterm=none                   ctermfg=240
+hi!  Directory        term=none cterm=underline              ctermfg=Black
 hi!  FoldColumn       term=none cterm=none                   ctermfg=242                ctermbg=none
-hi!  Folded           term=none cterm=italic                 ctermfg=242                ctermbg=none
+hi!  Folded           term=none cterm=italic                 ctermfg=Black              ctermbg=none
 hi!  Identifier       term=none cterm=none                   ctermfg=Black
-hi!  IncSearch        term=none cterm=reverse,italic
+hi!  IncSearch        term=none cterm=italic,underline
 hi!  MatchParen       term=none cterm=underline,bold,italic  ctermfg=Black              ctermbg=none
 hi!  ModeMsg          term=none cterm=bold
 hi!  MoreMsg          term=none cterm=none                   ctermfg=Black

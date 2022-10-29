@@ -11,7 +11,7 @@ set tabstop     =2
 
 set hidden
 set laststatus =0
-set cmdheight  =0
+set cmdheight  =1
 set novisualbell
 set noerrorbells
 set showmatch
@@ -87,8 +87,6 @@ augroup ColorSchemeOverride
         \ | hi! link vimContinue              Normal
         \ | hi! link xmlTagName               htmlTagName
         \ | hi! link xmlEndTag                htmlEndTag
-        \ | hi! clear FZFVistaTag
-        \ | hi!       FZFVistaTag   ctermfg=none
         \ | hi! clear Tag
         \ | hi!       Tag   ctermfg=none ctermbg=none
 
@@ -143,9 +141,6 @@ set cindent
 set cino =Ls,g0,N-s,(0,w0,Ws,k-1s,t0
 
 set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,fb:-")
-
-" tell (neo)vim how to split words
-set iskeyword   ^=_,\$,?
 
 " backspace can erase:
 set backspace =eol,start,indent
@@ -274,7 +269,7 @@ endfunc
 nnoremap <F10> :call SynStack()<CR>
 
 command! -nargs=* -bang                    Grep :call s:keep(<bang>0, "ag " . <q-args>)
-command! -nargs=* -bang -complete=shellcmd Keep :call s:keep(<bang>0, <q-args>)
+command! -nargs=* -bang -complete=shellcmd Crun :call s:keep(<bang>0, <q-args>)
 
 function! s:keep(bang, command)
   if a:bang

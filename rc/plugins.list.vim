@@ -18,16 +18,6 @@ let g:coc_fzf_preview='right:40%'
 inoremap <silent><expr> <cr>        coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 inoremap <silent><expr> <c-space>   coc#refresh()
 
-
-" Plug 'liuchengxu/vista.vim'
-let g:vista_highlight_whole_line = 1
-let g:vista_keep_fzf_colors      = 1
-let g:vista_icon_indent          = ["`-> ", "+-> "]
-let g:vista_fold_toggle_icons    = ['>', '-']
-let g:vista_close_on_jump        = 1
-let g:vista_default_executive    = 'coc'
-let g:vista#renderer#enable_icon = 0
-
 let s:coc_supported_languages = {
       \ 'typescript': 1,
       \ 'typescript.tsx': 1,
@@ -83,16 +73,12 @@ let g:haskell_json          = 0
 let g:haskell_xml           = 0
 let g:haskell_hsp           = 0
 
-" autocmd! FileType haskell call SetupMappingsForHaskell()
 
 " typescript
-" let g:yats_host_keyword = 0
-" Plug 'HerringtonDarkholme/yats.vim'
 let g:typescript_ignore_browserwords = 0
 Plug 'leafgarland/typescript-vim', { 'frozen': 1 }
 Plug 'quramy/vim-js-pretty-template'
 Plug 'peitalin/vim-jsx-typescript'
-
 
 " Markdown
 Plug 'tpope/vim-markdown'
@@ -117,19 +103,6 @@ let g:user_emmit_expandabbr_key = '<c-e>'
 
 let g:use_emmet_complete_tag    = 1
 
-" Alda
-Plug 'daveyarwood/vim-alda'
-
-autocmd FileType alda call s:SetupAlda()
-
-function! s:SetupAlda() abort
-  nmap <buffer><C-x><C-p><C-p> <localleader>pp
-  nmap <buffer><C-x><C-p>      <localleader>paw
-  nmap <buffer><C-x><C-a><C-p> :AldaPlayBuffer<CR>
-  vmap <buffer><C-x><C-p>      <localleader>p
-endfunction
-
-
 " }}}
 
 " additional text objects
@@ -139,8 +112,6 @@ Plug 'kana/vim-textobj-function'
 
 let g:vim_textobj_parameter_mapping = 'a'
 Plug 'sgur/vim-textobj-parameter'
-" Plug 'vim-scripts/argtextobj.vim'
-" Plug 'vim-scripts/Parameter-Text-Objects'
 
 let g:swap_no_default_key_mappings = 1
 Plug 'machakann/vim-swap'
@@ -158,7 +129,8 @@ vnoremap <silent> <Enter> :EasyAlign<Enter>
 
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
-nmap  <leader>E :NERDTreeToggle<CR>
+nmap <silent> <leader>E :NERDTreeToggle<CR>
+
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeDirArrows           = 0
 let g:NERDTreeWinSize             = 25
@@ -194,11 +166,9 @@ Plug 'vim-scripts/VisIncr'
 Plug 'junegunn/fzf.vim'
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
+      \ 'fg+':     ['fg', 'Normal'],
       \ 'hl':      ['fg', 'Keyword'],
-      \ 'fg+':     ['bg', 'Normal'],
-      \ 'bg+':     ['fg', 'Normal'],
-      \ 'hl+':     ['fg', 'IncSearch'],
+      \ 'hl+':     ['fg', 'Keyword'],
       \ 'info':    ['fg', 'PreProc'],
       \ 'border':  ['fg', 'Special'],
       \ 'prompt':  ['fg', 'Conditional'],
@@ -208,7 +178,7 @@ let g:fzf_colors = {
       \ 'header':  ['fg', 'Comment']
       \ }
 
-let $FZF_DEFAULT_OPTS='--border=sharp --preview-window=border-sharp'
+let $FZF_DEFAULT_OPTS='--border=sharp --preview-window=border-sharp --color="fg+:underline,bg+:-1,gutter:-1,hl+:italic:bold:underline,bg:-1"'
 let g:fzf_layout = { 'window': { 'height': 0.6, 'width': 0.9, 'border': 'sharp' } }
 
 augroup FzfHooks
@@ -240,37 +210,3 @@ Plug 'embear/vim-localvimrc'
 
 " snipets
 Plug 'SirVer/ultisnips'
-
-" git helper
-let g:gitgutter_enabled              = 0
-let g:gitgutter_preview_win_floating = 0
-let g:gitgutter_map_keys             = 0
-let g:gitgutter_async                = 0
-Plug 'airblade/vim-gitgutter'
-
-function! s:toggle_gitgutter() abort
-  :GitGutterToggle
-  if g:gitgutter_enabled
-    set signcolumn=auto
-  else
-    set signcolumn=no
-  endif
-endfunction
-
-function! s:with_gitgutter(command, cnt) abort
-  if g:gitgutter_enabled == 0
-    set signcolumn=auto
-    :GitGutterEnable
-  endif
-
-  execute ':' . a:command . ' ' . a:cnt
-endfunction
-
-nnoremap <silent><M-S-g>      :call <SID>toggle_gitgutter()<CR>
-nnoremap <silent>]c           :call <SID>with_gitgutter('GitGutterNextHunk', v:count1)<CR>
-nnoremap <silent>[c           :call <SID>with_gitgutter('GitGutterPrevHunk', v:count1)<CR>
-nnoremap <silent><leader>hp   :GitGutterPreviewHunk<CR>
-nnoremap <silent><leader>hu   :GitGutterUndoHunk<CR>
-nnoremap <silent><leader>hs   :GitGutterStageHunk<CR>
-
-" Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
