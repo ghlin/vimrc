@@ -12,7 +12,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
-let g:coc_fzf_preview='right:40%'
+let g:coc_fzf_preview='up:40%'
 
 " CR to trigger coc completion
 inoremap <silent><expr> <cr>        coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
@@ -48,6 +48,8 @@ function! s:SetupLanguageClient()
     nmap     <buffer><silent>       <C-]>       <Plug>(coc-definition)
     nmap     <buffer><silent>       <C-\>       <ESC>:call CocAction('doHover')<CR>
     nmap     <buffer><silent>       <F12>       <Plug>(coc-references)
+    nmap     <buffer><silent>       <F3>        <Plug>(coc-codeaction)
+    xmap     <buffer><silent>       <F3>        <Plug>(coc-codeaction-selected)
     nmap     <buffer><silent>       <M-S-p>     <ESC>:CocCommand<CR>
     nmap     <buffer><silent>       <M-l>       <ESC>:CocFzfList outline<CR>
   endif
@@ -145,7 +147,7 @@ let g:NERDTreeSortOrder = [
                 \ , '\.lua$'
                 \ , '\.run$'
                 \ , '*', '\.swp$', '\~$', '.dSYM' ]
-let g:NERDTreeIgnore = [ 'node_modules', '\.swp$', '\~$', '\.dSYM' ]
+let g:NERDTreeIgnore = ['node_modules', '\.swp$', '\~$', '\.dSYM', 'dist', 'build']
 let g:NERDTreeQuitOnOpen=0
 
 hi link NERDTreePart     Normal
@@ -179,7 +181,7 @@ let g:fzf_colors = {
       \ }
 
 let $FZF_DEFAULT_OPTS='--border=sharp --preview-window=border-sharp --color="fg+:underline,bg+:-1,gutter:-1,hl+:italic:bold:underline,bg:-1"'
-let g:fzf_layout = { 'window': { 'height': 0.6, 'width': 0.9, 'border': 'sharp' } }
+let g:fzf_layout = { 'window': { 'height': 0.8, 'width': 0.95, 'border': 'sharp' } }
 
 augroup FzfHooks
   autocmd! FileType fzf set titlestring=finder

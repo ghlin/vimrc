@@ -20,7 +20,7 @@ set virtualedit=block  " allow selection past end of line
 
 " match <, >
 set matchpairs +=<:>
-set matchtime   =4
+set matchtime   =0 "coc compatible
 
 " enable doxygen highlighting
 let g:load_doxygen_syntax = 1
@@ -197,7 +197,8 @@ set wildmenu
 set wildignorecase
 set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so
 set wildignore^=*.DS_Store,*.run,*.dSYM,*.js.map
-set wildignore^=node_modules,.vscode,.git,.build,.stack-work,dist
+set wildignore^=node_modules,.vscode,.git,.build
+set wildignore^=build,.stack-work,dist
 
 " no backup/swap files
 set nobackup
