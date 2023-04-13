@@ -4,7 +4,9 @@
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 3,
   "suggest.acceptSuggestionOnCommitCharacter": true,
-  "suggest.virtualText": true,
+  "suggest.virtualText": false,
+
+  "suggest.timeout": 500,
 
   "diagnostic.infoSign": "I",
   "diagnostic.warningSign": "W",
@@ -36,6 +38,7 @@
       "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".svn/"]
     }
   },
+
   "javascript.suggestionActions.enabled": false,
   "suggest.labelMaxLength": 25,
   "json.schemas": [
@@ -43,11 +46,5 @@
       "fileMatch": ["smsplat/config.*.json", "smsplat/config.json"],
       "url": "./modules/supports/src/configuration/schema.json"
     }
-  ],
-  "coc.preferences.rootPatterns": [
-    "tailwind.config.js",
-    ".git",
-    ".hg",
-    ".projections.json"
   ]
 }
