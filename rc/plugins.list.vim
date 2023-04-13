@@ -190,7 +190,7 @@ augroup END
 
 nnoremap <silent><M-b>     :Buffers<CR>
 nnoremap <silent><M-p>     :Files<CR>
-nnoremap <silent><M-o>     :Files<CR>
+nnoremap <silent><M-o>     :Files %:h<CR>
 nnoremap <silent><M-m>     :History<CR>
 nnoremap <silent><M-k>     :Marks<CR>
 
