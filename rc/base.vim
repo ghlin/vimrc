@@ -198,7 +198,7 @@ set wildignorecase
 set wildignore^=*.o,*.~,*.swp,*.pyc,*.luac,*.so
 set wildignore^=*.DS_Store,*.run,*.dSYM,*.js.map
 set wildignore^=node_modules,.vscode,.git,.build
-set wildignore^=build,.stack-work,dist
+set wildignore^=.stack-work,dist
 
 " no backup/swap files
 set nobackup

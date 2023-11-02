@@ -45,7 +45,7 @@ hi! clear Constant
 hi! Constant ctermfg=247
 
 hi! clear Special
-hi! Special ctermfg=Blue cterm=underline
+hi! Special ctermfg=Blue cterm=none
 
 hi! clear MatchParen
 hi! MatchParen cterm=underline,bold   gui=underline,italic
@@ -56,6 +56,8 @@ hi! ColorColumn ctermbg=233
 hi! clear CursorLine
 hi! CursorLine ctermbg=235
 " hi! link typescriptReserved Normal
+" hi! link typescriptInterpolationDelimiter Keyword
+" hi! link typescriptInterpolation          Keyword
 
 hi! Cursor     ctermfg=White ctermbg=Magenta
 hi! NonText    ctermfg=243

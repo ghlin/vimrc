@@ -4,15 +4,17 @@
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 3,
   "suggest.acceptSuggestionOnCommitCharacter": true,
-  "suggest.virtualText": false,
 
   "suggest.timeout": 500,
+  "tsserver.maxTsServerMemory": 6144,
 
   "diagnostic.infoSign": "I",
   "diagnostic.warningSign": "W",
   "diagnostic.errorSign": "E",
 
   "coc.preferences.promptInput": false,
+
+  "tsserver.useLocalTsdk": true,
 
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
@@ -46,5 +48,11 @@
       "fileMatch": ["smsplat/config.*.json", "smsplat/config.json"],
       "url": "./modules/supports/src/configuration/schema.json"
     }
-  ]
+  ],
+
+  "hover.floatConfig": {
+    "border": true,
+    "winblend": 0,
+    "focusable": false
+  }
 }

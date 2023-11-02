@@ -85,8 +85,11 @@ hi! doxygenBody      cterm=bold,italic ctermfg=Black
 " denite
 hi! deniteMatchedChar  cterm=underline,italic,bold ctermfg=Black ctermbg=none
 hi! deniteMatchedRange cterm=underline             ctermfg=Black ctermbg=none
-hi! CocFloating        ctermbg=250 ctermfg=Black
-hi! NormalFloat        ctermbg=250 ctermfg=Black
+
+" floating
+hi! CocFloating                   ctermbg=none ctermfg=Black
+hi! CocMenuSel         cterm=bold ctermbg=250
+hi! NormalFloat                   ctermbg=250  ctermfg=Black
 
 " make
 hi! makeSpecial       cterm=none                   ctermfg=Black ctermbg=none
@@ -152,6 +155,8 @@ hi! doxygenBody      gui=bold,italic guifg=DarkGreen
 " denite
 hi! deniteMatchedChar  gui=underline,italic,bold guifg=Black    guibg=White
 hi! deniteMatchedRange gui=underline             guifg=Black    guibg=White
+
+" floating
 hi! CocFloating                                  guibg=#DADADA  guifg=Black
 hi! NormalFloat                                  guibg=#DADADA  guifg=Black
 

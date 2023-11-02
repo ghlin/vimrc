@@ -9,13 +9,13 @@ Plug 'shougo/junkfile.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " LSP support
-Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install', 'branch': 'release' }
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 let g:coc_fzf_preview='up:40%'
 
 " CR to trigger coc completion
-inoremap <silent><expr> <cr>        coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr>        coc#pum#visible() ? coc#pum#confirm() : "<CR>"
 inoremap <silent><expr> <c-space>   coc#refresh()
 
 let s:coc_supported_languages = {
@@ -42,11 +42,14 @@ function! s:UpdateLanguageClient() abort
   endif
 endfunction
 
+nnoremap <nowait><expr>  <C-j>  coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+nnoremap <nowait><expr>  <C-k>  coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+
 function! s:SetupLanguageClient()
   if has_key(s:coc_supported_languages, &ft)
     nmap     <buffer><silent>       <F2>        <Plug>(coc-rename)
     nmap     <buffer><silent>       <C-]>       <Plug>(coc-definition)
-    nmap     <buffer><silent>       <C-\>       <ESC>:call CocAction('doHover')<CR>
+    nmap     <buffer><silent>       <C-\>       <ESC>:call CocAction('definitionHover')<CR>
     nmap     <buffer><silent>       <F12>       <Plug>(coc-references)
     nmap     <buffer><silent>       <F3>        <Plug>(coc-codeaction)
     xmap     <buffer><silent>       <F3>        <Plug>(coc-codeaction-selected)
@@ -147,7 +150,7 @@ let g:NERDTreeSortOrder = [
                 \ , '\.lua$'
                 \ , '\.run$'
                 \ , '*', '\.swp$', '\~$', '.dSYM' ]
-let g:NERDTreeIgnore = ['node_modules', '\.swp$', '\~$', '\.dSYM', 'dist', 'build']
+let g:NERDTreeIgnore = ['node_modules', '\.swp$', '\~$', '\.dSYM', 'dist', '\.js.map']
 let g:NERDTreeQuitOnOpen=0
 
 hi link NERDTreePart     Normal
