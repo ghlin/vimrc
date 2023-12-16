@@ -68,6 +68,10 @@ function! s:language_setups['cpp']()
   " call s:local_chdir()
 endfunction
 
+function! s:language_setups['typescriptreact']()
+  setlocal comments=s1:/*,mb:*,ex:*/,://
+endfunction
+
 function! s:setup_language_spec_settings()
   if has_key(b:, 'done_set_lang_spec_settings') || !has_key(s:language_setups, &ft)
     return
