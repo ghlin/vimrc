@@ -16,6 +16,8 @@
 
   "tsserver.useLocalTsdk": true,
 
+  "typescript.preferences.autoImportFileExcludePatterns": ["./index"],
+
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
 
@@ -49,6 +51,8 @@
       "url": "./modules/supports/src/configuration/schema.json"
     }
   ],
+
+  "floatFactory.floatConfig": { "border": true },
 
   "hover.floatConfig": {
     "border": true,

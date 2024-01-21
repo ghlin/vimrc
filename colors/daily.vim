@@ -35,7 +35,8 @@ hi! TabLineSel  ctermfg=White ctermbg=Black cterm=bold,italic,underline
 hi! TabLine     ctermfg=Gray  ctermbg=Black cterm=underline
 hi! TabLineFill ctermfg=Gray  ctermbg=Black cterm=underline
 
-hi! CocFloating ctermbg=235
+hi! clear CocFloating
+hi! link CocFloating Normal
 
 hi! Pmenu     ctermfg=15     ctermbg=238
 hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
