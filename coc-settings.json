@@ -11,6 +11,9 @@
   "diagnostic.infoSign": "I",
   "diagnostic.warningSign": "W",
   "diagnostic.errorSign": "E",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": " × ",
+  "diagnostic.virtualTextCurrentLineOnly": false,
 
   "coc.preferences.promptInput": false,
 
@@ -42,6 +45,10 @@
       "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".svn/"]
     }
   },
+
+  "inlayHint.display": true,
+  "inlayHint.enable": true,
+  "inlayHint.enableParameter": true,
 
   "javascript.suggestionActions.enabled": false,
   "suggest.labelMaxLength": 25,

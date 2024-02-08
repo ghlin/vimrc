@@ -55,6 +55,10 @@ function! s:SetupLanguageClient()
     xmap     <buffer><silent>       <F3>        <Plug>(coc-codeaction-selected)
     nmap     <buffer><silent>       <M-S-p>     <ESC>:CocCommand<CR>
     nmap     <buffer><silent>       <M-l>       <ESC>:CocFzfList outline<CR>
+    vmap     <buffer><silent>       gf          <Plug>(coc-format-selected)
+    xmap     <buffer><silent>       gf          <Plug>(coc-format-selected)
+    vmap     <buffer><silent>       =           <Plug>(coc-format-selected)
+    xmap     <buffer><silent>       =           <Plug>(coc-format-selected)
   endif
 endfunction
 
@@ -135,6 +139,7 @@ vnoremap <silent> <Enter> :EasyAlign<Enter>
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
 nmap <silent> <leader>E :NERDTreeToggle<CR>
+nmap <silent> <leader>S :NERDTreeFind<CR>
 
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeDirArrows           = 0
