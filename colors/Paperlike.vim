@@ -89,6 +89,8 @@ hi! deniteMatchedRange cterm=underline             ctermfg=Black ctermbg=none
 " floating
 hi! CocFloating                   ctermbg=none ctermfg=Black
 hi! CocMenuSel         cterm=bold ctermbg=250
+hi! CocFloatThumb                 ctermbg=250
+hi! CocFloatSbar                  ctermbg=White
 hi! NormalFloat                   ctermbg=250  ctermfg=Black
 
 " make

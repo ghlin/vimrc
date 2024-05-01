@@ -11,7 +11,7 @@ set tabstop     =2
 
 set hidden
 set laststatus =0
-set cmdheight  =1
+set cmdheight  =0
 set novisualbell
 set noerrorbells
 set showmatch
@@ -138,7 +138,7 @@ filetype indent on
 set autoindent
 set smartindent
 set cindent
-set cino =Ls,g0,N-s,(0,w0,Ws,k-1s,t0
+set cino =Ls,g0,N-s,(0,w0,Ws,k-1s,t0,:0
 
 set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,fb:-")
 
