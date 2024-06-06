@@ -258,7 +258,7 @@ execute "digraphs xs " . 0x2093
 " sql.vim:
 let g:sql_type_default = 'mysql'
 
-let g:prefered_colorscheme = 'daily'
+let g:prefered_colorscheme = get(g:, 'prefered_colorscheme', 'daily')
 
 function! SynStack()
   if !exists("*synstack")

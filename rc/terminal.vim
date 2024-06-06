@@ -12,10 +12,3 @@ else
   let &t_EI   .= "\e]50;CursorShape=0\x7"
 endif
 
-" are we using Paperlike display?
-if $PAPERLIKE == "PAPERLIKE"
-  colorscheme Paperlike
-else
-  exec 'colorscheme ' . g:prefered_colorscheme
-endif
-
