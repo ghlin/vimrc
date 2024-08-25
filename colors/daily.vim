@@ -1,9 +1,9 @@
 hi! clear
-set bg&
+" set bg&
 syntax reset
 
 hi! clear Visual
-hi! Visual ctermfg=Black ctermbg=14 cterm=none
+hi! Visual ctermbg=none ctermfg=13 cterm=inverse
 
 " hi! Pmenu  cterm=none  ctermbg=Magenta ctermfg=Black
 
@@ -36,10 +36,26 @@ hi! TabLine     ctermfg=Gray  ctermbg=Black cterm=underline
 hi! TabLineFill ctermfg=Gray  ctermbg=Black cterm=underline
 
 hi! clear CocFloating
-hi! link CocFloating Normal
+hi! link  CocFloating Normal
 
-hi! Pmenu     ctermfg=15     ctermbg=238
-hi! PmenuSel  ctermfg=White  ctermbg=235    cterm=italic,bold
+hi! clear CocListLine
+hi! link  CocListLine CocMenuSel
+
+hi! clear CocMenuSel
+hi! CocMenuSel cterm=inverse,bold
+
+hi! clear IncSearch
+hi! clear Search
+hi! clear CurSearch
+
+hi! link IncSearch Search
+hi! link Search    Normal
+hi! link CurSearch Normal
+hi! Search      cterm=inverse
+hi! CurSearch   cterm=inverse,underline
+
+hi! Pmenu     ctermfg=7  ctermbg=0
+hi! PmenuSel  ctermfg=0  ctermbg=15    cterm=italic,bold
 hi! Type      ctermfg=DarkGreen
 
 hi! clear Constant
@@ -55,12 +71,13 @@ hi! NonText    cterm=none             ctermfg=19
 hi! ColorColumn ctermbg=233
 
 hi! clear CursorLine
-hi! CursorLine ctermbg=235
+hi! link CursorLine Underline
+hi! link CursorLine Underline
 " hi! link typescriptReserved Normal
 " hi! link typescriptInterpolationDelimiter Keyword
 " hi! link typescriptInterpolation          Keyword
 
-hi! Cursor     ctermfg=White ctermbg=Magenta
+hi! Cursor     ctermfg=7* ctermbg=Magenta
 hi! NonText    ctermfg=243
 
 hi! Identifier cterm=none

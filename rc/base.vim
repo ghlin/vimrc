@@ -125,7 +125,7 @@ set linebreak
 set breakindent
 set breakindentopt =shift:3,sbr
 set breakat        =\ ^I!@*-+;:,./?\(\[\{        " break at these chars
-let &showbreak     ='↪ '
+let &showbreak     ='↳'
 
 set foldmethod =marker
 set foldlevel  =3

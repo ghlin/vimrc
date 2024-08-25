@@ -72,11 +72,27 @@ function! s:language_setups['typescriptreact']()
   setlocal comments=s1:/*,mb:*,ex:*/,://
 endfunction
 
+function! s:bigfile_settings() abort
+  echo "big file, disableing syntax / etc..."
+  setlocal foldlevel=0
+  setlocal noundofile
+  setlocal noswapfile
+  setlocal noloadplugins
+  syntax off
+  syntax clear
+endfunction
+
 function! s:setup_language_spec_settings()
   if has_key(b:, 'done_set_lang_spec_settings') || !has_key(s:language_setups, &ft)
     return
   endif
   let b:done_set_lang_spec_settings = 1
+
+  if getfsize(expand('%')) > 10 * 1024 * 1024
+    call s:bigfile_settings()
+
+    return
+  endif
 
   call s:language_setups[&ft]()
 

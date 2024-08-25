@@ -37,7 +37,7 @@ let s:coc_supported_languages = {
       \ }
 
 function! s:UpdateLanguageClient() abort
-  if has_key(s:coc_supported_languages, &ft)
+  if &buftype != 'nofile' && has_key(s:coc_supported_languages, &ft)
     silent call coc#rpc#request('fillDiagnostics', [bufnr('%')])
   endif
 endfunction
@@ -176,7 +176,9 @@ Plug 'vim-scripts/VisIncr'
 Plug 'junegunn/fzf.vim'
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
-      \ 'fg+':     ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'fg+':     ['fg', 'Normal', 'Comment', 'Directory'],
+      \ 'bg+':     ['bg', 'Normal'],
       \ 'hl':      ['fg', 'Keyword'],
       \ 'hl+':     ['fg', 'Keyword'],
       \ 'info':    ['fg', 'PreProc'],

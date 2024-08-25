@@ -17,6 +17,11 @@ imap <M-q> <ESC>:q<CR>
 map  <M-f> <ESC>:find 
 imap <M-f> <ESC>:find 
 
+xnoremap <C-Insert>     "+y<ESC>
+vnoremap <C-Insert>     "+y<ESC>
+nnoremap <S-Insert>     "+p
+inoremap <S-Insert>     <CR>"+p
+
 com! -bang -nargs=? Q    :close
 com! -bang -nargs=? Qa   :qa
 com! -bang -nargs=? W    :w
@@ -30,6 +35,12 @@ inoremap <C-q> <esc>f)a
 " jump out of a {}
 "inoremap <C-]> <esc>f}a
 
+" <C-/> is actually <C-_> for some reason...
+inoremap       <C-_>       <C-o>dT/
+inoremap       <C-/>       <C-o>dT/
+cnoremap <expr><C-_>       &cedit . 'dT/<C-c>'
+cnoremap <expr><C-/>       &cedit . 'dT/<C-c>'
+
 " toggle fold
 nnoremap <silent> <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
@@ -39,7 +50,20 @@ function! NavigateToOrCreateFilePrompt(verb)
   call inputsave()
 
   echohl None
-  let newfile = input('Goto/New: ', expand('%:p:h') . '/', "file")
+
+  let cwd          = getcwd()
+  let buf_dir      = expand('%:p:h')
+  let inside_cwd   = buf_dir[0:len(cwd) - 1] ==# cwd
+  let default_text = inside_cwd ? buf_dir[len(cwd) + 1:-1] : buf_dir
+
+  if len(default_text)
+    let default_text = default_text . '/'
+  endif
+
+  let newfile = inside_cwd
+        \ ? cwd . '/' . input('Goto/New: ' . cwd . '/', default_text, 'file')
+        \ :             input('Goto/New: ',             default_text, 'file')
+
   call inputrestore()
 
   if !empty(newfile)
