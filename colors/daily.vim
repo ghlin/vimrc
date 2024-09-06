@@ -1,4 +1,3 @@
-hi! clear
 " set bg&
 syntax reset
 
@@ -20,7 +19,7 @@ hi! clear StorageClass
 hi! StorageClass cterm=none ctermfg=DarkBlue
 
 hi! clear VertSplit
-hi! VertSplit cterm=none
+hi  link VertSplit Normal
 
 hi! clear SignColumn
 hi! SignColumn ctermfg=DarkRed  ctermbg=none

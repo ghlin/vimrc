@@ -53,8 +53,26 @@ function! s:apply_status_line_style_hack() abort
   endif
 endfunction
 
+augroup SetupColorscheme
+  autocmd!
+
+augroup END
+
+function! s:setup_colorscheme() abort
+  " are we using Paperlike display?
+  if $PAPERLIKE == "PAPERLIKE"
+    colorscheme Paperlike
+  else
+    exec 'colorscheme ' . g:prefered_colorscheme
+  endif
+endfunc
+
 augroup ColorSchemeOverride
   autocmd!
+
+  autocmd UIEnter *
+        \   call s:setup_colorscheme()
+        \ | call s:apply_status_line_style_hack()
 
   autocmd ColorScheme *
         \   call s:apply_status_line_style_hack()

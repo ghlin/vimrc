@@ -81,17 +81,3 @@ END
 
 set wildignore^=$HOME/.vim/plugs/*
 
-augroup SetupColorscheme
-  autocmd!
-
-  autocmd UIEnter * call s:setup_colorscheme()
-augroup END
-
-function! s:setup_colorscheme() abort
-  " are we using Paperlike display?
-  if $PAPERLIKE == "PAPERLIKE"
-    colorscheme Paperlike
-  else
-    exec 'colorscheme ' . g:prefered_colorscheme
-  endif
-endfunc
