@@ -8,7 +8,14 @@ Plug 'shougo/junkfile.vim'
 " toggle comments
 Plug 'scrooloose/nerdcommenter'
 
+
+" treesitter is nice.
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
 " LSP support
+hi! link CocMenuSel PMenuSel " FIX: CocMenuSel defaults to unreadable colors
+
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install', 'branch': 'release' }
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
@@ -68,31 +75,7 @@ augroup LSPClientSettings
   autocmd CursorHold       * :call s:UpdateLanguageClient()
 augroup END
 
-" Haskell
-Plug 'neovimhaskell/haskell-vim'
-
-let g:haskell_conceal_wide  = 0
-let g:haskell_quasi         = 1
-let g:haskell_interpolation = 0
-let g:haskell_regex         = 0
-let g:haskell_jmacro        = 0
-let g:haskell_shqq          = 0
-let g:haskell_sql           = 0
-let g:haskell_json          = 0
-let g:haskell_xml           = 0
-let g:haskell_hsp           = 0
-
-
-" typescript
-let g:typescript_ignore_browserwords = 0
-Plug 'leafgarland/typescript-vim', { 'frozen': 1 }
-Plug 'quramy/vim-js-pretty-template'
-Plug 'peitalin/vim-jsx-typescript'
-
 " Markdown
-Plug 'tpope/vim-markdown'
-let g:markdown_fenced_languages = [ 'haskell', 'python', 'c', 'cpp', 'sh', 'json', 'javascript', 'js=javascript', 'typescript', 'ts=typescript', 'vim', 'help' ]
-let g:markdown_syntax_conceal = 1
 
 Plug 'iamcco/markdown-preview.vim'
 let g:mkdp_py_version = 3
@@ -113,20 +96,6 @@ let g:user_emmit_expandabbr_key = '<c-e>'
 let g:use_emmet_complete_tag    = 1
 
 " }}}
-
-" additional text objects
-Plug 'kana/vim-textobj-user'    " required by vim-textobj-indent
-Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-function'
-
-let g:vim_textobj_parameter_mapping = 'a'
-Plug 'sgur/vim-textobj-parameter'
-
-let g:swap_no_default_key_mappings = 1
-Plug 'machakann/vim-swap'
-
-nmap gb      <Plug>(swap-next)
-nmap gB      <Plug>(swap-prev)
 
 " pair manip.
 Plug 'tpope/vim-surround'

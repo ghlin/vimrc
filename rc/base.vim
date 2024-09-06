@@ -59,34 +59,36 @@ augroup ColorSchemeOverride
   autocmd ColorScheme *
         \   call s:apply_status_line_style_hack()
         \ | hi! clear MatchParen
-        \ | hi! MatchParen cterm=underline,bold gui=underline,italic,bold
-        \ | hi! link typescriptBrowserObjects Normal
-        \ | hi! link typescriptBraces         Normal
-        \ | hi! link typescriptParens         Normal
-        \ | hi! link typescriptMessage        Normal
-        \ | hi! link typescriptGlobal         Normal
-        \ | hi! link typescriptHtmlEvents     Normal
-        \ | hi! link typescriptMember         Normal
-        \ | hi! link typescriptKeywordOp      Normal
-        \ | hi! link typescriptObjectLabel    Normal
-        \ | hi! link typescriptCall           Normal
-        \ | hi! link typescriptFuncComma      Normal
-        \ | hi! link typescriptFuncType       Normal
-        \ | hi! link typescriptArrowFunc      Normal
-        \ | hi! link typescriptArrowFuncArg   Normal
-        \ | hi! link typescriptFuncTypeArrow  Normal
-        \ | hi! link typescriptEndColons      Normal
-        \ | hi! link typescriptExport         Keyword
-        \ | hi! link typescriptImport         Keyword
-        \ | hi! link typescriptVariable       Keyword
-        \ | hi! link typescriptIdentifier     Statement
-        \ | hi! link typescriptGlobalObjects  Type
-        \ | hi! link typescriptInterpolation  Comment
-        \ | hi! link cppType                  Type
-        \ | hi! link cType                    Type
-        \ | hi! link vimContinue              Normal
-        \ | hi! link xmlTagName               htmlTagName
-        \ | hi! link xmlEndTag                htmlEndTag
+        \ | hi!       MatchParen cterm=underline,bold gui=underline,italic,bold
+        \ | hi! link  typescriptBrowserObjects Normal
+        \ | hi! link  typescriptBraces         Normal
+        \ | hi! link  typescriptParens         Normal
+        \ | hi! link  typescriptMessage        Normal
+        \ | hi! link  typescriptGlobal         Normal
+        \ | hi! link  typescriptHtmlEvents     Normal
+        \ | hi! link  typescriptMember         Normal
+        \ | hi! link  typescriptKeywordOp      Normal
+        \ | hi! link  typescriptObjectLabel    Normal
+        \ | hi! link  typescriptCall           Normal
+        \ | hi! link  typescriptFuncComma      Normal
+        \ | hi! link  typescriptFuncType       Normal
+        \ | hi! link  typescriptArrowFunc      Normal
+        \ | hi! link  typescriptArrowFuncArg   Normal
+        \ | hi! link  typescriptFuncTypeArrow  Normal
+        \ | hi! link  typescriptEndColons      Normal
+        \ | hi! link  typescriptExport         Keyword
+        \ | hi! link  typescriptImport         Keyword
+        \ | hi! link  typescriptVariable       Keyword
+        \ | hi! link  typescriptIdentifier     Statement
+        \ | hi! link  typescriptGlobalObjects  Type
+        \ | hi! link  typescriptInterpolation  Comment
+        \ | hi! link  cppType                  Type
+        \ | hi! link  cType                    Type
+        \ | hi! link  vimContinue              Normal
+        \ | hi! link  xmlTagName               htmlTagName
+        \ | hi! link  xmlEndTag                htmlEndTag
+        \ | hi! clear CocMenuSel
+        \ | hi! link  CocMenuSel               PMenuSel
         \ | hi! clear Tag
         \ | hi!       Tag   ctermfg=none ctermbg=none
 
