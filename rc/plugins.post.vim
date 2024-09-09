@@ -24,7 +24,7 @@ require 'nvim-treesitter.configs'.setup {
         ao     = '@object.outer',
         io     = '@object.inner',
         ia     = '@parameter.inner',
-        aa     = '@parameter.inner',
+        aa     = '@parameter.outer',
       }
     },
 
