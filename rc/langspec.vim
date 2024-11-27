@@ -72,6 +72,11 @@ function! s:language_setups['typescriptreact']()
   setlocal comments=s1:/*,mb:*,ex:*/,://
 endfunction
 
+function! s:language_setups['text']()
+  setlocal cinkeys=0{,0},0),0],!^F,o,O,e
+  setlocal nocindent
+endfunction
+
 function! s:bigfile_settings() abort
   echo "big file, disableing syntax / etc..."
   setlocal foldlevel=0

@@ -30,9 +30,9 @@ hi! DiffChange ctermfg=Black
 hi! DiffDelete ctermfg=Black
 
 " TODO: what if terminal's colorscheme has a light background?
-hi! TabLineSel  ctermfg=White ctermbg=Black cterm=bold,italic,underline
-hi! TabLine     ctermfg=Gray  ctermbg=Black cterm=underline
-hi! TabLineFill ctermfg=Gray  ctermbg=Black cterm=underline
+hi! TabLineSel  ctermfg=None ctermbg=None cterm=bold,italic,underline,inverse
+hi! TabLine     ctermfg=None ctermbg=None cterm=underline
+hi! TabLineFill ctermfg=None ctermbg=None cterm=underline
 
 hi! clear CocFloating
 hi! link  CocFloating Normal

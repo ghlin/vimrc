@@ -73,6 +73,10 @@ require 'nvim-treesitter.configs'.setup {
       },
       goto_previous = {
       }
+    },
+
+    matchup = {
+      enabled = true
     }
   }
 }

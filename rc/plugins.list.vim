@@ -13,6 +13,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
+let g:matchup_matchparen_offscreen = {}
+Plug 'andymass/vim-matchup'
+
 " LSP support
 hi! link CocMenuSel PMenuSel " FIX: CocMenuSel defaults to unreadable colors
 
@@ -99,7 +102,6 @@ let g:use_emmet_complete_tag    = 1
 
 " pair manip.
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/matchit.zip'
 
 " align text easily
 Plug 'junegunn/vim-easy-align'
