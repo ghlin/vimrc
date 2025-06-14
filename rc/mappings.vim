@@ -17,10 +17,13 @@ imap <M-q> <ESC>:q<CR>
 map  <M-f> <ESC>:find 
 imap <M-f> <ESC>:find 
 
-xnoremap <C-Insert>     "+y<ESC>
-vnoremap <C-Insert>     "+y<ESC>
+xnoremap <C-Insert>     "+y
+vnoremap <C-Insert>     "+y
 nnoremap <S-Insert>     "+p
 inoremap <S-Insert>     <CR>"+p
+
+xnoremap <M-y>     "+y
+vnoremap <M-y>     "+y
 
 com! -bang -nargs=? Q    :close
 com! -bang -nargs=? Qa   :qa
@@ -46,12 +49,13 @@ nnoremap <silent> <leader>z      @=(foldlevel(line('.')) == 0 ? '<space>' : (fol
 
 " create / navigate to a file within the same directory of
 " the currently-editing file
-function! NavigateToOrCreateFilePrompt(verb)
+function! s:NavigateToOrCreateFilePrompt(verb)
   call inputsave()
 
   echohl None
 
   let cwd          = getcwd()
+  let cwd_slash    = cwd . '/'
   let buf_dir      = expand('%:p:h')
   let inside_cwd   = buf_dir[0:len(cwd) - 1] ==# cwd
   let default_text = inside_cwd ? buf_dir[len(cwd) + 1:-1] : buf_dir
@@ -61,18 +65,18 @@ function! NavigateToOrCreateFilePrompt(verb)
   endif
 
   let newfile = inside_cwd
-        \ ? cwd . '/' . input('Goto/New: ' . cwd . '/', default_text, 'file')
+        \ ? cwd_slash . input('Goto/New: ' . cwd_slash, default_text, 'file')
         \ :             input('Goto/New: ',             default_text, 'file')
 
   call inputrestore()
 
-  if !empty(newfile)
+  if !empty(newfile) && (!inside_cwd || newfile != cwd_slash)
     exec a:verb . ' ' . newfile
   endif
 endfunction
 
-nnoremap <silent><M-n> :call NavigateToOrCreateFilePrompt('e')<CR>
-nnoremap <silent><M-v> :call NavigateToOrCreateFilePrompt('vs')<CR>
+nnoremap <silent><M-n> :call <SID>NavigateToOrCreateFilePrompt('e')<CR>
+nnoremap <silent><M-v> :call <SID>NavigateToOrCreateFilePrompt('vs')<CR>
 
 com! -nargs=0 LCD           :lcd       %:h
 com! -nargs=0 CD            :cd        %:h
@@ -83,7 +87,7 @@ com! -nargs=0 RmThis        :!rm       -v %
 " when forget `sudo'
 com! -nargs=0 SudoSave     :w !sudo tee % &>/dev/null
 
-function! TogglePaperlikeMode()
+function! s:TogglePaperlikeMode()
   if get(g:, 'colors_name', 'default') == 'Paperlike'
     silent exec 'colorscheme ' . g:prefered_colorscheme
   else
@@ -93,11 +97,11 @@ function! TogglePaperlikeMode()
   echo 'Colorscheme set to: ' . g:colors_name
 endfunction
 
-nnoremap <silent><M-S-h> :call TogglePaperlikeMode()<CR>
+nnoremap <silent><M-S-h> :call <SID>TogglePaperlikeMode()<CR>
 
 " Search only over a visual range.
-vnoremap / <Esc>/\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
-vnoremap ? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
+vnoremap g/ <Esc>/\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
+vnoremap g? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
 
 " command line mappings (readline style).
 cnoremap <C-a> <Home>

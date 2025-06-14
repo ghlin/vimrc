@@ -47,7 +47,7 @@ let s:coc_supported_languages = {
       \ }
 
 function! s:UpdateLanguageClient() abort
-  if &buftype != 'nofile' && has_key(s:coc_supported_languages, &ft)
+  if &buftype != 'nofile' && has_key(s:coc_supported_languages, &ft) && g:coc_enabled
     silent call coc#rpc#request('fillDiagnostics', [bufnr('%')])
   endif
 endfunction
@@ -55,26 +55,36 @@ endfunction
 nnoremap <nowait><expr>  <C-j>  coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
 nnoremap <nowait><expr>  <C-k>  coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 
-function! s:SetupLanguageClient()
+function! s:SetupKeybindings()
   if has_key(s:coc_supported_languages, &ft)
     nmap     <buffer><silent>       <F2>        <Plug>(coc-rename)
     nmap     <buffer><silent>       <C-]>       <Plug>(coc-definition)
+    nmap     <buffer><silent>       gd          <Plug>(coc-definition)
+    nmap     <buffer><silent>       gi          <Plug>(coc-implementation)
+    nmap     <buffer><silent>       gH          <ESC>:call CocAction('highlight')<CR>
     nmap     <buffer><silent>       <C-\>       <ESC>:call CocAction('definitionHover')<CR>
+    nmap     <buffer><silent>       gh          <ESC>:call CocAction('definitionHover')<CR>
     nmap     <buffer><silent>       <F12>       <Plug>(coc-references)
+    nmap     <buffer><silent>       gfr         <Plug>(coc-references)
     nmap     <buffer><silent>       <F3>        <Plug>(coc-codeaction)
     xmap     <buffer><silent>       <F3>        <Plug>(coc-codeaction-selected)
+    nmap     <buffer><silent>       gaa         <Plug>(coc-codeaction)
+    xmap     <buffer><silent>       gaa         <Plug>(coc-codeaction-selected)
     nmap     <buffer><silent>       <M-S-p>     <ESC>:CocCommand<CR>
+    nmap     <buffer><silent>       <M-x>       <ESC>:CocCommand<CR>
     nmap     <buffer><silent>       <M-l>       <ESC>:CocFzfList outline<CR>
     vmap     <buffer><silent>       gf          <Plug>(coc-format-selected)
     xmap     <buffer><silent>       gf          <Plug>(coc-format-selected)
     vmap     <buffer><silent>       =           <Plug>(coc-format-selected)
     xmap     <buffer><silent>       =           <Plug>(coc-format-selected)
+  else
+    nmap     <buffer><silent>       gd          <C-]>
   endif
 endfunction
 
 augroup LSPClientSettings
   autocmd!
-  autocmd BufRead,BufEnter * :call s:SetupLanguageClient()
+  autocmd BufRead,BufEnter * :call s:SetupKeybindings()
   autocmd CursorHold       * :call s:UpdateLanguageClient()
 augroup END
 
@@ -171,6 +181,7 @@ augroup END
 
 nnoremap <silent><M-b>     :Buffers<CR>
 nnoremap <silent><M-p>     :Files<CR>
+nnoremap <silent><M-a>     :Files<CR>
 nnoremap <silent><M-o>     :Files %:h<CR>
 nnoremap <silent><M-m>     :History<CR>
 nnoremap <silent><M-k>     :Marks<CR>

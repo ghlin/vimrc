@@ -10,8 +10,9 @@ set softtabstop =2
 set tabstop     =2
 
 set hidden
-set laststatus =0
-set cmdheight  =0
+set laststatus   =0
+set cmdheight    =0
+set messagesopt  =wait:800,history:500
 set novisualbell
 set noerrorbells
 set showmatch

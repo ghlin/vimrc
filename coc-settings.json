@@ -1,6 +1,7 @@
 {
   "suggest.triggerAfterInsertEnter": true,
   "suggest.noselect": false,
+  "tsserver.log": "normal",
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 3,
   "suggest.acceptSuggestionOnCommitCharacter": true,
@@ -16,6 +17,7 @@
   "diagnostic.virtualTextCurrentLineOnly": false,
 
   "coc.preferences.promptInput": false,
+  "coc.preferences.useQuickfixForLocations": true,
 
   "tsserver.useLocalTsdk": true,
 
@@ -31,6 +33,7 @@
   "javascript.format.semicolons": "remove",
 
   "typescript.suggest.completeFunctionCalls": false,
+  "javascript.suggest.completeFunctionCalls": false,
 
   "html.autoClosingTags": false,
   "typescript.autoClosingTags": false,
@@ -52,12 +55,6 @@
 
   "javascript.suggestionActions.enabled": false,
   "suggest.labelMaxLength": 25,
-  "json.schemas": [
-    {
-      "fileMatch": ["smsplat/config.*.json", "smsplat/config.json"],
-      "url": "./modules/supports/src/configuration/schema.json"
-    }
-  ],
 
   "floatFactory.floatConfig": { "border": true },
 

@@ -6,12 +6,12 @@ function! GetBufferList()
   redir =>buflist
   silent! ls
   redir END
-  return buflist
+  return split(buflist, '\n')
 endfunction
 
 function! ToggleList(bufname, pfx)
   let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+  for bufnum in map(filter(buflist, 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
     if bufwinnr(bufnum) != -1
       exec(a:pfx . 'close')
       return

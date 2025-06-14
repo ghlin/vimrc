@@ -7,9 +7,9 @@ require 'nvim-treesitter.configs'.setup {
     enable  = true,
     keymaps = {
       init_selection     = 'gnn',
-      node_incremental   = 'gA',
-      node_decremental   = 'gX',
-      scope_incremental  = 'gS'
+      node_incremental   = 'gna',
+      node_decremental   = 'gnx',
+      scope_incremental  = 'gns'
     }
   },
 

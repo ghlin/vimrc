@@ -1,5 +1,4 @@
 set title
-set termencoding=utf-8
 set ttyfast
 
 if has('nvim')
