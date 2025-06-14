@@ -24,10 +24,10 @@ hi  link VertSplit Normal
 hi! clear SignColumn
 hi! SignColumn ctermfg=DarkRed  ctermbg=none
 
-hi! DiffAdd    ctermfg=Black
-hi! DiffText   ctermfg=Black
-hi! DiffChange ctermfg=Black
-hi! DiffDelete ctermfg=Black
+hi! DiffAdd    ctermbg=none ctermfg=DarkGreen
+hi! DiffText   ctermbg=none ctermfg=Black
+hi! DiffChange ctermbg=none ctermfg=DarkBlue
+hi! DiffDelete ctermbg=none ctermfg=DarkRed
 
 " TODO: what if terminal's colorscheme has a light background?
 hi! TabLineSel  ctermfg=None ctermbg=None cterm=bold,italic,underline,inverse
