@@ -12,7 +12,7 @@ set tabstop     =2
 set hidden
 set laststatus   =0
 set cmdheight    =0
-set messagesopt  =wait:800,history:500
+" set messagesopt  =wait:3000,history:500
 set novisualbell
 set noerrorbells
 set showmatch
@@ -296,10 +296,10 @@ endfunc
 
 nnoremap <F10> :call SynStack()<CR>
 
-command! -nargs=* -bang                    Grep :call s:keep(<bang>0, "ag " . <q-args>)
-command! -nargs=* -bang -complete=shellcmd Crun :call s:keep(<bang>0, <q-args>)
+command! -nargs=* -bang                    Grep  :call s:put_qfix(<bang>0, "ag " . shellescape(<q-args>))
+command! -nargs=* -bang -complete=shellcmd Shell :call s:put_qfix(<bang>0,         shellescape(<q-args>))
 
-function! s:keep(bang, command)
+function! s:put_qfix(bang, command)
   if a:bang
     cexpr []
   endif

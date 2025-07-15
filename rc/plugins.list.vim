@@ -2,6 +2,8 @@
 
 " For temporary buffer / scratch
 Plug 'shougo/junkfile.vim'
+command! -nargs=0 TNote    call junkfile#open_immediately('tmp/' .. '%Y-%m-%d.%H%M%S'->strftime() .. printf("-%08x.txt", rand()))
+command! -nargs=0 Scratch  call junkfile#open_immediately('%Y-%m-%d.txt'->strftime())
 
 " {{{ languages
 
@@ -13,8 +15,11 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
-let g:matchup_matchparen_offscreen = {}
-Plug 'andymass/vim-matchup'
+" conflicts with coc.nvim (autocomplete html tags)
+" comment out for now.
+"
+" let g:matchup_matchparen_offscreen = {}
+" Plug 'andymass/vim-matchup'
 
 " LSP support
 hi! link CocMenuSel PMenuSel " FIX: CocMenuSel defaults to unreadable colors
@@ -112,6 +117,8 @@ let g:use_emmet_complete_tag    = 1
 
 " pair manip.
 Plug 'tpope/vim-surround'
+let g:surround_60 = "<\r>"
+let g:surround_47 = "</\r>"
 
 " align text easily
 Plug 'junegunn/vim-easy-align'
@@ -181,7 +188,7 @@ augroup END
 
 nnoremap <silent><M-b>     :Buffers<CR>
 nnoremap <silent><M-p>     :Files<CR>
-nnoremap <silent><M-a>     :Files<CR>
+nnoremap <silent><M-e>     :Files<CR>
 nnoremap <silent><M-o>     :Files %:h<CR>
 nnoremap <silent><M-m>     :History<CR>
 nnoremap <silent><M-k>     :Marks<CR>

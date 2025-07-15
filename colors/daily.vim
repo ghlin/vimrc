@@ -37,6 +37,12 @@ hi! TabLineFill ctermfg=None ctermbg=None cterm=underline
 hi! clear CocFloating
 hi! link  CocFloating Normal
 
+hi! clear CocFloatSbar
+hi! link  CocFloatSbar Normal
+
+hi! clear CocFloatThumb
+hi! link  CocFloatThumb PmenuSel
+
 hi! clear CocListLine
 hi! link  CocListLine CocMenuSel
 
